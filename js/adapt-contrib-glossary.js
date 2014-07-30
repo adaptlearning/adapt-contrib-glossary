@@ -1,5 +1,5 @@
 /*
- * Glossary
+ * adapt-contrib-glossary
  * License - https://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
  * Maintainers - Himanshu Rajotia <himanshu.rajotia@credipoint.com>
  */

@@ -36,23 +36,6 @@ A [sample JSON](https://github.com/adaptlearning/adapt-contrib-glossary/blob/mas
         <td><b>Object</b></td>
     </thead>
     <tr valign="top">
-        <td><i>glossary:itemVisible</i></td>
-        <td>Triggered when the user search some term in Search Box </td>
-        <td>
-            <table>
-                <tr>
-                    <td>_isVisible</td>
-                    <td>bool</td>
-                </tr>
-                <tr>
-                    <td>optionalCidItems</td>
-                    <td>array</td>
-                </tr>
-            </table>
-
-        </td>
-    </tr>
-    <tr valign="top">
             <td><i>glossary:descriptionOpen</i></td>
             <td>Triggered when the user clicks on glossary item and its description get opened </td>
             <td>

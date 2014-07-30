@@ -55,7 +55,6 @@ define(function(require) {
             _.each(this.collection.models, function(item, index) {
                 new GlossaryItemView({model: item}).$el.appendTo($glossaryItemContainer);
             }, this);
-            this.showGlossaryItems(true);
         },
 
         postRender: function() {
@@ -77,7 +76,7 @@ define(function(require) {
             }
         },
 
-        // This function will create array of filtered items oon basis of supplied value.
+        // This function will create array of filtered items on basis of supplied arguments.
         getFilteredGlossaryItems: function(value, shouldSearchInDescription) {
             var itemAttribute;
             if(shouldSearchInDescription) {
@@ -90,15 +89,13 @@ define(function(require) {
             }, this);
         },
 
-        // This function will trigger event to make filtered items as visible/hidden.
+        // This function should show only the filtered glossary items or no item found message
         showFilterGlossaryItems: function(filteredItems) {
             this.showGlossaryItems(false);
             if(filteredItems.length > 0) {
-                var cidItems = [];
                 _.each(filteredItems, function(item, index) {
-                    cidItems.push(item.cid);
+                    item.set('_isVisible', true);
                 }, this);
-                this.showGlossaryItems(true, cidItems);
             } else {
                 this.showItemNotFoundMessage(true);
             }
@@ -115,11 +112,12 @@ define(function(require) {
             }
         },
 
-        // This function will trigger a event which will notify if glossary item should visible or not.
-        // Optionally we can specify an array which contains cid of model, using this we can make some specific
-        // glossary item as visible.
-        showGlossaryItems: function(_isVisible, optionalCidItems) {
-            Adapt.trigger('glossary:itemVisible', _isVisible, optionalCidItems);
+        // This function should change the visibility of all glossary items
+        showGlossaryItems: function(_isVisible) {
+            _.invoke(this.collection.models, 'set', {"_isVisible": _isVisible});
+            //this.collection.forEach(function(model) {
+            //    model.set("_isVisible", _isVisible);
+            //});
         }
 
     });

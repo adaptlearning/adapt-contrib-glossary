@@ -12,9 +12,18 @@ define(function(require) {
         },
 
         initialize: function() {
+            this.setupModel();
             this.listenTo(Adapt, 'glossary:descriptionOpen', this.descriptionOpen);
-            this.listenTo(Adapt, 'glossary:itemVisible', this.itemVisible);
+            this.model.on('change:_isVisible', this.onGlossaryItemVisibilityChange, this);
             this.render();
+        },
+
+        // This function will setup glossaryItem model, just before rendering.
+        setupModel: function() {
+            this.model.set({
+                '_isVisible': true,
+                '_isDescriptionOpen': false
+            });
         },
 
         render: function() {
@@ -27,42 +36,46 @@ define(function(require) {
         // This function will call upon glossary item get clicked.
         onGlossaryItemClicked: function(event) {
             event.preventDefault();
-            var $glossaryItemDescription = this.$('.glossary-item-description');
-            if($glossaryItemDescription.is(":hidden")) {
-                Adapt.trigger('glossary:descriptionOpen', this.cid);
-                $glossaryItemDescription.slideDown(200);
+            Adapt.trigger('glossary:descriptionOpen', this.cid);
+            this.toggleGlossaryItemDescription();
+        },
+
+        // This function should toggle the glossary item description
+        toggleGlossaryItemDescription: function() {
+            if(this.model.get('_isDescriptionOpen')) {
+                this.showGlossaryItemDescription(false);
             } else {
-                $glossaryItemDescription.slideUp(200);
+                this.showGlossaryItemDescription(true);
+            }
+        },
+
+        // This function should show/hide the glossary item description.
+        showGlossaryItemDescription: function(_isVisible) {
+            if(_isVisible) {
+                this.$('.glossary-item-description').slideDown(200);
+                this.model.set('_isDescriptionOpen', true);
+            } else {
+                this.$('.glossary-item-description').stop(true, true).slideUp(200);
+                this.model.set('_isDescriptionOpen', false);
             }
         },
 
         // This function will decide whether this glossary item's description should be visible or not.
         descriptionOpen: function(viewId) {
-            if(viewId != this.cid) {
-                this.hideGlossaryItemDescription();
+            if(viewId != this.cid && this.model.get('_isDescriptionOpen')) {
+                this.showGlossaryItemDescription(false);
             }
         },
 
-        // This function will hide the glossary item description.
-        hideGlossaryItemDescription: function() {
-            var $glossaryItemDescription = this.$('.glossary-item-description');
-            if($glossaryItemDescription.is(":visible")) {
-                $glossaryItemDescription.stop(true, true).slideUp(200);
+        // This function should call upon glossary item model attribute '_isVisible' gets change.
+        onGlossaryItemVisibilityChange: function() {
+            if(this.model.get('_isDescriptionOpen')) {
+                this.showGlossaryItemDescription(false);
             }
-        },
-
-        // This function will decide whether this item should be visible or not using the supplied arguments.
-        // Typically get called when we search content and we wish to show filtered glossary items.
-        itemVisible: function(_isVisible, optionalCidItems) {
-            this.hideGlossaryItemDescription();
-            if(!_isVisible && !this.$el.hasClass('display-none')) {
+            if(this.model.get('_isVisible')) {
+                this.$el.removeClass('display-none');
+            } else {
                 this.$el.addClass('display-none');
-            } else if(_isVisible && this.$el.hasClass('display-none')) {
-                if(!optionalCidItems) {
-                    this.$el.removeClass('display-none');
-                } else if($.inArray(this.model.cid, optionalCidItems) > -1) {
-                    this.$el.removeClass('display-none');
-                }
             }
         }
 

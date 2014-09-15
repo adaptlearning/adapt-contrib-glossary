@@ -30,47 +30,56 @@ define(function(require) {
             var modelData = this.model.toJSON();
             var template = Handlebars.templates["glossaryItem"];
             this.$el.html(template(modelData));
+            _.defer(_.bind(function() {
+                this.postRender();
+            }, this));
             return this;
+        },
+
+        postRender: function() {
+            this.listenTo(Adapt, 'drawer:openedItemView', this.remove);
+            this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
         },
 
         // This function will call upon glossary item get clicked.
         onGlossaryItemClicked: function(event) {
             event.preventDefault();
-            Adapt.trigger('glossary:descriptionOpen', this.cid);
+            Adapt.trigger('glossary:descriptionOpen', this.model.cid);
             this.toggleGlossaryItemDescription();
         },
 
         // This function should toggle the glossary item description
         toggleGlossaryItemDescription: function() {
             if(this.model.get('_isDescriptionOpen')) {
-                this.showGlossaryItemDescription(false);
+                this.hideGlossaryItemDescription();
             } else {
-                this.showGlossaryItemDescription(true);
+                this.showGlossaryItemDescription();
             }
         },
 
-        // This function should show/hide the glossary item description.
-        showGlossaryItemDescription: function(_isVisible) {
-            if(_isVisible) {
-                this.$('.glossary-item-description').slideDown(200);
-                this.model.set('_isDescriptionOpen', true);
-            } else {
-                this.$('.glossary-item-description').stop(true, true).slideUp(200);
-                this.model.set('_isDescriptionOpen', false);
-            }
+        // This function should show the glossary item description.
+        showGlossaryItemDescription: function() {
+            this.$('.glossary-item-description').slideDown(200);
+            this.model.set('_isDescriptionOpen', true);
+        },
+
+        // This function should hide the glossary item description.
+        hideGlossaryItemDescription: function() {
+            this.$('.glossary-item-description').stop(true, true).slideUp(200);
+            this.model.set('_isDescriptionOpen', false);
         },
 
         // This function will decide whether this glossary item's description should be visible or not.
         descriptionOpen: function(viewId) {
-            if(viewId != this.cid && this.model.get('_isDescriptionOpen')) {
-                this.showGlossaryItemDescription(false);
+            if(viewId != this.model.cid && this.model.get('_isDescriptionOpen')) {
+                this.hideGlossaryItemDescription();
             }
         },
 
         // This function should call upon glossary item model attribute '_isVisible' gets change.
         onGlossaryItemVisibilityChange: function() {
             if(this.model.get('_isDescriptionOpen')) {
-                this.showGlossaryItemDescription(false);
+                this.hideGlossaryItemDescription();
             }
             if(this.model.get('_isVisible')) {
                 this.$el.removeClass('display-none');

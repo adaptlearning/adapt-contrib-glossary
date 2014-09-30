@@ -58,10 +58,8 @@ define(function(require) {
         },
 
         postRender: function() {
+            this.listenTo(Adapt, 'drawer:openedItemView', this.remove);
             this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
-        },
-
-        remove: function(view, hasBackButton) {
         },
 
         onInputTextBoxValueChange: function(event) {

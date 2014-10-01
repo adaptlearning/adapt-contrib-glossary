@@ -19,35 +19,45 @@
               "required":true,
               "properties":{
                 "title": {
-                  "type":"string"
+                  "type":"string",
+                  "title":"Glossary title"
                 },
                 "description": {
-                  "type":"string"
+                  "type":"string",
+                  "title":"Glossary description"
                 },
                 "searchPlaceholder": {
-                  "type":"string"
+                  "type":"string",
+                  "title":"Search place holder text"
                 },
                 "itemNotFoundMessage": {
-                  "type":"string"
+                  "type":"string",
+                  "title":"No results message"
                 },
                 "_isEnabled": {
                   "type":"boolean",
-                  "required":true
+                  "required":true,
+                  "title":"Enabled"
                 },
                 "_glossaryItems": {
                   "type":"array",
                   "required":true,
+                  "title":"Glossary items",
+                  "minItems": 1,
                   "items":
                   {
                     "type":"object",
                     "required":true,
                     "properties":{
                       "description": {
-                        "type":"string"
+                        "type":"string",
+                        "title":"Description"
                       },
                       "term": {
                         "type":"string",
-                        "required":true
+                        "required":true,
+                        "title":"Term",
+                        "minLength": 1
                       }
                     }
                   }

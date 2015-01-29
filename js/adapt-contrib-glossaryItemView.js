@@ -8,7 +8,7 @@ define(function(require) {
         className: "glossary-item",
 
         events: {
-            'click a.glossary-item-open': 'onGlossaryItemClicked'
+            'click a.glossary-item-term': 'onGlossaryItemClicked'
         },
 
         initialize: function() {

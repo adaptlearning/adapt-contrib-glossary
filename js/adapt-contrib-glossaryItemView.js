@@ -57,16 +57,20 @@ define(function(require) {
             }
         },
 
-        // This function should show the glossary item description.
+        // This function should show the glossary item description and highlight the selected term.
         showGlossaryItemDescription: function() {
             this.$('.glossary-item-description').slideDown(200);
             this.model.set('_isDescriptionOpen', true);
+
+            this.$('.glossary-item-term').addClass('selected');
         },
 
-        // This function should hide the glossary item description.
+        // This function should hide the glossary item description and un-highlight the selected term.
         hideGlossaryItemDescription: function() {
             this.$('.glossary-item-description').stop(true, true).slideUp(200);
             this.model.set('_isDescriptionOpen', false);
+
+            this.$('.glossary-item-term').removeClass('selected');
         },
 
         // This function will decide whether this glossary item's description should be visible or not.

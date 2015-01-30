@@ -2,18 +2,18 @@
     display:block;
     margin-top:@item-spacing;
 
-    .glossary-item-open {
+    .glossary-item-term {
         display:block;
         text-decoration:none;
         color:@drawer-item-text-color;
         border-bottom:1px solid darken(@item-color, 10%);
 
-        .no-touch &:hover {
+        .no-touch &:hover, &.selected {
             color:@drawer-item-text-hover-color;
             background-color:@drawer-item-hover-color;
         }
 
-        .glossary-item-term {
+        .glossary-item-term-inner {
             padding:@item-padding;
 
             h5 {

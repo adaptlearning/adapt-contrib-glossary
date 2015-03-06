@@ -2,7 +2,7 @@
 
     .glossary-textbox-container {
         display:block;
-        padding: 10px 0px 5px;
+        padding:10px 0px 5px;
 
         .glossary-textbox-label {
             display:inline-block;
@@ -11,12 +11,34 @@
             margin-left:1px;
             vertical-align:middle;
             cursor:default;
+
+            .dir-rtl & {
+                margin-left:inherit;
+                margin-right:1px;
+            }
         }
 
         .glossary-textbox {
             display:inline-block;
-            width:87%;
-            height:30px;
+            width:77%;
+            padding:5px 30px 5px 5px;
+
+            .dir-rtl & {
+                padding:5px 5px 5px 30px;
+            }
+        }
+
+        .glossary-cancel-button {
+            float:right;
+            margin-top:-28px;
+            margin-right:8px;
+            cursor:pointer;
+
+            .dir-rtl & {
+                float:left;
+                margin-right:inherit;
+                margin-left:8px;
+            }
         }
 
     }
@@ -27,11 +49,17 @@
 
         .glossary-checkbox {
             margin-left:30px;
-            vertical-align: middle;
+            vertical-align:middle;
+
+            .dir-rtl & {
+                margin-left:inherit;
+                margin-right:30px;
+            }
         }
 
         .glossary-checkbox-label {
-            font-size: 14px;
+            font-size:14px;
+            color:@background-color;
         }
     }
 
@@ -43,7 +71,7 @@
         display:block;
 
         h6 {
-            padding: 10px;
+            padding:10px;
         }
     }
 }

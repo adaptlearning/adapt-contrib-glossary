@@ -95,4 +95,5 @@ define(function(require) {
     });
 
     return GlossaryItemView;
+
 });

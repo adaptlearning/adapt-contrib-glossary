@@ -1,6 +1,7 @@
 .glossary {
 
     .glossary-textbox-container {
+        position:relative;
         display:block;
         padding:10px 0px 5px;
 
@@ -29,15 +30,14 @@
         }
 
         .glossary-cancel-button {
-            float:right;
-            margin-top:-28px;
-            margin-right:8px;
+            position:absolute;
+            top:15px;
+            right:8px;
             cursor:pointer;
 
             .dir-rtl & {
-                float:left;
-                margin-right:inherit;
-                margin-left:8px;
+                right:inherit;
+                left:8px;
             }
         }
 

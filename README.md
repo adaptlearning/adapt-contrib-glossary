@@ -14,9 +14,11 @@ A [sample JSON](https://github.com/adaptlearning/adapt-contrib-glossary/blob/mas
 
 ```json
 "_glossary": {
+    "_isEnabled": true,
     "title": "Glossary",
     "description": "Click here to view glossary for this course",
     "searchPlaceholder": "Search",
+    "searchWithInDescriptionLabel": "Search within Description",
     "itemNotFoundMessage": "Sorry! No results to display",
     "_glossaryItems": [
         {

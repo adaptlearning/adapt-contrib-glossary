@@ -1,7 +1,7 @@
 /*
  * adapt-contrib-glossary
  * License - https://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
- * Maintainers - Himanshu Rajotia <himanshu.rajotia@credipoint.com>
+ * Maintainers - Himanshu Rajotia <himanshu.rajotia@exultcorp.com>
  */
 define(function(require) {
 
@@ -27,7 +27,7 @@ define(function(require) {
 
         var courseGlossary = Adapt.course.get('_glossary');
 
-        if(courseGlossary) {
+        if(courseGlossary && courseGlossary._isEnabled) {
             var drawerObject = {
                 title: courseGlossary.title,
                 description: courseGlossary.description,
@@ -39,7 +39,7 @@ define(function(require) {
 
             setupGlossary(courseGlossary, courseGlossary._glossaryItems);
         } else {
-            console.log('Sorry, no glossary object is set on the course.json file');
+            console.log('Sorry, no glossary object is set or enabled on the course.json file');
         }
 
     });

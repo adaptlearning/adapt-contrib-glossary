@@ -18,6 +18,11 @@
               "type":"object",
               "required":true,
               "properties":{
+                "_isEnabled": {
+                  "type":"boolean",
+                  "required":true,
+                  "title":"Enabled"
+                },
                 "title": {
                   "type":"string",
                   "title":"Glossary title"
@@ -30,20 +35,19 @@
                   "type":"string",
                   "title":"Search place holder text"
                 },
+                "searchWithInDescriptionLabel": {
+                  "type":"string",
+                  "title":"Search within description text"
+                },
                 "itemNotFoundMessage": {
                   "type":"string",
                   "title":"No results message"
-                },
-                "_isEnabled": {
-                  "type":"boolean",
-                  "required":true,
-                  "title":"Enabled"
                 },
                 "_glossaryItems": {
                   "type":"array",
                   "required":true,
                   "title":"Glossary items",
-                  "minItems": 1,
+                  "minItems":1,
                   "items":
                   {
                     "type":"object",
@@ -57,7 +61,7 @@
                         "type":"string",
                         "required":true,
                         "title":"Term",
-                        "minLength": 1
+                        "minLength":1
                       }
                     }
                   }

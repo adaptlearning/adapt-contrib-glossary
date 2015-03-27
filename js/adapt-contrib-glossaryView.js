@@ -11,7 +11,8 @@ define(function(require) {
         events: {
             'keyup input.glossary-textbox': 'onInputTextBoxValueChange',
             'input input.glossary-textbox': 'onInputTextBoxValueChange',
-            'change input.glossary-checkbox': 'onInputTextBoxValueChange'
+            'change input.glossary-checkbox': 'onInputTextBoxValueChange',
+            'click .glossary-cancel-button': 'onCancelButtonClick'
         },
 
         initialize: function() {
@@ -67,11 +68,18 @@ define(function(require) {
             var value = this.$('input.glossary-textbox').val().toLowerCase();
             var shouldSearchInDescription = this.$('input.glossary-checkbox').is(":checked");
             if(value.length > 0) {
+                this.$(".glossary-cancel-button").removeClass("display-none");
                 var filteredItems = this.getFilteredGlossaryItems(value, shouldSearchInDescription);
                 this.showFilterGlossaryItems(filteredItems);
             } else {
+                this.$(".glossary-cancel-button").addClass("display-none");
                 this.showGlossaryItems(true);
             }
+        },
+
+        onCancelButtonClick: function(event) {
+            if(event && event.preventDefault) event.preventDefault();
+            this.$('input.glossary-textbox').val("").trigger("input");
         },
 
         // This function will create array of filtered items on basis of supplied arguments.
@@ -121,4 +129,5 @@ define(function(require) {
     });
 
     return GlossaryView;
+
 });

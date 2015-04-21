@@ -94,7 +94,7 @@
                       "term": {
                         "type": "string",
                         "required": true,
-                        "default": "No results found",
+                        "default": "",
                         "title": "Term",
                         "inputType": "Text",
                         "validators": ["required"],

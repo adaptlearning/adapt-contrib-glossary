@@ -11,6 +11,9 @@ define(function(require) {
         events: {
             'keyup input.glossary-textbox': 'onInputTextBoxValueChange',
             'input input.glossary-textbox': 'onInputTextBoxValueChange',
+            'change input.glossary-textbox': 'onInputTextBoxValueChange',
+            'paste input.glossary-textbox': 'onInputTextBoxValueChange',
+            'mouseup input.glossary-textbox': 'onInputTextBoxValueChange',
             'change input.glossary-checkbox': 'onInputTextBoxValueChange',
             'click .glossary-cancel-button': 'onCancelButtonClick'
         },
@@ -63,19 +66,20 @@ define(function(require) {
             this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
         },
 
-        onInputTextBoxValueChange: function(event) {
+        onInputTextBoxValueChange: _.debounce(function() {
             this.showItemNotFoundMessage(false);
-            var value = this.$('input.glossary-textbox').val().toLowerCase();
+            var searchItem = this.$('input.glossary-textbox').val().toLowerCase();
             var shouldSearchInDescription = this.$('input.glossary-checkbox').is(":checked");
-            if(value.length > 0) {
+
+            if(searchItem.length > 0) {
                 this.$(".glossary-cancel-button").removeClass("display-none");
-                var filteredItems = this.getFilteredGlossaryItems(value, shouldSearchInDescription);
+                var filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
                 this.showFilterGlossaryItems(filteredItems);
             } else {
                 this.$(".glossary-cancel-button").addClass("display-none");
                 this.showGlossaryItems(true);
             }
-        },
+        }, 200),
 
         onCancelButtonClick: function(event) {
             if(event && event.preventDefault) event.preventDefault();
@@ -83,7 +87,7 @@ define(function(require) {
         },
 
         // This function will create array of filtered items on basis of supplied arguments.
-        getFilteredGlossaryItems: function(value, shouldSearchInDescription) {
+        getFilteredGlossaryItems: function(searchItem, shouldSearchInDescription) {
             var itemAttribute;
             if(shouldSearchInDescription) {
                 itemAttribute = 'description';
@@ -91,8 +95,8 @@ define(function(require) {
                 itemAttribute = 'term';
             }
             return _.filter(this.collection.models, function(item, index) {
-                return item.get(itemAttribute).toLowerCase().indexOf(value) > -1;
-            }, this);
+                return item.get(itemAttribute).toLowerCase().indexOf(searchItem) > -1;
+            });
         },
 
         // This function should show only the filtered glossary items or no item found message
@@ -101,7 +105,7 @@ define(function(require) {
             if(filteredItems.length > 0) {
                 _.each(filteredItems, function(item, index) {
                     item.set('_isVisible', true);
-                }, this);
+                });
             } else {
                 this.showItemNotFoundMessage(true);
             }

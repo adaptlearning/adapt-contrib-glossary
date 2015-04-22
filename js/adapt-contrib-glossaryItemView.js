@@ -14,7 +14,7 @@ define(function(require) {
         initialize: function() {
             this.setupModel();
             this.listenTo(Adapt, 'glossary:descriptionOpen', this.descriptionOpen);
-            this.model.on('change:_isVisible', this.onGlossaryItemVisibilityChange, this);
+            this.listenTo(this.model, 'change:_isVisible', this.onGlossaryItemVisibilityChange);
             this.render();
         },
 
@@ -45,7 +45,6 @@ define(function(require) {
         onGlossaryItemClicked: function(event) {
             event.preventDefault();
             Adapt.trigger('glossary:descriptionOpen', this.model.cid);
-            this.toggleGlossaryItemDescription();
         },
 
         // This function should toggle the glossary item description
@@ -75,7 +74,9 @@ define(function(require) {
 
         // This function will decide whether this glossary item's description should be visible or not.
         descriptionOpen: function(viewId) {
-            if(viewId != this.model.cid && this.model.get('_isDescriptionOpen')) {
+            if(viewId == this.model.cid) {
+                this.toggleGlossaryItemDescription();
+            } else if(this.model.get('_isDescriptionOpen')) {
                 this.hideGlossaryItemDescription();
             }
         },

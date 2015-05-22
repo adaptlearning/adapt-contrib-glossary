@@ -38,8 +38,6 @@ define(function(require) {
             Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
 
             setupGlossary(courseGlossary, courseGlossary._glossaryItems);
-        } else {
-            console.log('Sorry, no glossary object is set or enabled on the course.json file');
         }
 
     });

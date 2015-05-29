@@ -1,0 +1,125 @@
+{
+  "type":"object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "required":false,
+  "properties":{
+    "pluginLocations": {
+      "type":"object",
+      "required":true,
+      "properties":{
+        "config": {
+          "type":"object"
+        },
+        "course": {
+          "type":"object",
+          "properties":{
+            "_glossary": {
+              "type": "object",
+              "required": true,
+              "legend": "Glossary",
+              "properties":{
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "title": "Is enabled",
+                  "default": false,
+                  "inputType": {"type": "Boolean", "options": [false, true]},
+                  "validators": [],
+                  "help": "If set to 'true', the glossary extension will be enabled"
+                },
+                "title": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Glossary title",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "The title text which will appear in the glossary"
+                },
+                "description": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Glossary description",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Some text to describe the glossary"
+                },
+                "searchPlaceholder": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Search placeholder text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Placeholder text for the search box"
+                },
+                "searchWithInDescriptionLabel": {
+                  "required": true,
+                  "default": "",
+                  "title": "Search within description text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Label text for the option to search within the description"
+                },
+                "itemNotFoundMessage": {
+                  "type": "string",
+                  "required": true,
+                  "default": "No results found",
+                  "title": "No results message",
+                  "inputType": "Text",
+                  "validators": ["required"],
+                  "help": "Text which will be displayed when the search produces no results"
+                },
+                "_glossaryItems": {
+                  "type": "array",
+                  "required": true,
+                  "title": "Glossary items",
+                  "minItems": 1,
+                  "items":
+                  {
+                    "type":"object",
+                    "required":true,
+                    "properties":{
+                      "description": {
+                        "type": "string",
+                        "required": true,
+                        "default": "",
+                        "title": "Description",
+                        "inputType": "Text",
+                        "validators": ["required"],
+                        "help": "Some text to explain or define the term"
+                      },
+                      "term": {
+                        "type": "string",
+                        "required": true,
+                        "default": "",
+                        "title": "Term",
+                        "inputType": "Text",
+                        "validators": ["required"],
+                        "help": "The glossary item/term"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "contentobject": {
+          "type":"object"
+        },
+        "article": {
+          "type":"object"
+        },
+        "block": {
+          "type":"object"
+        },
+        "component": {
+          "type":"object"
+        }
+      }
+    }
+  }
+}

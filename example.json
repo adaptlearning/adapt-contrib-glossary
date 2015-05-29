@@ -1,0 +1,27 @@
+// To go in the course.json file
+"_glossary": {
+    "_isEnabled": true,
+    "title": "Glossary",
+    "description": "Click here to view glossary for this course",
+    "searchPlaceholder": "Search",
+    "searchWithInDescriptionLabel": "Search within Description",
+    "itemNotFoundMessage": "Sorry! No results to display",
+    "_glossaryItems": [
+        {
+            "term": "About Framework",
+            "description": "The Adapt Framework is a generic, reusable codebase for e-learning courses. <br/>The Adapt Framework is designed to work with the Adapt Authoring Tool (as soon as this is released) but can also be used in isolation."
+        },
+        {
+            "term": "Framework Examples",
+            "description": "<a href='https://community.adaptlearning.org/mod/forum/discuss.php?d=244' target='_blank'>Click here to view Real Life Adapt examples</a>"
+        },
+        {
+            "term": "Community Site",
+            "description": "<a href='https://community.adaptlearning.org' target='_blank'>Click here to view our community site</a>"
+        },
+        {
+            "term": "YouTube Channel",
+            "description": "<a href='https://www.youtube.com/channel/UCW8SlSFuCc--B66Gf9fAEcQ' target='_blank'>Click here to view Adapt Learning YouTube Channel</a>"
+        }
+    ]
+}

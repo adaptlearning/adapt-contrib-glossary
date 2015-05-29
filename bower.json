@@ -1,0 +1,18 @@
+{
+  "name": "adapt-contrib-glossary",
+  "version": "1.0.0",
+  "homepage": "https://github.com/adaptlearning/adapt-contrib-glossary",
+  "authors": [
+    "Himanshu Rajotia <himanshu.rajotia@exultcorp.com>"
+  ],
+  "displayName" : "Glossary",
+  "extension" : "glossary",
+  "description": "An Adapt extension that allows a list of glossary terms",
+  "main": "/js/adapt-contrib-glossary.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-extension"
+  ],
+  "license": "GPLv3",
+  "targetAttribute": "_glossary"
+}

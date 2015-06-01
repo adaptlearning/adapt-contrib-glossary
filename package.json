@@ -1,6 +1,6 @@
 {
   "name": "adapt-contrib-glossary",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "An Adapt extension that allows a list of glossary terms",
   "main": "",
   "scripts": {

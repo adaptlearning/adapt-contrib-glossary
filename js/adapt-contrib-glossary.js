@@ -1,8 +1,3 @@
-/*
- * adapt-contrib-glossary
- * License - https://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
- * Maintainers - Himanshu Rajotia <himanshu.rajotia@exultcorp.com>
- */
 define(function(require) {
 
     var Adapt = require('coreJS/adapt');

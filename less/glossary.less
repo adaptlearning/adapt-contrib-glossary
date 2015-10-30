@@ -1,5 +1,4 @@
 .glossary {
-
     .glossary-textbox-container {
         position:relative;
         display:block;
@@ -26,6 +25,10 @@
 
             .dir-rtl & {
                 padding:5px 5px 5px 30px;
+            }
+
+            &::-ms-clear {
+                display: none;
             }
         }
 
@@ -72,9 +75,6 @@
 
     .glossary-item-not-found {
         display:block;
-
-        h6 {
-            padding:10px;
-        }
+        padding:10px;
     }
 }

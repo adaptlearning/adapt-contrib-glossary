@@ -31,15 +31,13 @@ define(function(require) {
 
         // This function will sort glossary collection items to ascending order.
         arrangeGlossaryItemsToAscendingOrder: function() {
-            this.collection.comparator = "term";
+            function caseInsensitiveComparator(model1, model2) {
+                return model1.get('term').toLowerCase().localeCompare(model2.get('term').toLowerCase());
+            }
+
+            this.collection.comparator = caseInsensitiveComparator;
             this.collection.sort();
-            //this.collection.models.sort(function compare(model1, model2) {
-            //    if(model1.get('term') < model2.get('term'))
-            //        return -1;
-            //    if(model1.get('term') > model2.get('term'))
-            //        return 1;
-            //    return 0;
-            //});
+            //this.collection.models.sort(caseInsensitiveComparator);
         },
 
         render: function() {

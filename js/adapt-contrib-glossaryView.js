@@ -2,7 +2,7 @@ define(function(require) {
 
     var Backbone = require('backbone');
     var Adapt = require('coreJS/adapt');
-    var GlossaryItemView = require('extensions/adapt-contrib-glossary/js/adapt-contrib-glossaryItemView');
+    var GlossaryItemView = require('./adapt-contrib-glossaryItemView');
 
     var GlossaryView = Backbone.View.extend({
 
@@ -11,9 +11,7 @@ define(function(require) {
         events: {
             'keyup input.glossary-textbox': 'onInputTextBoxValueChange',
             'input input.glossary-textbox': 'onInputTextBoxValueChange',
-            'change input.glossary-textbox': 'onInputTextBoxValueChange',
             'paste input.glossary-textbox': 'onInputTextBoxValueChange',
-            'mouseup input.glossary-textbox': 'onInputTextBoxValueChange',
             'change input.glossary-checkbox': 'onInputTextBoxValueChange',
             'click .glossary-cancel-button': 'onCancelButtonClick'
         },
@@ -22,6 +20,14 @@ define(function(require) {
             this.listenTo(Adapt, 'remove', this.remove);
             this.setupModel();
             this.render();
+        },
+
+        remove: function() {
+            if($('html').is('.ie8')) {
+                this.$('.input.glossary-textbox').off('propertychange', this.onInputTextBoxValueChange);
+            }
+
+            Backbone.View.prototype.remove.apply(this, arguments);
         },
 
         // This function will setup glossary model/collection, just before rendering.
@@ -41,9 +47,8 @@ define(function(require) {
         },
 
         render: function() {
-            var modelData = this.model.toJSON();
             var template = Handlebars.templates["glossary"];
-            this.$el.html(template(modelData));
+            this.$el.html(template(this.model.toJSON()));
             this.renderGlossaryItems();
             _.defer(_.bind(function() {
                 this.postRender();
@@ -62,9 +67,13 @@ define(function(require) {
         postRender: function() {
             this.listenTo(Adapt, 'drawer:openedItemView', this.remove);
             this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
+
+            if($('html').is('.ie8')) {
+                this.$('.input.glossary-textbox').on('propertychange', this.onInputTextBoxValueChange);
+            }
         },
 
-        onInputTextBoxValueChange: _.debounce(function() {
+        onInputTextBoxValueChange: _.debounce(function(event) {
             this.showItemNotFoundMessage(false);
             var searchItem = this.$('input.glossary-textbox').val().toLowerCase();
             var shouldSearchInDescription = this.$('input.glossary-checkbox').is(":checked");

@@ -42,7 +42,7 @@ define(function(require) {
 
         // This function will call upon glossary item get clicked.
         onGlossaryItemClicked: function(event) {
-            if(event && event.preventDefault) event.preventDefault();
+            event && event.preventDefault();
             Adapt.trigger('glossary:descriptionOpen', this.model.cid);
         },
 

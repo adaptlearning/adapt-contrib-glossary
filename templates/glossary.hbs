@@ -1,5 +1,5 @@
 {{! Maintainers - Himanshu Rajotia <himanshu.rajotia@exultcorp.com>}}
-<div class="glossary-inner">
+<div class="glossary-inner" role="complementary">
     <div class="glossary-textbox-container">
         <label for="glossarySearch" class="glossary-textbox-label icon icon-search"></label>
         <input id="glossarySearch" type="text" placeholder="{{{searchPlaceholder}}}" class="glossary-textbox">
@@ -9,9 +9,8 @@
         <input id="glossaryCheckbox" type="checkbox" class="glossary-checkbox">
         <label for="glossaryCheckbox" class="glossary-checkbox-label">{{{searchWithInDescriptionLabel}}}</label>
     </div>
-    <div class="glossary-items-container">
-    </div>
-    <div class="glossary-item-not-found display-none">
-        <h6>{{{itemNotFoundMessage}}}</h6>
-    </div>
+
+    <div class="glossary-items-container"></div>
+
+    <div class="glossary-item-not-found h6 display-none">{{{itemNotFoundMessage}}}</div>
 </div>

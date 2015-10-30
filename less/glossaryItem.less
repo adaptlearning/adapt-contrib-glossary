@@ -1,34 +1,30 @@
 .glossary-item {
-    display:block;
-    margin-top:@item-spacing;
+    display: block;
+    margin-top: @item-spacing;
 
     .glossary-item-term {
-        display:block;
-        text-decoration:none;
-        color:@drawer-item-text-color;
-        border-bottom:1px solid @drawer-item-color;
+        display: block;
+        width: 100%;
+        color: @drawer-item-text-color;
+        border-bottom: 1px solid @drawer-item-color;
 
         .no-touch &:hover, &.selected {
-            color:@drawer-item-text-hover-color;
-            background-color:@drawer-item-hover-color;
+            color: @drawer-item-text-hover-color;
+            background-color: @drawer-item-hover-color;
         }
 
         .glossary-item-term-inner {
-            padding:@item-padding;
-
-            h5 {
-                font-size:16px;
-            }
+            padding: @item-padding;
         }
     }
 
     .glossary-item-description {
-        color:@foreground-color;
-        background-color:@background-color;
-        display:none;
+        color: @foreground-color;
+        background-color: @background-color;
+        display: none;
 
         .glossary-item-description-inner {
-            padding:@item-padding;
+            padding: @item-padding;
         }
     }
 }

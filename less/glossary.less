@@ -1,36 +1,39 @@
 .glossary {
-
     .glossary-textbox-container {
-        position:relative;
-        display:block;
-        padding:10px 0px 5px;
+        position: relative;
+        display: block;
+        padding: 10px 0px 5px;
 
         .glossary-textbox-label {
-            display:inline-block;
-            width:25px;
-            color:@item-text-color;
-            margin-left:1px;
-            vertical-align:middle;
-            cursor:default;
+            display: inline-block;
+            width: 25px;
+            color: @item-text-color;
+            margin-left: 1px;
+            vertical-align: middle;
+            cursor: default;
 
             .dir-rtl & {
-                margin-left:inherit;
-                margin-right:1px;
+                margin-left: inherit;
+                margin-right: 1px;
             }
         }
 
         .glossary-textbox {
-            display:inline-block;
-            width:77%;
-            padding:5px 30px 5px 5px;
+            display: inline-block;
+            width: 77%;
+            padding: 5px 30px 5px 5px;
 
             .dir-rtl & {
-                padding:5px 5px 5px 30px;
+                padding: 5px 5px 5px 30px;
+            }
+
+            &::-ms-clear {
+                display: none;
             }
         }
 
         .glossary-cancel-button {
-            position:absolute;
+            position: absolute;
             width: 30px;
             height: 30px;
             top: 10px;
@@ -39,42 +42,37 @@
             cursor: pointer;
 
             .dir-rtl & {
-                right:inherit;
-                left:4px;
+                right: inherit;
+                left: 4px;
             }
         }
-
     }
-
     .glossary-checkbox-container {
-        display:block;
-        border-bottom:1px solid @drawer-item-color;
+        display: block;
+        border-bottom: 1px solid @drawer-item-color;
 
         .glossary-checkbox {
-            margin-left:30px;
-            vertical-align:middle;
+            margin-left: 30px;
+            vertical-align: middle;
 
             .dir-rtl & {
-                margin-left:inherit;
-                margin-right:30px;
+                margin-left: inherit;
+                margin-right: 30px;
             }
         }
 
         .glossary-checkbox-label {
-            font-size:14px;
-            color:@background-color;
+            font-size: 14px;
+            color: @background-color;
         }
     }
 
     .glossary-items-container {
-        display:block;
+        display: block;
     }
 
     .glossary-item-not-found {
-        display:block;
-
-        h6 {
-            padding:10px;
-        }
+        display: block;
+        padding: 10px;
     }
 }

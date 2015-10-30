@@ -1,8 +1,3 @@
-/*
- * adapt-contrib-glossary
- * License - https://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
- * Maintainers - Himanshu Rajotia <himanshu.rajotia@exultcorp.com>
- */
 define(function(require) {
 
     var Adapt = require('coreJS/adapt');
@@ -11,7 +6,7 @@ define(function(require) {
 
     function setupGlossary(glossaryModel, glossaryItems) {
 
-        var glossaryModel = new Backbone.Model(glossaryModel);
+        glossaryModel = new Backbone.Model(glossaryModel);
         var glossaryCollection = new Backbone.Collection(glossaryItems);
 
         Adapt.on('glossary:showGlossary', function() {
@@ -27,18 +22,21 @@ define(function(require) {
 
         var courseGlossary = Adapt.course.get('_glossary');
 
-        if(courseGlossary && courseGlossary._isEnabled) {
-            var drawerObject = {
-                title: courseGlossary.title,
-                description: courseGlossary.description,
-                className: 'glossary-drawer'
-            };
-            // Syntax for adding a Drawer item
-            // Adapt.drawer.addItem([object], [callbackEvent]);
-            Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
-
-            setupGlossary(courseGlossary, courseGlossary._glossaryItems);
+        // do not proceed until glossary enabled on course.json
+        if (!courseGlossary || !courseGlossary._isEnabled) {
+            return;
         }
+
+        var drawerObject = {
+            title: courseGlossary.title,
+            description: courseGlossary.description,
+            className: 'glossary-drawer'
+        };
+        // Syntax for adding a Drawer item
+        // Adapt.drawer.addItem([object], [callbackEvent]);
+        Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
+
+        setupGlossary(courseGlossary, courseGlossary._glossaryItems);
 
     });
 

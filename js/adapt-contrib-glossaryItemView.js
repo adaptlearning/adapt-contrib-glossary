@@ -8,7 +8,7 @@ define(function(require) {
         className: "glossary-item",
 
         events: {
-            'click a.glossary-item-term': 'onGlossaryItemClicked'
+            'click .glossary-item-term': 'onGlossaryItemClicked'
         },
 
         initialize: function() {
@@ -27,9 +27,8 @@ define(function(require) {
         },
 
         render: function() {
-            var modelData = this.model.toJSON();
             var template = Handlebars.templates["glossaryItem"];
-            this.$el.html(template(modelData));
+            this.$el.html(template(this.model.toJSON()));
             _.defer(_.bind(function() {
                 this.postRender();
             }, this));
@@ -43,7 +42,7 @@ define(function(require) {
 
         // This function will call upon glossary item get clicked.
         onGlossaryItemClicked: function(event) {
-            event.preventDefault();
+            event && event.preventDefault();
             Adapt.trigger('glossary:descriptionOpen', this.model.cid);
         },
 
@@ -58,10 +57,12 @@ define(function(require) {
 
         // This function should show the glossary item description and highlight the selected term.
         showGlossaryItemDescription: function() {
-            this.$('.glossary-item-description').slideDown(200);
+            var $glossaryItemTerm = this.$('.glossary-item-term');
+            var description = $glossaryItemTerm.addClass('selected').siblings('.glossary-item-description').slideDown(200, function() {
+                $(description).a11y_focus();
+            });
+            $glossaryItemTerm.attr('aria-expanded', false);
             this.model.set('_isDescriptionOpen', true);
-
-            this.$('.glossary-item-term').addClass('selected');
         },
 
         // This function should hide the glossary item description and un-highlight the selected term.
@@ -69,7 +70,7 @@ define(function(require) {
             this.$('.glossary-item-description').stop(true, true).slideUp(200);
             this.model.set('_isDescriptionOpen', false);
 
-            this.$('.glossary-item-term').removeClass('selected');
+            this.$('.glossary-item-term').removeClass('selected').attr('aria-expanded', false);
         },
 
         // This function will decide whether this glossary item's description should be visible or not.

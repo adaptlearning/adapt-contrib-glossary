@@ -1,7 +1,6 @@
-adapt-contrib-glossary
-======================
+#adapt-contrib-glossary
 
-An Adapt extension that allows a list of glossary terms
+An Adapt extension that allows a list of glossary terms.
 
 ##Installation
 
@@ -9,8 +8,15 @@ First, be sure to install the [Adapt Command Line Interface](https://github.com/
 
         adapt install adapt-contrib-glossary
 
+This extension can also be installed by adding the extension to the adapt.json file before running `adapt install`:
+ 
+        "adapt-contrib-glossary": "*"
 ##Usage
-A [sample JSON](https://github.com/adaptlearning/adapt-contrib-glossary/blob/master/example.json) is given below which can be added to course:
+To be completed.
+
+##Settings overview
+
+For example JSON format, see [example.json](example.json). Further details are given below which can be added to course:
 
 ```json
 "_glossary": {
@@ -51,3 +57,11 @@ A [sample JSON](https://github.com/adaptlearning/adapt-contrib-glossary/blob/mas
             </td>
         </tr>
 </table>
+
+##Limitations
+ 
+To be completed.
+
+##Browser spec
+
+This component has been tested to the standard Adapt browser specification.

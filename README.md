@@ -1,6 +1,10 @@
 #adapt-contrib-glossary
 
-An Adapt extension that allows a list of glossary terms.
+**Glossary** is an *extension* for the [Adapt framework](https://github.com/adaptlearning/adapt_framework).
+
+<img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/glossary.gif" width='548' height='497' alt="demonstration of how the glossary looks and functions"> 
+
+This extension allows for a list of glossary terms to be displayed (in alphabetical order) in the 'drawer' of the course. The terms can be clicked to reveal a definition. The list of terms is searchable.
 
 ##Installation
 

@@ -50,12 +50,10 @@ define(function(require) {
             Backbone.View.prototype.remove.apply(this, arguments);
         },
 
-        // This function will setup glossary model/collection, just before rendering.
         setupModel: function() {
             this.arrangeGlossaryItemsToAscendingOrder();
         },
 
-        // This function will sort glossary collection items to ascending order.
         arrangeGlossaryItemsToAscendingOrder: function() {
             function caseInsensitiveComparator(model1, model2) {
                 return model1.get('term').toLowerCase().localeCompare(model2.get('term').toLowerCase());
@@ -76,7 +74,6 @@ define(function(require) {
             return this;
         },
 
-        // This function will render glossary items to current view.
         renderGlossaryItems: function() {
             this.itemViews = [];
             var $glossaryItemContainer = this.$('.glossary-items-container').empty();
@@ -117,7 +114,7 @@ define(function(require) {
             this.$('input.glossary-textbox').val("").trigger("input");
         },
 
-        // This function will create array of filtered items on basis of supplied arguments.
+        // create array of filtered items on basis of supplied arguments.
         getFilteredGlossaryItems: function(searchItem, shouldSearchInDescription) {
             var itemAttribute;
             if(shouldSearchInDescription) {
@@ -130,7 +127,7 @@ define(function(require) {
             });
         },
 
-        // This function should show only the filtered glossary items or no item found message
+        // show only the filtered glossary items or no item found message
         showFilterGlossaryItems: function(filteredItems) {
             this.showGlossaryItems(false);
             if(filteredItems.length > 0) {
@@ -142,7 +139,7 @@ define(function(require) {
             }
         },
 
-        // This function will show/hide the item not found message.
+        // show/hide the item not found message.
         showItemNotFoundMessage: function(_isVisible) {
             var $itemNotFound = this.$('.glossary-item-not-found');
 
@@ -153,7 +150,7 @@ define(function(require) {
             }
         },
 
-        // This function should change the visibility of all glossary items
+        // change the visibility of all glossary items
         showGlossaryItems: function(_isVisible) {
             _.invoke(this.collection.models, 'set', {"_isVisible": _isVisible});
             //this.collection.forEach(function(model) {

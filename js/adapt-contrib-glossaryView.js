@@ -61,7 +61,6 @@ define(function(require) {
 
             this.collection.comparator = caseInsensitiveComparator;
             this.collection.sort();
-            //this.collection.models.sort(caseInsensitiveComparator);
         },
 
         render: function() {
@@ -153,9 +152,6 @@ define(function(require) {
         // change the visibility of all glossary items
         showGlossaryItems: function(_isVisible) {
             _.invoke(this.collection.models, 'set', {"_isVisible": _isVisible});
-            //this.collection.forEach(function(model) {
-            //    model.set("_isVisible", _isVisible);
-            //});
         }
 
     });

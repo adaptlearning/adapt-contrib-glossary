@@ -16,16 +16,36 @@ define(function(require) {
             'click .glossary-cancel-button': 'onCancelButtonClick'
         },
 
+        itemViews: null,
+
         initialize: function() {
-            this.listenTo(Adapt, 'remove', this.remove);
+            this.listenTo(Adapt, 'remove drawer:closed', this.remove);
+            
             this.setupModel();
+            
             this.render();
+
+            this.checkForTermToShow();
+        },
+
+        checkForTermToShow: function() {
+            if(this.$el.data('termtoshow') === undefined) return;
+
+            for(var i = 0, count = this.itemViews.length; i < count; i++) {
+                var itemView = this.itemViews[i];
+                if(itemView.model.get('term').toLowerCase() === this.$el.data('termtoshow').toLowerCase()) {
+                    Adapt.trigger('glossary:descriptionOpen', itemView.model.cid);
+                    break;
+                }
+            }
         },
 
         remove: function() {
             if($('html').is('.ie8')) {
                 this.$('.input.glossary-textbox').off('propertychange', this.onInputTextBoxValueChange);
             }
+
+            this.itemViews = null;
 
             Backbone.View.prototype.remove.apply(this, arguments);
         },
@@ -58,9 +78,13 @@ define(function(require) {
 
         // This function will render glossary items to current view.
         renderGlossaryItems: function() {
+            this.itemViews = [];
             var $glossaryItemContainer = this.$('.glossary-items-container').empty();
             _.each(this.collection.models, function(item, index) {
-                new GlossaryItemView({model: item}).$el.appendTo($glossaryItemContainer);
+                var itemView = new GlossaryItemView({model: item});
+                itemView.$el.appendTo($glossaryItemContainer);
+                // store a reference to each of the views so that checkForTermToShow can search through them
+                this.itemViews.push(itemView);
             }, this);
         },
 

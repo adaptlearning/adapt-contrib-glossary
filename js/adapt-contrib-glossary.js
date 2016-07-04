@@ -7,15 +7,31 @@ define(function(require) {
     function setupGlossary(glossaryModel, glossaryItems) {
 
         glossaryModel = new Backbone.Model(glossaryModel);
-        var glossaryCollection = new Backbone.Collection(glossaryItems);
+
+        var options = {
+            model: glossaryModel,
+            collection: new Backbone.Collection(glossaryItems)
+        }
 
         Adapt.on('glossary:showGlossary', function() {
-            Adapt.drawer.triggerCustomView(new GlossaryView({
-                model: glossaryModel,
-                collection: glossaryCollection
-            }).$el);
+            Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
         });
 
+        /**
+         * handler for links in the content in the following format:
+         * <a href='#' data-glossaryterm='term name'>glossary term link</a>
+         * these links should trigger the glossary to open with that term automatically selected
+         */
+        $('body').on('click.glossary', 'a[data-glossaryterm]', function(e) {
+            if(e) e.preventDefault();
+
+            var newoptions = _.clone(options);
+            newoptions.attributes = {
+                "data-termtoshow": e.currentTarget.getAttribute('data-glossaryterm')
+            };
+
+            Adapt.drawer.triggerCustomView(new GlossaryView(newoptions).$el);
+        });
     }
 
     Adapt.once('app:dataReady', function() {

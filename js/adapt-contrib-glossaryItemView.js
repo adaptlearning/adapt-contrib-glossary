@@ -12,6 +12,7 @@ define(function(require) {
         },
 
         initialize: function() {
+            this.listenTo(Adapt, "remove drawer:closed", this.remove);
             this.setupModel();
             this.listenTo(Adapt, 'glossary:descriptionOpen', this.descriptionOpen);
             this.listenTo(this.model, 'change:_isVisible', this.onGlossaryItemVisibilityChange);

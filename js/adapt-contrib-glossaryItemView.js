@@ -12,13 +12,13 @@ define(function(require) {
         },
 
         initialize: function() {
+            this.listenTo(Adapt, "remove drawer:closed", this.remove);
             this.setupModel();
             this.listenTo(Adapt, 'glossary:descriptionOpen', this.descriptionOpen);
             this.listenTo(this.model, 'change:_isVisible', this.onGlossaryItemVisibilityChange);
             this.render();
         },
 
-        // This function will setup glossaryItem model, just before rendering.
         setupModel: function() {
             this.model.set({
                 '_isVisible': true,
@@ -40,13 +40,11 @@ define(function(require) {
             this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
         },
 
-        // This function will call upon glossary item get clicked.
         onGlossaryItemClicked: function(event) {
             event && event.preventDefault();
             Adapt.trigger('glossary:descriptionOpen', this.model.cid);
         },
 
-        // This function should toggle the glossary item description
         toggleGlossaryItemDescription: function() {
             if(this.model.get('_isDescriptionOpen')) {
                 this.hideGlossaryItemDescription();
@@ -55,7 +53,9 @@ define(function(require) {
             }
         },
 
-        // This function should show the glossary item description and highlight the selected term.
+        /**
+         * show the glossary item description and highlight the selected term.
+         */
         showGlossaryItemDescription: function() {
             var $glossaryItemTerm = this.$('.glossary-item-term');
             var description = $glossaryItemTerm.addClass('selected').siblings('.glossary-item-description').slideDown(200, function() {
@@ -65,7 +65,9 @@ define(function(require) {
             this.model.set('_isDescriptionOpen', true);
         },
 
-        // This function should hide the glossary item description and un-highlight the selected term.
+        /**
+         * hide the glossary item description and un-highlight the selected term.
+         */
         hideGlossaryItemDescription: function() {
             this.$('.glossary-item-description').stop(true, true).slideUp(200);
             this.model.set('_isDescriptionOpen', false);
@@ -93,7 +95,6 @@ define(function(require) {
                 this.$el.addClass('display-none');
             }
         }
-
     });
 
     return GlossaryItemView;

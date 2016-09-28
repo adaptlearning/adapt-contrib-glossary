@@ -34,8 +34,7 @@ define(function(require) {
         });
     }
 
-    Adapt.once('app:dataReady', function() {
-
+    function initGlossary() {
         var courseGlossary = Adapt.course.get('_glossary');
 
         // do not proceed until glossary enabled on course.json
@@ -53,7 +52,9 @@ define(function(require) {
         Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
 
         setupGlossary(courseGlossary, courseGlossary._glossaryItems);
+    }
 
-    });
+    Adapt.once('app:dataReady', initGlossary);
+    Adapt.on('languagePicker:languageChange', initGlossary);
 
 });

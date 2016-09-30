@@ -22,7 +22,7 @@
                 "_isEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "title": "Is enabled",
+                  "title": "Enable Glossary",
                   "default": false,
                   "inputType": {"type": "Boolean", "options": [false, true]},
                   "validators": [],

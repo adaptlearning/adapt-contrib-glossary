@@ -11,7 +11,7 @@ define(function(require) {
         var options = {
             model: glossaryModel,
             collection: new Backbone.Collection(glossaryItems)
-        }
+        };
 
         Adapt.on('glossary:showGlossary', function() {
             Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);

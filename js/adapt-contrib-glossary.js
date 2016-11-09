@@ -11,7 +11,7 @@ define(function(require) {
         var options = {
             model: glossaryModel,
             collection: new Backbone.Collection(glossaryItems)
-        }
+        };
 
         Adapt.on('glossary:showGlossary', function() {
             Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
@@ -34,8 +34,7 @@ define(function(require) {
         });
     }
 
-    Adapt.once('app:dataReady', function() {
-
+    function initGlossary() {
         var courseGlossary = Adapt.course.get('_glossary');
 
         // do not proceed until glossary enabled on course.json
@@ -53,7 +52,11 @@ define(function(require) {
         Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
 
         setupGlossary(courseGlossary, courseGlossary._glossaryItems);
+    }
 
+    Adapt.once('app:dataReady', function() {
+      initGlossary();
+      Adapt.on('app:languageChanged', initGlossary);
     });
 
 });

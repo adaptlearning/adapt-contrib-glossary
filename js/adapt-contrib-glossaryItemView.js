@@ -59,10 +59,10 @@ define(function(require) {
         showGlossaryItemDescription: function() {
             var $glossaryItemTerm = this.$('.glossary-item-term');
             var $description = $glossaryItemTerm.addClass('selected').siblings('.glossary-item-description');
-            $description.slideDown(200, _.bind(function() {
-            	this.$el.parents('.drawer').scrollTo($glossaryItemTerm);
+            $description.slideDown(200, function() {
+            	$description.parents('.drawer').scrollTo($glossaryItemTerm);
                 $description.a11y_focus();
-            }, this));
+            });
             $glossaryItemTerm.attr('aria-expanded', false);
             this.model.set('_isDescriptionOpen', true);
         },

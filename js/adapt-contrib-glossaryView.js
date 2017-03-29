@@ -115,14 +115,17 @@ define(function(require) {
 
         // create array of filtered items on basis of supplied arguments.
         getFilteredGlossaryItems: function(searchItem, shouldSearchInDescription) {
-            var itemAttribute;
-            if(shouldSearchInDescription) {
-                itemAttribute = 'description';
-            } else {
-                itemAttribute = 'term';
-            }
-            return _.filter(this.collection.models, function(item, index) {
-                return item.get(itemAttribute).toLowerCase().indexOf(searchItem) > -1;
+            var terms = searchItem.split(" ");
+
+            return this.collection.filter(function(model) {
+                return _.every(terms, function(term) {
+                    var title = model.get('term').toLowerCase();
+                    var description = model.get('description').toLowerCase();
+
+                    return shouldSearchInDescription ?
+                        title.indexOf(term) !== -1 || description.indexOf(term) !== -1 :
+                        title.indexOf(term) !== -1;
+                });
             });
         },
 

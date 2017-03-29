@@ -115,7 +115,7 @@ define(function(require) {
 
         // create array of filtered items on basis of supplied arguments.
         getFilteredGlossaryItems: function(searchItem, shouldSearchInDescription) {
-            var terms = searchItem.split(" ");
+            var terms = searchItem.split(' ');
 
             return this.collection.filter(function(model) {
                 return _.every(terms, function(term) {

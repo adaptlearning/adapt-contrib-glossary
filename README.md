@@ -1,4 +1,4 @@
-#adapt-contrib-glossary
+# adapt-contrib-glossary
 
 **Glossary** is an *extension* for the [Adapt framework](https://github.com/adaptlearning/adapt_framework).
 
@@ -6,7 +6,7 @@
 
 This extension allows for a list of glossary terms to be displayed (in alphabetical order) in the 'drawer' of the course. The terms can be clicked to reveal a definition. The list of terms is searchable.
 
-##Installation
+## Installation
 
 First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
 
@@ -15,10 +15,10 @@ First, be sure to install the [Adapt Command Line Interface](https://github.com/
 This extension can also be installed by adding the extension to the adapt.json file before running `adapt install`:
  
         "adapt-contrib-glossary": "*"
-##Usage
+## Usage
 You can create links to items in the glossary in the format `<a href='#' data-glossaryterm='About Framework'>Adapt Framework</a>`
 
-##Settings overview
+## Settings overview
 
 For example JSON format, see [example.json](example.json). Further details are given below which can be added to course:
 
@@ -39,7 +39,7 @@ For example JSON format, see [example.json](example.json). Further details are g
 }
 ```
 
-##Events
+## Events
 
 <table>
     <thead>
@@ -62,10 +62,10 @@ For example JSON format, see [example.json](example.json). Further details are g
         </tr>
 </table>
 
-##Limitations
+## Limitations
  
 To be completed.
 
-##Browser spec
+## Browser spec
 
 This component has been tested to the standard Adapt browser specification.

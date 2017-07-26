@@ -46,7 +46,7 @@ define(function(require) {
             title: courseGlossary.title,
             description: courseGlossary.description,
             className: 'glossary-drawer',
-            drawerOrder: courseGlossary._drawerOrder
+            drawerOrder: courseGlossary._drawerOrder || 0
         };
         // Syntax for adding a Drawer item
         // Adapt.drawer.addItem([object], [callbackEvent]);

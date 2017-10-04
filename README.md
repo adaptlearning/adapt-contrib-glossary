@@ -43,23 +43,24 @@ For example JSON format, see [example.json](example.json). Further details are g
 
 <table>
     <thead>
-        <td><b>Event</b></td>
-        <td><b>Description</b></td>
-        <td><b>Object</b></td>
+        <tr>
+            <td><b>Event</b></td>
+            <td><b>Description</b></td>
+            <td><b>Object</b></td>
+        </tr>
     </thead>
     <tr valign="top">
-            <td><i>glossary:descriptionOpen</i></td>
-            <td>Triggered when the user clicks on glossary item and its description get opened </td>
-            <td>
-                <table>
-                    <tr>
-                        <td>viewId</td>
-                        <td>string</td>
-                    </tr>
-                </table>
-
-            </td>
-        </tr>
+        <td><i>glossary:descriptionOpen</i></td>
+        <td>Triggered when the user clicks on glossary item and its description get opened </td>
+        <td>
+            <table>
+                <tr>
+                    <td>viewId</td>
+                    <td>string</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 </table>
 
 ## Limitations

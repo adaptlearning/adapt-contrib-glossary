@@ -16,7 +16,7 @@ This extension can also be installed by adding the extension to the adapt.json f
  
         "adapt-contrib-glossary": "*"
 ## Usage
-You can create links to items in the glossary in the format `<a href='#' data-glossaryterm='About Framework'>Adapt Framework</a>`
+You can create links to items in the glossary in the format `<a href='#' data-glossaryterm='About Framework'>Adapt Framework</a>`. You should avoid doing this in text that will be displayed within a Notify popup (e.g. question feedback) as the Glossary will open behind the Notify popup.
 
 ## Settings overview
 

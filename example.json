@@ -1,6 +1,7 @@
 // To go in the course.json file
 "_glossary": {
     "_isEnabled": true,
+    "_drawerOrder": 2,
     "title": "Glossary",
     "description": "Click here to view glossary for this course",
     "searchPlaceholder": "Search",

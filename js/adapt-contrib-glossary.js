@@ -45,10 +45,10 @@ define(function(require) {
         var drawerObject = {
             title: courseGlossary.title,
             description: courseGlossary.description,
-            className: 'glossary-drawer'
+            className: 'glossary-drawer',
+            drawerOrder: courseGlossary._drawerOrder || 0
         };
-        // Syntax for adding a Drawer item
-        // Adapt.drawer.addItem([object], [callbackEvent]);
+        
         Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
 
         setupGlossary(courseGlossary, courseGlossary._glossaryItems);

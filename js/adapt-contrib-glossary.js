@@ -1,9 +1,8 @@
-define(function(require) {
-
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
-    var GlossaryView = require('extensions/adapt-contrib-glossary/js/adapt-contrib-glossaryView');
-
+define([
+    'core/js/adapt',
+    './adapt-contrib-glossaryView'
+], function(Adapt, GlossaryView) {
+    
     function setupGlossary(glossaryModel, glossaryItems) {
 
         glossaryModel = new Backbone.Model(glossaryModel);
@@ -45,18 +44,18 @@ define(function(require) {
         var drawerObject = {
             title: courseGlossary.title,
             description: courseGlossary.description,
-            className: 'glossary-drawer'
+            className: 'glossary-drawer',
+            drawerOrder: courseGlossary._drawerOrder || 0
         };
-        // Syntax for adding a Drawer item
-        // Adapt.drawer.addItem([object], [callbackEvent]);
+
         Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
 
         setupGlossary(courseGlossary, courseGlossary._glossaryItems);
     }
 
     Adapt.once('app:dataReady', function() {
-      initGlossary();
-      Adapt.on('app:languageChanged', initGlossary);
+        initGlossary();
+        Adapt.on('app:languageChanged', initGlossary);
     });
 
 });

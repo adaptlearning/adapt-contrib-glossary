@@ -1,8 +1,7 @@
-define(function(require) {
-
-    var Backbone = require('backbone');
-    var Adapt = require('coreJS/adapt');
-    var GlossaryItemView = require('./adapt-contrib-glossaryItemView');
+define([
+    'core/js/adapt',
+    './adapt-contrib-glossaryItemView'
+], function(Adapt, GlossaryItemView) {
 
     var GlossaryView = Backbone.View.extend({
 
@@ -85,8 +84,10 @@ define(function(require) {
         },
 
         postRender: function() {
-            this.listenTo(Adapt, 'drawer:openedItemView', this.remove);
-            this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
+            this.listenTo(Adapt, {
+                'drawer:openedItemView': this.remove,
+                'drawer:triggerCustomView': this.remove
+            });
 
             if($('html').is('.ie8')) {
                 this.$('.input.glossary-textbox').on('propertychange', this.onInputTextBoxValueChange);
@@ -99,11 +100,11 @@ define(function(require) {
             var shouldSearchInDescription = this.$('input.glossary-checkbox').is(":checked");
 
             if(searchItem.length > 0) {
-                this.$(".glossary-cancel-button").removeClass("display-none");
+                this.$('.glossary-cancel-button').removeClass('display-none');
                 var filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
                 this.showFilterGlossaryItems(filteredItems);
             } else {
-                this.$(".glossary-cancel-button").addClass("display-none");
+                this.$('.glossary-cancel-button').addClass('display-none');
                 this.showGlossaryItems(true);
             }
         }, 200),
@@ -154,7 +155,7 @@ define(function(require) {
 
         // change the visibility of all glossary items
         showGlossaryItems: function(_isVisible) {
-            _.invoke(this.collection.models, 'set', {"_isVisible": _isVisible});
+            _.invoke(this.collection.models, 'set', {'_isVisible': _isVisible});
         }
 
     });

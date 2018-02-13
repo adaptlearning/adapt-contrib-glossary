@@ -25,6 +25,7 @@ For example JSON format, see [example.json](example.json). Further details are g
 ```json
 "_glossary": {
     "_isEnabled": true,
+    "_drawerOrder": 2,
     "title": "Glossary",
     "description": "Click here to view glossary for this course",
     "searchPlaceholder": "Search",

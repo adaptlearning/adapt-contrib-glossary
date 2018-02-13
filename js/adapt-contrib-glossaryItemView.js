@@ -1,7 +1,6 @@
-define(function(require) {
-
-    var Backbone = require('backbone');
-    var Adapt = require('coreJS/adapt');
+define([
+    'core/js/adapt'
+], function(Adapt) {
 
     var GlossaryItemView = Backbone.View.extend({
 
@@ -12,9 +11,11 @@ define(function(require) {
         },
 
         initialize: function() {
-            this.listenTo(Adapt, "remove drawer:closed", this.remove);
+            this.listenTo(Adapt, {
+                'remove drawer:closed': this.remove,
+                'glossary:descriptionOpen': this.descriptionOpen
+            });
             this.setupModel();
-            this.listenTo(Adapt, 'glossary:descriptionOpen', this.descriptionOpen);
             this.listenTo(this.model, 'change:_isVisible', this.onGlossaryItemVisibilityChange);
             this.render();
         },
@@ -36,8 +37,10 @@ define(function(require) {
         },
 
         postRender: function() {
-            this.listenTo(Adapt, 'drawer:openedItemView', this.remove);
-            this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
+            this.listenTo(Adapt, {
+                'drawer:openedItemView': this.remove,
+                'drawer:triggerCustomView': this.remove
+            });
         },
 
         onGlossaryItemClicked: function(event) {

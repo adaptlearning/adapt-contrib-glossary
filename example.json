@@ -9,20 +9,20 @@
     "itemNotFoundMessage": "Sorry! No results to display",
     "_glossaryItems": [
         {
-            "term": "About Framework",
-            "description": "The Adapt Framework is a generic, reusable codebase for e-learning courses. <br/>The Adapt Framework is designed to work with the Adapt Authoring Tool (as soon as this is released) but can also be used in isolation."
+            "term": "Adapt Framework",
+            "description": "The Adapt Framework is an open-source, reusable codebase for creating responsive e-learning courses.<br/>The Adapt Framework is designed to work with the Adapt Authoring Tool but can also be used in isolation."
         },
         {
-            "term": "Framework Examples",
-            "description": "<a href='https://community.adaptlearning.org/mod/forum/discuss.php?d=244' target='_blank'>Click here to view Real Life Adapt examples</a>"
+            "term": "Adapt Authoring Tool",
+            "description": "The Adapt authoring tool allows you to quickly build content using the Adapt Framework. You can create an account, log in, create courses, add interactive elements then preview and publish your content."
         },
         {
-            "term": "Community Site",
-            "description": "<a href='https://community.adaptlearning.org' target='_blank'>Click here to view our community site</a>"
+            "term": "Responsive e-learning design",
+            "description": "Responsive e-learning design takes its inspiration from responsive web design; an approach that ensures a single version of a website or an e-learning course can provide a viewing experience optimised for different devices, from desktop to tablet to smartphone."
         },
         {
-            "term": "YouTube Channel",
-            "description": "<a href='https://www.youtube.com/channel/UCW8SlSFuCc--B66Gf9fAEcQ' target='_blank'>Click here to view Adapt Learning YouTube Channel</a>"
+            "term": "Open source",
+            "description": "Open-source software (OSS) is computer software with its source code made available with a license in which the copyright holder provides the rights to study, change, and distribute the software to anyone and for any purpose. Source: <a href='https://en.wikipedia.org/wiki/Open-source_software' target='_blank'>Wikipedia</a>"
         }
     ]
 }

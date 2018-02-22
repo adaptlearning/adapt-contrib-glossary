@@ -1,24 +1,24 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "required":false,
-  "properties":{
+  "properties": {
     "pluginLocations": {
-      "type":"object",
-      "required":true,
-      "properties":{
+      "type": "object",
+      "required": true,
+      "properties": {
         "config": {
-          "type":"object"
+          "type": "object"
         },
         "course": {
-          "type":"object",
-          "properties":{
+          "type": "object",
+          "properties": {
             "_glossary": {
               "type": "object",
               "required": true,
               "legend": "Glossary",
-              "properties":{
+              "properties": {
                 "_isEnabled": {
                   "type": "boolean",
                   "required": true,
@@ -94,9 +94,9 @@
                   "minItems": 1,
                   "items":
                   {
-                    "type":"object",
-                    "required":true,
-                    "properties":{
+                    "type": "object",
+                    "required": true,
+                    "properties": {
                       "description": {
                         "type": "string",
                         "required": true,
@@ -125,16 +125,16 @@
           }
         },
         "contentobject": {
-          "type":"object"
+          "type": "object"
         },
         "article": {
-          "type":"object"
+          "type": "object"
         },
         "block": {
-          "type":"object"
+          "type": "object"
         },
         "component": {
-          "type":"object"
+          "type": "object"
         }
       }
     }

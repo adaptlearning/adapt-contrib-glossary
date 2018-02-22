@@ -1,7 +1,7 @@
 {
   "name": "adapt-contrib-glossary",
   "version": "2.1.0",
-  "framework": ">=2",
+  "framework": ">=2.2.0",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-glossary",
   "issues": "https://github.com/adaptlearning/adapt-contrib-glossary/issues",
   "displayName" : "Glossary",

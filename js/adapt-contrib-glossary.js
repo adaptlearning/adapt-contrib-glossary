@@ -53,6 +53,6 @@ define([
         setupGlossary(courseGlossary, courseGlossary._glossaryItems);
     }
 
-    Adapt.once('app:dataReady', initGlossary);
+    Adapt.on('app:dataReady', initGlossary);
 
 });

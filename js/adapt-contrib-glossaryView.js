@@ -23,8 +23,6 @@ define([
             this.setupModel();
             
             this.render();
-
-            this.checkForTermToShow();
         },
 
         checkForTermToShow: function() {
@@ -84,6 +82,8 @@ define([
         },
 
         postRender: function() {
+            this.checkForTermToShow();
+
             this.listenTo(Adapt, {
                 'drawer:openedItemView': this.remove,
                 'drawer:triggerCustomView': this.remove

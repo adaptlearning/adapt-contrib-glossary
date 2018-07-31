@@ -19,12 +19,10 @@ define([
 
         initialize: function() {
             this.listenTo(Adapt, 'remove drawer:closed', this.remove);
-            
-            this.setupModel();
-            
-            this.render();
 
-            this.checkForTermToShow();
+            this.setupModel();
+
+            this.render();
         },
 
         checkForTermToShow: function() {
@@ -84,6 +82,8 @@ define([
         },
 
         postRender: function() {
+            this.checkForTermToShow();
+
             this.listenTo(Adapt, {
                 'drawer:openedItemView': this.remove,
                 'drawer:triggerCustomView': this.remove
@@ -99,9 +99,12 @@ define([
             var searchItem = this.$('input.glossary-textbox').val().toLowerCase();
             var shouldSearchInDescription = this.$('input.glossary-checkbox').is(":checked");
 
+            var searchItemsAlert = this.model.get("searchItemsAlert") || "";
+
             if(searchItem.length > 0) {
                 this.$('.glossary-cancel-button').removeClass('display-none');
                 var filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
+                this.$('.glossary-alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems: filteredItems }));
                 this.showFilterGlossaryItems(filteredItems);
             } else {
                 this.$('.glossary-cancel-button').addClass('display-none');
@@ -111,7 +114,11 @@ define([
 
         onCancelButtonClick: function(event) {
             if(event && event.preventDefault) event.preventDefault();
-            this.$('input.glossary-textbox').val("").trigger("input");
+            var $input = this.$('input.glossary-textbox');
+            $input.val("").trigger("input");
+            _.defer(function() {
+                $input.focus();
+            });
         },
 
         // create array of filtered items on basis of supplied arguments.

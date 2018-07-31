@@ -77,6 +77,16 @@
                   "help": "Aria label for the clear search button",
                   "translatable": true
                 },
+                "searchItemsAlert": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{filteredItems.length}} found.",
+                  "title": "Search result alert",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Aria label for search result alert",
+                  "translatable": true
+                },
                 "searchPlaceholder": {
                   "type": "string",
                   "required": true,

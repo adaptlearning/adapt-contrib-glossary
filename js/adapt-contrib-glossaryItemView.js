@@ -64,7 +64,7 @@ define([
             var description = $glossaryItemTerm.addClass('selected').siblings('.glossary-item-description').slideDown(200, function() {
                 $(description).a11y_focus();
             });
-            $glossaryItemTerm.attr('aria-expanded', false);
+            $glossaryItemTerm.attr('aria-expanded', true);
             this.model.set('_isDescriptionOpen', true);
         },
 

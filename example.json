@@ -4,6 +4,8 @@
     "_drawerOrder": 1,
     "title": "Glossary",
     "description": "Click here to view glossary for this course",
+    "searchItemsAlert": "{{filteredItems.length}} found.",
+    "clearSearch": "Clear search",
     "searchPlaceholder": "Search",
     "searchWithInDescriptionLabel": "Search within Description",
     "itemNotFoundMessage": "Sorry! No results to display",

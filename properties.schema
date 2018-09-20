@@ -3,6 +3,16 @@
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "required":false,
+  "globals": {
+    "glossary": {
+      "type": "string",
+      "required": true,
+      "default": "Glossary",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    }
+  },
   "properties": {
     "pluginLocations": {
       "type": "object",
@@ -55,6 +65,26 @@
                   "inputType": "Text",
                   "validators": [],
                   "help": "Some text to describe the glossary",
+                  "translatable": true
+                },
+                "clearSearch": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Clear search text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Aria label for the clear search button",
+                  "translatable": true
+                },
+                "searchItemsAlert": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{filteredItems.length}} found.",
+                  "title": "Search result alert",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Aria label for search result alert",
                   "translatable": true
                 },
                 "searchPlaceholder": {

@@ -53,9 +53,6 @@ define([
         setupGlossary(courseGlossary, courseGlossary._glossaryItems);
     }
 
-    Adapt.once('app:dataReady', function() {
-        initGlossary();
-        Adapt.on('app:languageChanged', initGlossary);
-    });
+    Adapt.on('app:dataReady', initGlossary);
 
 });

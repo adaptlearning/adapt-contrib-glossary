@@ -1,16 +1,16 @@
 {{import_globals}}
 <div class="glossary-inner">
-    {{a11y_aria_label _globals._extensions._glossary.glossary}}
-    <div class="glossary-textbox-container">
-        <label for="glossarySearch" class="glossary-textbox-label icon icon-search" aria-hidden="true"></label>
-        <input id="glossarySearch" type="text" placeholder="{{{searchPlaceholder}}}" aria-label="{{{searchPlaceholder}}}" class="glossary-textbox">
-        <div role="button" tabindex="0" class="glossary-cancel-button icon icon-cross display-none" aria-label="{{clearSearch}}"></div>
-    </div>
-    <div class="glossary-checkbox-container">
-        <input id="glossaryCheckbox" type="checkbox" class="glossary-checkbox">
-        <label for="glossaryCheckbox" class="glossary-checkbox-label">{{{searchWithInDescriptionLabel}}}</label>
-    </div>
-    <div class="glossary-items-container" role="list"></div>
-    <div class="glossary-item-not-found h6 display-none">{{{itemNotFoundMessage}}}</div>
-    <div class="glossary-alert aria-label" aria-live="polite" aria-atomic="true"></div>
+  {{a11y_aria_label _globals._extensions._glossary.glossary}}
+  <div class="glossary-textbox-container">
+    <label for="glossarySearch" class="glossary-textbox-label icon icon-search" aria-hidden="true"></label>
+    <input id="glossarySearch" type="text" placeholder="{{{searchPlaceholder}}}" aria-label="{{{searchPlaceholder}}}" class="glossary-textbox">
+    <div role="button" tabindex="0" class="glossary-cancel-button icon icon-cross display-none" aria-label="{{clearSearch}}"></div>
+  </div>
+  <div class="glossary-checkbox-container">
+    <input id="glossaryCheckbox" type="checkbox" class="glossary-checkbox">
+    <label for="glossaryCheckbox" class="glossary-checkbox-label">{{{searchWithInDescriptionLabel}}}</label>
+  </div>
+  <div class="glossary-items-container" role="list"></div>
+  <div class="glossary-item-not-found h6 display-none">{{{itemNotFoundMessage}}}</div>
+  <div class="glossary-alert aria-label" aria-live="polite" aria-atomic="true"></div>
 </div>

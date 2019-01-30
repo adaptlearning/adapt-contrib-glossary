@@ -8,11 +8,11 @@ define([
     className: "glossary",
 
     events: {
-      'keyup input.glossary-textbox': 'onInputTextBoxValueChange',
-      'input input.glossary-textbox': 'onInputTextBoxValueChange',
-      'paste input.glossary-textbox': 'onInputTextBoxValueChange',
-      'change input.glossary-checkbox': 'onInputTextBoxValueChange',
-      'click .glossary-cancel-button': 'onCancelButtonClick'
+      'keyup .js-glossary-textbox-change': 'onInputTextBoxValueChange',
+      'input .js-glossary-textbox-change': 'onInputTextBoxValueChange',
+      'paste .js-glossary-textbox-change': 'onInputTextBoxValueChange',
+      'change .js-glossary-checkbox-change': 'onInputTextBoxValueChange',
+      'click .js-glossary-cancel-btn-click': 'onCancelButtonClick'
     },
 
     itemViews: null,
@@ -38,10 +38,6 @@ define([
     },
 
     remove: function() {
-      if ($('html').is('.ie8')) {
-        this.$('.input.glossary-textbox').off('propertychange', this.onInputTextBoxValueChange);
-      }
-
       this.itemViews = null;
 
       Backbone.View.prototype.remove.apply(this, arguments);
@@ -72,7 +68,7 @@ define([
 
     renderGlossaryItems: function() {
       this.itemViews = [];
-      var $glossaryItemContainer = this.$('.glossary-items-container').empty();
+      var $glossaryItemContainer = this.$('.glossary__items-container-inner').empty();
       _.each(this.collection.models, function(item, index) {
         var itemView = new GlossaryItemView({model: item});
         itemView.$el.appendTo($glossaryItemContainer);
@@ -88,33 +84,31 @@ define([
         'drawer:openedItemView': this.remove,
         'drawer:triggerCustomView': this.remove
       });
-
-      if ($('html').is('.ie8')) {
-        this.$('.input.glossary-textbox').on('propertychange', this.onInputTextBoxValueChange);
-      }
     },
 
     onInputTextBoxValueChange: _.debounce(function(event) {
       this.showItemNotFoundMessage(false);
-      var searchItem = this.$('input.glossary-textbox').val().toLowerCase();
-      var shouldSearchInDescription = this.$('input.glossary-checkbox').is(":checked");
+      var searchItem = this.$('.js-glossary-textbox-change').val().toLowerCase();
+      var shouldSearchInDescription = this.$('.js-glossary-checkbox-change').is(":checked");
 
       var searchItemsAlert = this.model.get("searchItemsAlert") || "";
 
-      if(searchItem.length > 0) {
-        this.$('.glossary-cancel-button').removeClass('display-none');
+      if (searchItem.length > 0) {
+        this.$('.js-glossary-cancel-btn-click').removeClass('u-display-none');
+        this.$('.js-glossary-search-icon').addClass('u-display-none');
         var filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
-        this.$('.glossary-alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems: filteredItems }));
+        this.$('.glossary__alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems: filteredItems }));
         this.showFilterGlossaryItems(filteredItems);
       } else {
-        this.$('.glossary-cancel-button').addClass('display-none');
+        this.$('.js-glossary-cancel-btn-click').addClass('u-display-none');
+        this.$('.js-glossary-search-icon').removeClass('u-display-none');
         this.showGlossaryItems(true);
       }
     }, 200),
 
     onCancelButtonClick: function(event) {
       if(event && event.preventDefault) event.preventDefault();
-      var $input = this.$('input.glossary-textbox');
+      var $input = this.$('.js-glossary-textbox-change');
       $input.val("").trigger("input");
       _.defer(function() {
         $input.focus();
@@ -151,12 +145,12 @@ define([
 
     // show/hide the item not found message.
     showItemNotFoundMessage: function(_isVisible) {
-      var $itemNotFound = this.$('.glossary-item-not-found');
+      var $itemNotFound = this.$('.glossary__item-not-found');
 
-      if (!_isVisible && !$itemNotFound.hasClass('display-none')) {
-        $itemNotFound.addClass('display-none');
-      } else if (_isVisible && $itemNotFound.hasClass('display-none')) {
-        $itemNotFound.removeClass('display-none');
+      if (!_isVisible && !$itemNotFound.hasClass('u-display-none')) {
+        $itemNotFound.addClass('u-display-none');
+      } else if (_isVisible && $itemNotFound.hasClass('u-display-none')) {
+        $itemNotFound.removeClass('u-display-none');
       }
     },
 

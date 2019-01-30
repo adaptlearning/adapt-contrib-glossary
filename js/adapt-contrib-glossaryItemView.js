@@ -4,10 +4,10 @@ define([
 
   var GlossaryItemView = Backbone.View.extend({
 
-    className: "glossary-item",
+    className: "glossary__item",
 
     events: {
-      'click .glossary-item-term': 'onGlossaryItemClicked'
+      'click .js-glossary-item-term-click': 'onGlossaryItemClicked'
     },
 
     initialize: function() {
@@ -60,8 +60,8 @@ define([
      * show the glossary item description and highlight the selected term.
      */
     showGlossaryItemDescription: function() {
-      var $glossaryItemTerm = this.$('.glossary-item-term');
-      var description = $glossaryItemTerm.addClass('selected').siblings('.glossary-item-description').slideDown(200, function() {
+      var $glossaryItemTerm = this.$('.js-glossary-item-term-click');
+      var description = $glossaryItemTerm.addClass('is-selected').siblings('.glossary__item-description').slideDown(200, function() {
         $(description).a11y_focus();
       });
       $glossaryItemTerm.attr('aria-expanded', true);
@@ -72,10 +72,10 @@ define([
      * hide the glossary item description and un-highlight the selected term.
      */
     hideGlossaryItemDescription: function() {
-      this.$('.glossary-item-description').stop(true, true).slideUp(200);
+      this.$('.glossary__item-description').stop(true, true).slideUp(200);
       this.model.set('_isDescriptionOpen', false);
 
-      this.$('.glossary-item-term').removeClass('selected').attr('aria-expanded', false);
+      this.$('.js-glossary-item-term-click').removeClass('is-selected').attr('aria-expanded', false);
     },
 
     // This function will decide whether this glossary item's description should be visible or not.
@@ -93,9 +93,9 @@ define([
         this.hideGlossaryItemDescription();
       }
       if (this.model.get('_isVisible')) {
-        this.$el.removeClass('display-none');
+        this.$el.removeClass('u-display-none');
       } else {
-        this.$el.addClass('display-none');
+        this.$el.addClass('u-display-none');
       }
     }
   });

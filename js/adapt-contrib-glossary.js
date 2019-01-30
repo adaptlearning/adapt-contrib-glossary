@@ -44,7 +44,7 @@ define([
     var drawerObject = {
       title: courseGlossary.title,
       description: courseGlossary.description,
-      className: 'glossary-drawer',
+      className: 'is-glossary',
       drawerOrder: courseGlossary._drawerOrder || 0
     };
 

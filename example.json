@@ -1,30 +1,30 @@
 // To go in the course.json file
 "_glossary": {
-    "_isEnabled": true,
-    "_drawerOrder": 1,
-    "title": "Glossary",
-    "description": "Click here to view glossary for this course",
-    "searchItemsAlert": "{{filteredItems.length}} found.",
-    "clearSearch": "Clear search",
-    "searchPlaceholder": "Search",
-    "searchWithInDescriptionLabel": "Search within Description",
-    "itemNotFoundMessage": "Sorry! No results to display",
-    "_glossaryItems": [
-        {
-            "term": "Adapt Framework",
-            "description": "The Adapt Framework is an open-source, reusable codebase for creating responsive e-learning courses.<br/>The Adapt Framework is designed to work with the Adapt Authoring Tool but can also be used in isolation."
-        },
-        {
-            "term": "Adapt Authoring Tool",
-            "description": "The Adapt authoring tool allows you to quickly build content using the Adapt Framework. You can create an account, log in, create courses, add interactive elements then preview and publish your content."
-        },
-        {
-            "term": "Responsive e-learning design",
-            "description": "Responsive e-learning design takes its inspiration from responsive web design; an approach that ensures a single version of a website or an e-learning course can provide a viewing experience optimised for different devices, from desktop to tablet to smartphone."
-        },
-        {
-            "term": "Open source",
-            "description": "Open-source software (OSS) is computer software with its source code made available with a license in which the copyright holder provides the rights to study, change, and distribute the software to anyone and for any purpose. Source: <a href='https://en.wikipedia.org/wiki/Open-source_software' target='_blank'>Wikipedia</a>"
-        }
-    ]
+  "_isEnabled": true,
+  "_drawerOrder": 1,
+  "title": "Glossary",
+  "description": "Click here to view glossary for this course",
+  "searchItemsAlert": "{{filteredItems.length}} found.",
+  "clearSearch": "Clear search",
+  "searchPlaceholder": "Search",
+  "searchWithInDescriptionLabel": "Search within Description",
+  "itemNotFoundMessage": "Sorry! No results to display",
+  "_glossaryItems": [
+    {
+      "term": "Adapt Framework",
+      "description": "The Adapt Framework is an open-source, reusable codebase for creating responsive e-learning courses.<br/>The Adapt Framework is designed to work with the Adapt Authoring Tool but can also be used in isolation."
+    },
+    {
+      "term": "Adapt Authoring Tool",
+      "description": "The Adapt authoring tool allows you to quickly build content using the Adapt Framework. You can create an account, log in, create courses, add interactive elements then preview and publish your content."
+    },
+    {
+      "term": "Responsive e-learning design",
+      "description": "Responsive e-learning design takes its inspiration from responsive web design; an approach that ensures a single version of a website or an e-learning course can provide a viewing experience optimised for different devices, from desktop to tablet to smartphone."
+    },
+    {
+      "term": "Open source",
+      "description": "Open-source software (OSS) is computer software with its source code made available with a license in which the copyright holder provides the rights to study, change, and distribute the software to anyone and for any purpose. Source: <a href='https://en.wikipedia.org/wiki/Open-source_software' target='_blank'>Wikipedia</a>"
+    }
+  ]
 }

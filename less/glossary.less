@@ -1,78 +1,78 @@
 .glossary {
-    .glossary-textbox-container {
-        position: relative;
-        display: block;
-        padding: 10px 0px 5px;
+  .glossary-textbox-container {
+    position: relative;
+    display: block;
+    padding: 10px 0px 5px;
 
-        .glossary-textbox-label {
-            display: inline-block;
-            width: 25px;
-            color: @item-text-color;
-            margin-left: 1px;
-            vertical-align: middle;
-            cursor: default;
+    .glossary-textbox-label {
+      display: inline-block;
+      width: 25px;
+      color: @item-text-color;
+      margin-left: 1px;
+      vertical-align: middle;
+      cursor: default;
 
-            .dir-rtl & {
-                margin-left: inherit;
-                margin-right: 1px;
-            }
-        }
-
-        .glossary-textbox {
-            display: inline-block;
-            width: 77%;
-            padding: 5px 30px 5px 5px;
-
-            .dir-rtl & {
-                padding: 5px 5px 5px 30px;
-            }
-
-            &::-ms-clear {
-                display: none;
-            }
-        }
-
-        .glossary-cancel-button {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            top: 10px;
-            right: 4px;
-            font-size: 30px;
-            cursor: pointer;
-
-            .dir-rtl & {
-                right: inherit;
-                left: 4px;
-            }
-        }
-    }
-    .glossary-checkbox-container {
-        display: block;
-        border-bottom: 1px solid @drawer-item-color;
-
-        .glossary-checkbox {
-            margin-left: 30px;
-            vertical-align: middle;
-
-            .dir-rtl & {
-                margin-left: inherit;
-                margin-right: 30px;
-            }
-        }
-
-        .glossary-checkbox-label {
-            font-size: 14px;
-            color: @background-color;
-        }
+      .dir-rtl & {
+        margin-left: inherit;
+        margin-right: 1px;
+      }
     }
 
-    .glossary-items-container {
-        display: block;
+    .glossary-textbox {
+      display: inline-block;
+      width: 77%;
+      padding: 5px 30px 5px 5px;
+
+      .dir-rtl & {
+        padding: 5px 5px 5px 30px;
+      }
+
+      &::-ms-clear {
+        display: none;
+      }
     }
 
-    .glossary-item-not-found {
-        display: block;
-        padding: 10px;
+    .glossary-cancel-button {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: 10px;
+      right: 4px;
+      font-size: 30px;
+      cursor: pointer;
+
+      .dir-rtl & {
+        right: inherit;
+        left: 4px;
+      }
     }
+  }
+  .glossary-checkbox-container {
+    display: block;
+    border-bottom: 1px solid @drawer-item-color;
+
+    .glossary-checkbox {
+      margin-left: 30px;
+      vertical-align: middle;
+
+      .dir-rtl & {
+        margin-left: inherit;
+        margin-right: 30px;
+      }
+    }
+
+    .glossary-checkbox-label {
+      font-size: 14px;
+      color: @background-color;
+    }
+  }
+
+  .glossary-items-container {
+    display: block;
+  }
+
+  .glossary-item-not-found {
+    display: block;
+    padding: 10px;
+  }
 }

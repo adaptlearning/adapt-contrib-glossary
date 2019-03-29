@@ -1,58 +1,58 @@
 define([
-    'core/js/adapt',
-    './adapt-contrib-glossaryView'
+  'core/js/adapt',
+  './adapt-contrib-glossaryView'
 ], function(Adapt, GlossaryView) {
-    
-    function setupGlossary(glossaryModel, glossaryItems) {
+  
+  function setupGlossary(glossaryModel, glossaryItems) {
 
-        glossaryModel = new Backbone.Model(glossaryModel);
+    glossaryModel = new Backbone.Model(glossaryModel);
 
-        var options = {
-            model: glossaryModel,
-            collection: new Backbone.Collection(glossaryItems)
-        };
+    var options = {
+      model: glossaryModel,
+      collection: new Backbone.Collection(glossaryItems)
+    };
 
-        Adapt.on('glossary:showGlossary', function() {
-            Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
-        });
+    Adapt.on('glossary:showGlossary', function() {
+      Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
+    });
 
-        /**
-         * handler for links in the content in the following format:
-         * <a href='#' data-glossaryterm='term name'>glossary term link</a>
-         * these links should trigger the glossary to open with that term automatically selected
-         */
-        $('body').on('click.glossary', 'a[data-glossaryterm]', function(e) {
-            if(e) e.preventDefault();
+    /**
+     * handler for links in the content in the following format:
+     * <a href='#' data-glossaryterm='term name'>glossary term link</a>
+     * these links should trigger the glossary to open with that term automatically selected
+     */
+    $('body').on('click.glossary', 'a[data-glossaryterm]', function(e) {
+      if(e) e.preventDefault();
 
-            var newoptions = _.clone(options);
-            newoptions.attributes = {
-                "data-termtoshow": e.currentTarget.getAttribute('data-glossaryterm')
-            };
+      var newoptions = _.clone(options);
+      newoptions.attributes = {
+        "data-termtoshow": e.currentTarget.getAttribute('data-glossaryterm')
+      };
 
-            Adapt.drawer.triggerCustomView(new GlossaryView(newoptions).$el);
-        });
+      Adapt.drawer.triggerCustomView(new GlossaryView(newoptions).$el);
+    });
+  }
+
+  function initGlossary() {
+    var courseGlossary = Adapt.course.get('_glossary');
+
+    // do not proceed until glossary enabled on course.json
+    if (!courseGlossary || !courseGlossary._isEnabled) {
+      return;
     }
 
-    function initGlossary() {
-        var courseGlossary = Adapt.course.get('_glossary');
+    var drawerObject = {
+      title: courseGlossary.title,
+      description: courseGlossary.description,
+      className: 'glossary-drawer',
+      drawerOrder: courseGlossary._drawerOrder || 0
+    };
 
-        // do not proceed until glossary enabled on course.json
-        if (!courseGlossary || !courseGlossary._isEnabled) {
-            return;
-        }
+    Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
 
-        var drawerObject = {
-            title: courseGlossary.title,
-            description: courseGlossary.description,
-            className: 'glossary-drawer',
-            drawerOrder: courseGlossary._drawerOrder || 0
-        };
+    setupGlossary(courseGlossary, courseGlossary._glossaryItems);
+  }
 
-        Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
-
-        setupGlossary(courseGlossary, courseGlossary._glossaryItems);
-    }
-
-    Adapt.on('app:dataReady', initGlossary);
+  Adapt.on('app:dataReady', initGlossary);
 
 });

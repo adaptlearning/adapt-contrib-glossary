@@ -1,8 +1,7 @@
-define(function(require) {
-
-    var Backbone = require('backbone');
-    var Adapt = require('coreJS/adapt');
-    var GlossaryItemView = require('./adapt-contrib-glossaryItemView');
+define([
+    'core/js/adapt',
+    './adapt-contrib-glossaryItemView'
+], function(Adapt, GlossaryItemView) {
 
     var GlossaryView = Backbone.View.extend({
 
@@ -20,12 +19,10 @@ define(function(require) {
 
         initialize: function() {
             this.listenTo(Adapt, 'remove drawer:closed', this.remove);
-            
-            this.setupModel();
-            
-            this.render();
 
-            this.checkForTermToShow();
+            this.setupModel();
+
+            this.render();
         },
 
         checkForTermToShow: function() {
@@ -85,8 +82,12 @@ define(function(require) {
         },
 
         postRender: function() {
-            this.listenTo(Adapt, 'drawer:openedItemView', this.remove);
-            this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
+            this.checkForTermToShow();
+
+            this.listenTo(Adapt, {
+                'drawer:openedItemView': this.remove,
+                'drawer:triggerCustomView': this.remove
+            });
 
             if($('html').is('.ie8')) {
                 this.$('.input.glossary-textbox').on('propertychange', this.onInputTextBoxValueChange);
@@ -98,31 +99,41 @@ define(function(require) {
             var searchItem = this.$('input.glossary-textbox').val().toLowerCase();
             var shouldSearchInDescription = this.$('input.glossary-checkbox').is(":checked");
 
+            var searchItemsAlert = this.model.get("searchItemsAlert") || "";
+
             if(searchItem.length > 0) {
-                this.$(".glossary-cancel-button").removeClass("display-none");
+                this.$('.glossary-cancel-button').removeClass('display-none');
                 var filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
+                this.$('.glossary-alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems: filteredItems }));
                 this.showFilterGlossaryItems(filteredItems);
             } else {
-                this.$(".glossary-cancel-button").addClass("display-none");
+                this.$('.glossary-cancel-button').addClass('display-none');
                 this.showGlossaryItems(true);
             }
         }, 200),
 
         onCancelButtonClick: function(event) {
             if(event && event.preventDefault) event.preventDefault();
-            this.$('input.glossary-textbox').val("").trigger("input");
+            var $input = this.$('input.glossary-textbox');
+            $input.val("").trigger("input");
+            _.defer(function() {
+                $input.focus();
+            });
         },
 
         // create array of filtered items on basis of supplied arguments.
         getFilteredGlossaryItems: function(searchItem, shouldSearchInDescription) {
-            var itemAttribute;
-            if(shouldSearchInDescription) {
-                itemAttribute = 'description';
-            } else {
-                itemAttribute = 'term';
-            }
-            return _.filter(this.collection.models, function(item, index) {
-                return item.get(itemAttribute).toLowerCase().indexOf(searchItem) > -1;
+            var terms = searchItem.split(' ');
+
+            return this.collection.filter(function(model) {
+                return _.every(terms, function(term) {
+                    var title = model.get('term').toLowerCase();
+                    var description = model.get('description').toLowerCase();
+
+                    return shouldSearchInDescription ?
+                        title.indexOf(term) !== -1 || description.indexOf(term) !== -1 :
+                        title.indexOf(term) !== -1;
+                });
             });
         },
 
@@ -151,7 +162,7 @@ define(function(require) {
 
         // change the visibility of all glossary items
         showGlossaryItems: function(_isVisible) {
-            _.invoke(this.collection.models, 'set', {"_isVisible": _isVisible});
+            _.invoke(this.collection.models, 'set', { '_isVisible': _isVisible });
         }
 
     });

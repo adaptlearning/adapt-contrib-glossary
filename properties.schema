@@ -1,24 +1,34 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "required":false,
-  "properties":{
+  "globals": {
+    "glossary": {
+      "type": "string",
+      "required": true,
+      "default": "Glossary",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    }
+  },
+  "properties": {
     "pluginLocations": {
-      "type":"object",
-      "required":true,
-      "properties":{
+      "type": "object",
+      "required": true,
+      "properties": {
         "config": {
-          "type":"object"
+          "type": "object"
         },
         "course": {
-          "type":"object",
-          "properties":{
+          "type": "object",
+          "properties": {
             "_glossary": {
               "type": "object",
               "required": true,
               "legend": "Glossary",
-              "properties":{
+              "properties": {
                 "_isEnabled": {
                   "type": "boolean",
                   "required": true,
@@ -27,6 +37,15 @@
                   "inputType": {"type": "Boolean", "options": [false, true]},
                   "validators": [],
                   "help": "If set to 'true', the glossary extension will be enabled"
+                },
+                "_drawerOrder": {
+                  "type": "number",
+                  "required": false,
+                  "title": "Drawer order",
+                  "inputType": "Number",
+                  "default": 0,
+                  "help": "The order in which this extension should appear as a drawer item",
+                  "validators": ["number"]
                 },
                 "title": {
                   "type": "string",
@@ -46,6 +65,26 @@
                   "inputType": "Text",
                   "validators": [],
                   "help": "Some text to describe the glossary",
+                  "translatable": true
+                },
+                "clearSearch": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Clear search text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Aria label for the clear search button",
+                  "translatable": true
+                },
+                "searchItemsAlert": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{filteredItems.length}} found.",
+                  "title": "Search result alert",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Aria label for search result alert",
                   "translatable": true
                 },
                 "searchPlaceholder": {
@@ -85,9 +124,9 @@
                   "minItems": 1,
                   "items":
                   {
-                    "type":"object",
-                    "required":true,
-                    "properties":{
+                    "type": "object",
+                    "required": true,
+                    "properties": {
                       "description": {
                         "type": "string",
                         "required": true,
@@ -116,16 +155,16 @@
           }
         },
         "contentobject": {
-          "type":"object"
+          "type": "object"
         },
         "article": {
-          "type":"object"
+          "type": "object"
         },
         "block": {
-          "type":"object"
+          "type": "object"
         },
         "component": {
-          "type":"object"
+          "type": "object"
         }
       }
     }

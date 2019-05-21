@@ -2,10 +2,10 @@
 
 **Glossary** is an *extension* for the [Adapt framework](https://github.com/adaptlearning/adapt_framework).
 
-<img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/glossary.gif" width='548' height='497' alt="demonstration of how the glossary looks and functions"> 
+<img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/glossary.gif" width='548' height='497' alt="demonstration of how the glossary looks and functions" align="right"> 
 
-This extension allows for a list of glossary terms to be displayed (in alphabetical order) in the 'drawer' of the course. The terms can be clicked to reveal a definition. The list of terms is searchable.
-
+This extension allows for a list of glossary terms to be displayed (in alphabetical order) in the 'drawer' of the course. The terms can be clicked to reveal a definition. The list of terms is searchable and terms can be linked to from the content.
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 ## Installation
 
 First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
@@ -70,4 +70,4 @@ To be completed.
 
 ## Browser spec
 
-This component has been tested to the standard Adapt browser specification.
+This extension has been tested to the standard Adapt browser specification.

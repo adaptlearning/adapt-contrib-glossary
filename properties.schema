@@ -62,7 +62,7 @@
                   "required": true,
                   "default": "",
                   "title": "Glossary description",
-                  "inputType": "Text",
+                  "inputType": "TextArea",
                   "validators": [],
                   "help": "Some text to describe the glossary",
                   "translatable": true

@@ -5,10 +5,11 @@
 
   &__textbox {
     width: 100%;
+    padding: @item-padding;
     padding-right: @icon-size;
 
     .dir-rtl & {
-      padding-right: inherit;
+      padding-right: @item-padding;
       padding-left: @icon-size;
     }
 
@@ -24,9 +25,10 @@
   &__search-icon,
   &__cancel-btn {
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
     padding: 0;
+    .transform(translateY(-50%));
     background-color: transparent;
 
     .dir-rtl & {

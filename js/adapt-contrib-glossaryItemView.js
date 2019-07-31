@@ -6,6 +6,10 @@ define([
 
     className: "glossary__item",
 
+    attributes: {
+      role: 'listitem'
+    },
+
     events: {
       'click .js-glossary-item-term-click': 'onGlossaryItemClicked'
     },

@@ -68,7 +68,7 @@ define([
 
     renderGlossaryItems: function() {
       this.itemViews = [];
-      var $glossaryItemContainer = this.$('.glossary__items-container-inner').empty();
+      var $glossaryItemContainer = this.$('.glossary__items-container').empty();
       _.each(this.collection.models, function(item, index) {
         var itemView = new GlossaryItemView({model: item});
         itemView.$el.appendTo($glossaryItemContainer);

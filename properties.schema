@@ -122,8 +122,7 @@
                   "required": true,
                   "title": "Glossary items",
                   "minItems": 1,
-                  "items":
-                  {
+                  "items": {
                     "type": "object",
                     "required": true,
                     "properties": {

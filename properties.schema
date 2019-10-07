@@ -117,6 +117,33 @@
                   "help": "Text which will be displayed when the search produces no results",
                   "translatable": true
                 },
+                "_isSearchEnabled": {
+                  "type": "boolean",
+                  "required": false,
+                  "title": "Enable Search",
+                  "default": true,
+                  "inputType": {"type": "Boolean", "options": [false, true]},
+                  "validators": [],
+                  "help": "If set to 'true', the glossary extension will be enabled"
+                },
+                "_isIndexEnabled": {
+                  "type": "boolean",
+                  "required": false,
+                  "title": "Enable Index",
+                  "default": false,
+                  "inputType": {"type": "Boolean", "options": [false, true]},
+                  "validators": [],
+                  "help": "If set to 'true', the Index linked to group headings will be enabled."
+                },
+                "_isGroupHeadersEnabled": {
+                  "type": "boolean",
+                  "required": false,
+                  "title": "Enable Group Headers",
+                  "default": false,
+                  "inputType": {"type": "Boolean", "options": [false, true]},
+                  "validators": [],
+                  "help": "If set to 'true', the headers will group the terms. Whenever the Index is enabled, headers will be enabled regardless of this value."
+                },
                 "_glossaryItems": {
                   "type": "array",
                   "required": true,

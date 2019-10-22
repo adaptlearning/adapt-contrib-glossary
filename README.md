@@ -78,4 +78,4 @@ This extension has been tested to the standard Adapt browser specification.
 **Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-glossary/graphs/contributors)  
 **Accessibility support:** WAI AA  
 **RTL support:** Yes  
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, IE10, IE9, IE8, IE Mobile 11, Safari 10+11 for macOS+iOS, Opera  
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, Safari 12+13 for macOS/iOS/iPadOS, Opera  

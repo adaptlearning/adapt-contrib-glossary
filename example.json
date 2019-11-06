@@ -3,12 +3,12 @@
         "_isEnabled": true,
         "_drawerOrder": 1,
         "title": "Glossary",
-        "description": "Click here to view glossary for this course",
+        "description": "Select here to view glossary for this course",
         "clearSearch": "Clear search",
-        "searchItemsAlert": "{{filteredItems.length}} found.",
+        "searchItemsAlert": "{{filteredItems.length}} found",
         "searchPlaceholder": "Search",
         "searchWithInDescriptionLabel": "Search within Description",
-        "itemNotFoundMessage": "Sorry! No results to display",
+        "itemNotFoundMessage": "No results found",
         "_glossaryItems": [
             {
                 "term": "Adapt Framework",

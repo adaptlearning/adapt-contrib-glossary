@@ -50,7 +50,7 @@
                 "title": {
                   "type": "string",
                   "required": true,
-                  "default": "",
+                  "default": "Glossary",
                   "title": "Glossary title",
                   "inputType": "Text",
                   "validators": [],
@@ -60,7 +60,7 @@
                 "description": {
                   "type": "string",
                   "required": true,
-                  "default": "",
+                  "default": "Select here to view glossary for this course",
                   "title": "Glossary description",
                   "inputType": "Text",
                   "validators": [],
@@ -70,7 +70,7 @@
                 "clearSearch": {
                   "type": "string",
                   "required": true,
-                  "default": "",
+                  "default": "Clear search",
                   "title": "Clear search text",
                   "inputType": "Text",
                   "validators": [],
@@ -80,7 +80,7 @@
                 "searchItemsAlert": {
                   "type": "string",
                   "required": true,
-                  "default": "{{filteredItems.length}} found.",
+                  "default": "{{filteredItems.length}} found",
                   "title": "Search result alert",
                   "inputType": "Text",
                   "validators": [],
@@ -90,7 +90,7 @@
                 "searchPlaceholder": {
                   "type": "string",
                   "required": true,
-                  "default": "",
+                  "default": "Search",
                   "title": "Search placeholder text",
                   "inputType": "Text",
                   "validators": [],
@@ -100,7 +100,7 @@
                 "searchWithInDescriptionLabel": {
                   "type": "string",
                   "required": true,
-                  "default": "",
+                  "default": "Search within Description",
                   "title": "Search within description text",
                   "inputType": "Text",
                   "validators": [],

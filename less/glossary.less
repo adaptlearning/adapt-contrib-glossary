@@ -1,78 +1,46 @@
 .glossary {
-    .glossary-textbox-container {
-        position: relative;
-        display: block;
-        padding: 10px 0px 5px;
+  &__textbox-container {
+    position: relative;
+  }
 
-        .glossary-textbox-label {
-            display: inline-block;
-            width: 25px;
-            color: @item-text-color;
-            margin-left: 1px;
-            vertical-align: middle;
-            cursor: default;
+  &__textbox {
+    width: 100%;
+    padding: @item-padding (@item-padding + @icon-size) @item-padding @item-padding;
 
-            .dir-rtl & {
-                margin-left: inherit;
-                margin-right: 1px;
-            }
-        }
-
-        .glossary-textbox {
-            display: inline-block;
-            width: 77%;
-            padding: 5px 30px 5px 5px;
-
-            .dir-rtl & {
-                padding: 5px 5px 5px 30px;
-            }
-
-            &::-ms-clear {
-                display: none;
-            }
-        }
-
-        .glossary-cancel-button {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            top: 10px;
-            right: 4px;
-            font-size: 30px;
-            cursor: pointer;
-
-            .dir-rtl & {
-                right: inherit;
-                left: 4px;
-            }
-        }
-    }
-    .glossary-checkbox-container {
-        display: block;
-        border-bottom: 1px solid @drawer-item-color;
-
-        .glossary-checkbox {
-            margin-left: 30px;
-            vertical-align: middle;
-
-            .dir-rtl & {
-                margin-left: inherit;
-                margin-right: 30px;
-            }
-        }
-
-        .glossary-checkbox-label {
-            font-size: 14px;
-            color: @background-color;
-        }
+    .dir-rtl & {
+      padding-right: @item-padding;
+      padding-left: @item-padding + @icon-size;
     }
 
-    .glossary-items-container {
-        display: block;
+    /*
+     * Hide 'X' icon for IE11 and Edge 12+
+     * Issue: https://github.com/adaptlearning/adapt_framework/issues/1913
+     */
+    &::-ms-clear {
+      display: none;
     }
+  }
 
-    .glossary-item-not-found {
-        display: block;
-        padding: 10px;
+  &__search-icon,
+  &__cancel-btn {
+    position: absolute;
+    top: 50%;
+    right: @item-padding / 2;
+    padding: 0;
+    .transform(translateY(-50%));
+    background-color: transparent;
+
+    .dir-rtl & {
+      right: inherit;
+      left: @item-padding / 2;
     }
+  }
+
+  &__search-icon .icon {
+    .icon-search;
+  }
+
+  &__cancel-btn .icon {
+    .icon-cross;
+  }
 }

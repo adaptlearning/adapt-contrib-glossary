@@ -1,16 +1,44 @@
+{{! make the _globals object in course.json available to this template}}
 {{import_globals}}
-<div class="glossary-inner">
-    {{a11y_aria_label _globals._extensions._glossary.glossary}}
-    <div class="glossary-textbox-container">
-        <label for="glossarySearch" class="glossary-textbox-label icon icon-search" aria-hidden="true"></label>
-        <input id="glossarySearch" type="text" placeholder="{{{searchPlaceholder}}}" aria-label="{{{searchPlaceholder}}}" class="glossary-textbox">
-        <div role="button" tabindex="0" class="glossary-cancel-button icon icon-cross display-none" aria-label="{{clearSearch}}"></div>
+
+<div class="glossary__inner">
+  {{a11y_aria_label _globals._extensions._glossary.glossary}}
+
+  <div class="glossary__header">
+    <div class="glossary__header-inner">
+
+      <div class="glossary__textbox-container">
+        <input class="glossary__textbox js-glossary-textbox-change" id="glossarySearch" type="text" placeholder="{{{searchPlaceholder}}}" aria-label="{{{searchPlaceholder}}}">
+
+        <div class="label-icon glossary__search-icon js-glossary-search-icon">
+          <div class="icon"></div>
+        </div>
+
+        <button class="btn-icon glossary__cancel-btn u-display-none js-glossary-cancel-btn-click" tabindex="0" aria-label="{{clearSearch}}">
+          <div class="icon"></div>
+        </button>
+      </div>
+
+      <div class="glossary__checkbox-container">
+        <input class="glossary__checkbox-input js-glossary-checkbox-change" id="glossaryCheckbox" type="checkbox">
+        <label class="glossary__checkbox-label" for="glossaryCheckbox">
+          {{{searchWithInDescriptionLabel}}}
+        </label>
+      </div>
+
     </div>
-    <div class="glossary-checkbox-container">
-        <input id="glossaryCheckbox" type="checkbox" class="glossary-checkbox">
-        <label for="glossaryCheckbox" class="glossary-checkbox-label">{{{searchWithInDescriptionLabel}}}</label>
+  </div>
+
+  <div class="glossary__items-container" role="list">
+    {{! Glossary items rendered here}}
+  </div>
+
+  <div class="glossary__item-not-found u-display-none">
+    <div class="glossary__item-not-found-inner">
+      {{{itemNotFoundMessage}}}
     </div>
-    <div class="glossary-items-container" role="list"></div>
-    <div class="glossary-item-not-found h6 display-none">{{{itemNotFoundMessage}}}</div>
-    <div class="glossary-alert aria-label" aria-live="polite" aria-atomic="true"></div>
+  </div>
+
+  <div class="glossary__alert aria-label" aria-live="polite" aria-atomic="true"></div>
+
 </div>

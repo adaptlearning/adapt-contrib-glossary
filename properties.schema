@@ -60,7 +60,7 @@
                 "description": {
                   "type": "string",
                   "required": true,
-                  "default": "Select here to view glossary for this course",
+                  "default": "Select here to view the glossary for this course",
                   "title": "Glossary description",
                   "inputType": "Text",
                   "validators": [],

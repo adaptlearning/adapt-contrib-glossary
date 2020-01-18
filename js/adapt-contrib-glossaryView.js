@@ -312,7 +312,7 @@ define([
 
     // change the visibility of all glossary items
     showGlossaryItems: function(_isVisible) {
-      _.invoke(this.collection.models, 'set', {'_isVisible': _isVisible});
+      _.invoke(this.collection.models, 'set', { '_isVisible': _isVisible });
     }
 
   });

@@ -18,8 +18,9 @@ First, be sure to install the [Adapt Command Line Interface](https://github.com/
         adapt install adapt-contrib-glossary
 
 This extension can also be installed by adding the extension to the adapt.json file before running `adapt install`:
- 
+
         "adapt-contrib-glossary": "*"
+
 ## Usage
 
 You can create links to items in the glossary in the format `<a href='#' data-glossaryterm='About Framework'>Adapt Framework</a>`. You should avoid doing this in text that will be displayed within a Notify popup (e.g. question feedback) as the Glossary will open behind the Notify popup.
@@ -80,4 +81,4 @@ To be completed.
 **Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-glossary/graphs/contributors)  
 **Accessibility support:** WAI AA  
 **RTL support:** Yes  
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, IE10, IE9, IE8, IE Mobile 11, Safari 10+11 for macOS+iOS, Opera  
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, Safari 12+13 for macOS/iOS/iPadOS, Opera  

@@ -1,51 +1,47 @@
 {{import_globals}}
 
 <div class="glossary__inner">
-    {{a11y_aria_label _globals._extensions._glossary.glossary}}
+  {{a11y_aria_label _globals._extensions._glossary.glossary}}
 
-    <div class="glossary__header">
-        <div class="glossary__header-inner">
-            {{#if _isSearchEnabled}}
-                <div class="glossary__search-container">
-                    <div class="glossary__textbox-container">
-                        <input class="glossary__textbox js-glossary-textbox-change" id="glossarySearch" type="text"
-                               placeholder="{{{searchPlaceholder}}}" aria-label="{{{searchPlaceholder}}}">
+  <div class="glossary__header">
+    <div class="glossary__header-inner">
+      {{#if _isSearchEnabled}}
+        <div class="glossary__search-container">
+          <div class="glossary__textbox-container">
+            <input class="glossary__textbox js-glossary-textbox-change" id="glossarySearch" type="text" placeholder="{{{searchPlaceholder}}}" aria-label="{{{searchPlaceholder}}}">
 
-                        <div class="label-icon glossary__search-icon js-glossary-search-icon">
-                            <div class="icon"></div>
-                        </div>
+            <div class="label-icon glossary__search-icon js-glossary-search-icon">
+              <div class="icon"></div>
+            </div>
 
-                        <button class="btn-icon glossary__cancel-btn u-display-none js-glossary-cancel-btn-click"
-                                tabindex="0"
-                                aria-label="{{clearSearch}}">
-                            <div class="icon"></div>
-                        </button>
-                    </div>
-                    <div class="glossary__checkbox-container">
-                        <input class="glossary__checkbox-input js-glossary-checkbox-change" id="glossaryCheckbox"
-                               type="checkbox">
-                        <label class="glossary__checkbox-label" for="glossaryCheckbox">
-                            {{{searchWithInDescriptionLabel}}}
-                        </label>
-                    </div>
-                </div>
-            {{/if}}
-            {{#if _isIndexEnabled}}
-                <div class="glossary__index-container" role="navigation" aria-label="Glossary Navigation"></div>
-            {{/if}}
+            <button class="btn-icon glossary__cancel-btn u-display-none js-glossary-cancel-btn-click" tabindex="0" aria-label="{{clearSearch}}">
+              <div class="icon"></div>
+            </button>
+          </div>
+          <div class="glossary__checkbox-container">
+            <input class="glossary__checkbox-input js-glossary-checkbox-change" id="glossaryCheckbox" type="checkbox">
+            <label class="glossary__checkbox-label" for="glossaryCheckbox">
+              {{{searchWithInDescriptionLabel}}}
+            </label>
+          </div>
         </div>
+      {{/if}}
+      {{#if _isIndexEnabled}}
+        <div class="glossary__index-container" role="navigation" aria-label="Glossary Navigation"></div>
+      {{/if}}
     </div>
+  </div>
 
-    <div class="glossary__items-container" role="list">
-        {{! Glossary items rendered here}}
+  <div class="glossary__items-container" role="list">
+    {{! Glossary items rendered here}}
+  </div>
+
+  <div class="glossary__item-not-found u-display-none">
+    <div class="glossary__item-not-found-inner">
+      {{{itemNotFoundMessage}}}
     </div>
+  </div>
 
-    <div class="glossary__item-not-found u-display-none">
-        <div class="glossary__item-not-found-inner">
-            {{{itemNotFoundMessage}}}
-        </div>
-    </div>
-
-    <div class="glossary__alert aria-label" aria-live="polite" aria-atomic="true"></div>
+  <div class="glossary__alert aria-label" aria-live="polite" aria-atomic="true"></div>
 
 </div>

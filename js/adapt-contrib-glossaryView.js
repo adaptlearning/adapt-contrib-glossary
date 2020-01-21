@@ -73,7 +73,7 @@ define([
     },
 
     render: function() {
-      var template = Handlebars.templates['glossary'];
+      var template = Handlebars.templates.glossary;
       this.$el.html(template(this.model.toJSON()));
 
       if (this.model.get('_isIndexEnabled')) {
@@ -93,9 +93,9 @@ define([
     },
 
     renderIndexHeader: function() {
-      var $glossaryIndex = this.$('.glossary__index-container').empty();
+      var $glossaryIndex = this.$('.js-glossary-index-container').empty();
       _.each(this.collection._byChar0, function(group, key) {
-        var template = Handlebars.templates['glossaryIndexItem'];
+        var template = Handlebars.templates.glossaryIndexItem;
         $glossaryIndex.append(template({
           _key: key,
           _group: group
@@ -103,26 +103,26 @@ define([
       });
       this.prevScrollpos = $('.js-drawer-holder').scrollTop();
       $('.js-drawer-holder').on('scroll', this.onScroll);
-      this.$('a.glossary__index-link').on('click', this.scrollToPosition);
+      this.$('.js-glossary-index-link').on('click', this.scrollToPosition);
     },
 
     onScroll: function() {
       var currentScrollPos = $('.js-drawer-holder').scrollTop();
-      var indexDisplay = this.$('.glossary__index-container').css('display');
+      var indexDisplay = this.$('.js-glossary-index-container').css('display');
       var isIndexVisible = indexDisplay === 'none' ? false : true;
 
       if (isIndexVisible) {
         if (this.prevScrollpos > currentScrollPos) {
-          this.$('.glossary__index-container')
+          this.$('.js-glossary-index-container')
             .addClass('scrolling-up')
             .removeClass('scrolling-down');
-          var indexOuterHeight = this.$('.glossary__index-container').outerHeight(true);
-          this.$('.glossary__items-container').css('top', indexOuterHeight + 'px');
+          var indexOuterHeight = this.$('.js-glossary-index-container').outerHeight(true);
+          this.$('.js-glossary-items-container').css('top', indexOuterHeight + 'px');
         } else {
-          this.$('.glossary__index-container')
+          this.$('.js-glossary-index-container')
             .addClass('scrolling-down')
             .removeClass('scrolling-up');
-          this.$('.glossary__items-container').css('top', '0');
+          this.$('.js-glossary-items-container').css('top', '0');
         }
       }
 
@@ -138,14 +138,14 @@ define([
 
     renderGlossaryItemsWithHeaders: function() {
       this.itemViews = [];
-      var $glossaryItemContainer = this.$('.glossary__items-container').empty();
+      var $glossaryItemContainer = this.$('.js-glossary-items-container').empty();
 
       _.each(this.collection._byChar0, function(group, key) {
         var $glossaryItemsGroupContainer = $("<div" +
           " class='glossary__items-group' role=list'" +
           " aria-labelledby='" + key + "'></div>");
         var $glossaryItemsGroupHeader = $("<div id=" + key
-          + " class='glossary__items-group-header'>" + key + "</div>");
+          + " class='glossary__items-group-header js-glossary-items-group-header'>" + key + "</div>");
         $glossaryItemsGroupContainer.append($glossaryItemsGroupHeader);
         this.createItemViews(group, $glossaryItemsGroupContainer);
         $glossaryItemContainer.append($glossaryItemsGroupContainer);
@@ -154,7 +154,7 @@ define([
 
     renderGlossaryItems: function() {
       this.itemViews = [];
-      var $glossaryItemContainer = this.$('.glossary__items-container').empty();
+      var $glossaryItemContainer = this.$('.js-glossary-items-container').empty();
       this.createItemViews(this.collection.models, $glossaryItemContainer);
     },
 
@@ -186,33 +186,31 @@ define([
     configureContainers: function() {
       var isSearchEnabled = this.model.get('_isSearchEnabled');
       var isIndexEnabled = this.model.get('_isIndexEnabled');
-      var glossaryWidth = this.$('.glossary__inner').width();
-      var searchOuterHeight = this.$('.glossary__search-container').outerHeight(true);
+      var glossaryWidth = this.$('.js-glossary-inner').width();
+      var searchOuterHeight = this.$('.js-glossary-search-container').outerHeight(true);
 
       if (isSearchEnabled) {
-        this.$('.glossary__search-container')
-          .css('width', glossaryWidth)
-          .addClass('search-border');
-        this.$('.glossary__item-not-found').css('top', searchOuterHeight + 'px');
+        this.$('.js-glossary-search-container')
+          .css('width', glossaryWidth);
+        this.$('.js-glossary-item-not-found').css('top', searchOuterHeight + 'px');
       }
 
       if (isIndexEnabled) {
-        this.$('.glossary__index-container')
+        this.$('.js-glossary-index-container')
           .css('margin-top', searchOuterHeight)
           .css('width', glossaryWidth);
       }
 
       if (isSearchEnabled && !isIndexEnabled) {
-        this.$('.glossary__items-container').css('top', searchOuterHeight + 'px');
+        this.$('.js-glossary-items-container').css('top', searchOuterHeight + 'px');
       }
 
       if (isSearchEnabled && isIndexEnabled) {
-        this.$('.glossary__items-container').css('top', 'unset');
+        this.$('.js-glossary-items-container').css('top', 'unset');
       }
 
       if (this.isSearchActive && isIndexEnabled) {
-        this.$('.glossary__search-container').addClass('search-border');
-        this.$('.glossary__items-container').css('top', searchOuterHeight);
+        this.$('.js-glossary-items-container').css('top', searchOuterHeight);
       }
     },
 
@@ -228,7 +226,7 @@ define([
         this.$('.js-glossary-cancel-btn-click').removeClass('u-display-none');
         this.$('.js-glossary-search-icon').addClass('u-display-none');
         var filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
-        this.$('.glossary__alert').html(Handlebars.compile(searchItemsAlert)({filteredItems: filteredItems}));
+        this.$('.js-glossary-alert').html(Handlebars.compile(searchItemsAlert)({filteredItems: filteredItems}));
         this.hideHeaders();
         this.showFilterGlossaryItems(filteredItems);
         this.configureContainers();
@@ -245,19 +243,19 @@ define([
 
     hideHeaders: function() {
       if (this.model.get('_isIndexEnabled')) {
-        this.$('.glossary__index-container').addClass('u-display-none');
+        this.$('.js-glossary-index-container').addClass('u-display-none');
       }
       if (this.model.get('_isGroupHeadersEnabled')) {
-        this.$('.glossary__items-group-header').addClass('u-display-none');
+        this.$('.js-glossary-items-group-header').addClass('u-display-none');
       }
     },
 
     showHeaders: function() {
       if (this.model.get('_isIndexEnabled')) {
-        this.$('.glossary__index-container').removeClass('u-display-none');
+        this.$('.js-glossary-index-container').removeClass('u-display-none');
       }
       if (this.model.get('_isGroupHeadersEnabled')) {
-        this.$('.glossary__items-group-header').removeClass('u-display-none');
+        this.$('.js-glossary-items-group-header').removeClass('u-display-none');
       }
     },
 
@@ -301,7 +299,7 @@ define([
 
     // show/hide the item not found message.
     showItemNotFoundMessage: function(_isVisible) {
-      var $itemNotFound = this.$('.glossary__item-not-found');
+      var $itemNotFound = this.$('.js-glossary-item-not-found');
 
       if (!_isVisible && !$itemNotFound.hasClass('u-display-none')) {
         $itemNotFound.addClass('u-display-none');

@@ -15,11 +15,21 @@
     "labelLink": {
       "type": "string",
       "required": false,
-      "default": "Link to terms that begin with",
+      "default": "Terms beginning with",
       "title": "Link aria label",
       "inputType": "Text",
       "validators": [],
       "help": "Aria label for each link in the index header",
+      "translatable": true
+    },
+    "labelNavigation": {
+      "type": "string",
+      "required": false,
+      "default": "Glossary navigation",
+      "title": "Glossary navigation aria label",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Aria label for the glossary index navigation area",
       "translatable": true
     }
   },

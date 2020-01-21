@@ -32,7 +32,7 @@ define([
     },
 
     render: function() {
-      var template = Handlebars.templates['glossaryItem'];
+      var template = Handlebars.templates.glossaryItem;
       this.$el.html(template(this.model.toJSON()));
       _.defer(_.bind(function() {
         this.postRender();
@@ -65,7 +65,7 @@ define([
      */
     showGlossaryItemDescription: function() {
       var $glossaryItemTerm = this.$('.js-glossary-item-term-click');
-      var description = $glossaryItemTerm.addClass('is-selected').siblings('.glossary__item-description').slideDown(200, function() {
+      var description = $glossaryItemTerm.addClass('is-selected').siblings('.js-glossary-item-description').slideDown(200, function() {
         $(description).a11y_focus();
       });
       $glossaryItemTerm.attr('aria-expanded', true);
@@ -76,7 +76,7 @@ define([
      * hide the glossary item description and un-highlight the selected term.
      */
     hideGlossaryItemDescription: function() {
-      this.$('.glossary__item-description').stop(true, true).slideUp(200);
+      this.$('.js-glossary-item-description').stop(true, true).slideUp(200);
       this.model.set('_isDescriptionOpen', false);
 
       this.$('.js-glossary-item-term-click').removeClass('is-selected').attr('aria-expanded', false);

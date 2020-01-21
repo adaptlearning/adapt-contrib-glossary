@@ -1,15 +1,4 @@
 .glossary {
-  &__search-container {
-    background-color: @drawer;
-    position: fixed;
-    top: @navigation-height;
-    z-index: 2;
-
-    &.search-border {
-      border-bottom: 1px solid @drawer-item-hover;
-    }
-  }
-
   &__textbox-container {
     position: relative;
   }
@@ -24,12 +13,12 @@
     }
 
     /*
- * Hide 'X' icon for IE11 and Edge 12+
- * Issue: https://github.com/adaptlearning/adapt_framework/issues/1913
- */
+     * Hide 'X' icon for IE11 and Edge 12+
+     * Issue: https://github.com/adaptlearning/adapt_framework/issues/1913
+    */
 
     &::-ms-clear {
-      display: none;
+      .u-display-none;
     }
   }
 
@@ -56,48 +45,32 @@
     .icon-cross;
   }
 
+  &__search-container {
+    position: fixed;
+    top: @navigation-height;
+    z-index: 2;
+  }
+
   &__index-container {
     position: relative;
     z-index: 1;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-    align-content: flex-start;
-    background-color: @drawer;
-    border-bottom: 1px solid @drawer-item-hover;
-
-    &.scrolling-up {
-      position: fixed;
-      z-index: 1;
-    }
-
-    &.scrolling-down {
-      position: relative;
-      z-index: 0;
-    }
+    justify-content: space-around;
   }
 
-  &__index-item {
-    flex-basis: auto;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &__index-container.scrolling-up {
+    position: fixed;
+    z-index: 1;
   }
 
-  &__items-container {
+  &__index-container.scrolling-down {
     position: relative;
+    z-index: 0;
   }
 
+  &__items-container,
   &__item-not-found {
     position: relative;
-  }
-
-  &__items-group-header {
-    text-align: center;
-    background-color: @drawer-item-hover;
   }
 }

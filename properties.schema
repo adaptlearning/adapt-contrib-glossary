@@ -11,6 +11,16 @@
       "inputType": "Text",
       "validators": [],
       "translatable": true
+    },
+    "labelLink": {
+      "type": "string",
+      "required": false,
+      "default": "Link to terms that begin with",
+      "title": "Link aria label",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Aria label for each link in the index header",
+      "translatable": true
     }
   },
   "properties": {

@@ -53,7 +53,7 @@ The attributes listed below are used in *course.json* to configure **Glossary**,
 
 >**_isSearchEnabled** (boolean): Turns the search function on and off. Acceptable values are `true` and `false`. The default is `true`. If set to `false`, the search container is not displayed.
 
->**_isIndexEnabled** (boolean): Turns the index header on and off. Acceptable values are `true` and `false`. The default is `false`. If set to `false`, the search container is not displayed. The index acts as a menu for grouped terms. It is most effective when used with long lists of terms. If **_isIndexEnabled** is set to `true`, **_isGroupHeadersEnabled** will be set to `true` when the course is running.     
+>**_isIndexEnabled** (boolean): Turns the index header on and off. Acceptable values are `true` and `false`. The default is `false`. If set to `false`, the index is not displayed. The index acts as a menu for grouped terms. It is most effective when used with long lists of terms. If **_isIndexEnabled** is set to `true`, **_isGroupHeadersEnabled** will be set to `true` when the course is running.     
 
 >**_isGroupHeadersEnabled** (boolean): Turns the group headers on and off. Terms are alphabetized and grouped by their initial character (number or letter). Acceptable values are `true` and `false`. The default is `false`.  Headers are most effective when used with long lists of terms. If **_isIndexEnabled** is set to `true`, **_isGroupHeadersEnabled** will be set to `true` when the course is running, regardless of its original value. 
 

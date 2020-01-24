@@ -65,9 +65,12 @@ define([
       }
       if (!this.model.get('_isGroupHeadersEnabled')) return;
 
+      /**
+       * If 'group headers' are needed, sort the entries into
+       * sets, grouped by the first character of each term
+       */
       var groups = this.collection.groupBy(function(model) {
-        var char0 = model.get('term').charAt(0).toLocaleUpperCase();
-        return char0;
+        return model.get('term').charAt(0).toLocaleUpperCase();
       });
       this.collection._byChar0 = groups;
     },

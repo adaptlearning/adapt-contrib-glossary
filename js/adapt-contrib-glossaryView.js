@@ -16,7 +16,7 @@ define([
     },
 
     itemViews: null,
-    prevScrollpos: 0,
+    prevScrollPos: 0,
     isSearchActive: false,
 
     initialize: function() {
@@ -104,7 +104,7 @@ define([
           _group: group
         }));
       });
-      this.prevScrollpos = $('.js-drawer-holder').scrollTop();
+      this.prevScrollPos = $('.js-drawer-holder').scrollTop();
       $('.js-drawer-holder').on('scroll', this.onScroll);
       this.$('.js-glossary-index-link').on('click', this.scrollToPosition);
     },
@@ -115,7 +115,7 @@ define([
       var isIndexVisible = indexDisplay === 'none' ? false : true;
 
       if (isIndexVisible) {
-        if (this.prevScrollpos > currentScrollPos) {
+        if (this.prevScrollPos > currentScrollPos) {
           this.$('.js-glossary-index-container')
             .addClass('scrolling-up')
             .removeClass('scrolling-down');
@@ -129,7 +129,7 @@ define([
         }
       }
 
-      this.prevScrollpos = currentScrollPos;
+      this.prevScrollPos = currentScrollPos;
     },
 
     scrollToPosition: function(event) {

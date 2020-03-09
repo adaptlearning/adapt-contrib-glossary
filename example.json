@@ -9,6 +9,9 @@
         "searchPlaceholder": "Search",
         "searchWithInDescriptionLabel": "Search within Description",
         "itemNotFoundMessage": "No results found",
+        "_isIndexEnabled": true,
+        "_isGroupHeadersEnabled": true,
+        "_isSearchEnabled": true,
         "_glossaryItems": [
             {
                 "term": "Adapt Framework",

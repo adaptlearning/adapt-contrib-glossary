@@ -2,7 +2,7 @@
   "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
-  "required":false,
+  "required": false,
   "globals": {
     "glossary": {
       "type": "string",
@@ -10,6 +10,26 @@
       "default": "Glossary",
       "inputType": "Text",
       "validators": [],
+      "translatable": true
+    },
+    "labelLink": {
+      "type": "string",
+      "required": false,
+      "default": "Terms beginning with",
+      "title": "Link aria label",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Aria label for each link in the index header",
+      "translatable": true
+    },
+    "labelNavigation": {
+      "type": "string",
+      "required": false,
+      "default": "Glossary navigation",
+      "title": "Glossary navigation aria label",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Aria label for the glossary index navigation area",
       "translatable": true
     }
   },
@@ -34,7 +54,13 @@
                   "required": true,
                   "title": "Enable Glossary",
                   "default": false,
-                  "inputType": {"type": "Boolean", "options": [false, true]},
+                  "inputType": {
+                    "type": "Boolean",
+                    "options": [
+                      false,
+                      true
+                    ]
+                  },
                   "validators": [],
                   "help": "If set to 'true', the glossary extension will be enabled"
                 },
@@ -45,7 +71,9 @@
                   "inputType": "Number",
                   "default": 0,
                   "help": "The order in which this extension should appear as a drawer item",
-                  "validators": ["number"]
+                  "validators": [
+                    "number"
+                  ]
                 },
                 "title": {
                   "type": "string",
@@ -113,9 +141,56 @@
                   "default": "No results found",
                   "title": "No results message",
                   "inputType": "Text",
-                  "validators": ["required"],
+                  "validators": [
+                    "required"
+                  ],
                   "help": "Text which will be displayed when the search produces no results",
                   "translatable": true
+                },
+                "_isSearchEnabled": {
+                  "type": "boolean",
+                  "required": false,
+                  "title": "Enable Search",
+                  "default": true,
+                  "inputType": {
+                    "type": "Boolean",
+                    "options": [
+                      false,
+                      true
+                    ]
+                  },
+                  "validators": [],
+                  "help": "If set to 'true', the glossary extension will be enabled"
+                },
+                "_isIndexEnabled": {
+                  "type": "boolean",
+                  "required": false,
+                  "title": "Enable Index",
+                  "default": false,
+                  "inputType": {
+                    "type": "Boolean",
+                    "options": [
+                      false,
+                      true
+                    ]
+                  },
+                  "validators": [],
+                  "help": "If set to 'true', the Index linked to group headings will be enabled."
+                },
+                "_isGroupHeadersEnabled": {
+                  "type": "boolean",
+                  "required": false,
+                  "title": "Enable Group Headers",
+                  "default": false,
+                  "inputType": {
+                    "type": "Boolean",
+                    "options": [
+                      false,
+                      true
+                    ]
+                  },
+                  "validators": [],
+                  "help": "If set to 'true', the headers will group the terms. Whenever the Index is enabled, headers will be enabled regardless of this value."
                 },
                 "_glossaryItems": {
                   "type": "array",
@@ -132,7 +207,9 @@
                         "default": "",
                         "title": "Description",
                         "inputType": "TextArea",
-                        "validators": ["required"],
+                        "validators": [
+                          "required"
+                        ],
                         "help": "Some text to explain or define the term",
                         "translatable": true
                       },
@@ -142,7 +219,9 @@
                         "default": "",
                         "title": "Term",
                         "inputType": "Text",
-                        "validators": ["required"],
+                        "validators": [
+                          "required"
+                        ],
                         "help": "The glossary item/term",
                         "translatable": true
                       }

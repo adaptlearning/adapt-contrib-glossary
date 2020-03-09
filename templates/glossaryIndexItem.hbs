@@ -1,0 +1,6 @@
+{{! make the _globals object in course.json available to this template}}
+{{import_globals}}
+
+<div class="glossary__index-item" role="listitem">
+  <a href="#{{_key}}" class="glossary__index-link js-glossary-index-link" aria-label="{{_globals._extensions._glossary.labelLink}} {{_key}}">{{_key}}</a>
+</div>

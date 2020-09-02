@@ -11,15 +11,12 @@
       padding-right: @item-padding;
       padding-left: @item-padding + @icon-size;
     }
+  }
 
-    /*
-     * Hide 'X' icon for IE11 and Edge 12+
-     * Issue: https://github.com/adaptlearning/adapt_framework/issues/1913
-    */
-
-    &::-ms-clear {
-      .u-display-none;
-    }
+  // Hide 'X' icon for IE11 and Edge 12+
+  // Issue: https://github.com/adaptlearning/adapt_framework/issues/1913
+  &__textbox::-ms-clear {
+    .u-display-none;
   }
 
   &__cancel-btn,

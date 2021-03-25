@@ -35,7 +35,7 @@ define([
 
       for (let i = 0, count = this.itemViews.length; i < count; i++) {
         const itemView = this.itemViews[i];
-        if (!itemView.model.get('term').toLowerCase() === this.$el.data('termtoshow').toLowerCase()) return;
+        if (itemView.model.get('term').toLowerCase() !== this.$el.data('termtoshow').toLowerCase()) return;
         Adapt.trigger('glossary:descriptionOpen', itemView.model.cid);
         break;
       }

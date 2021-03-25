@@ -3,16 +3,16 @@ define([
   './adapt-contrib-glossaryView'
 ], function(Adapt, GlossaryView) {
 
-  function setupGlossary(glossaryModel, glossaryItems) {
+  const setupGlossary = (glossaryModel, glossaryItems) => {
 
     glossaryModel = new Backbone.Model(glossaryModel);
 
-    var options = {
+    const options = {
       model: glossaryModel,
       collection: new Backbone.Collection(glossaryItems)
     };
 
-    Adapt.on('glossary:showGlossary', function() {
+    Adapt.on('glossary:showGlossary', () => {
       Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
     });
 
@@ -21,10 +21,10 @@ define([
      * <a href='#' data-glossaryterm='term name'>glossary term link</a>
      * these links should trigger the glossary to open with that term automatically selected
      */
-    $('body').on('click.glossary', 'a[data-glossaryterm]', function(e) {
+    $('body').on('click.glossary', 'a[data-glossaryterm]', (e) => {
       if (e) e.preventDefault();
 
-      var newoptions = _.clone(options);
+      const newoptions = _.clone(options);
       newoptions.attributes = {
         "data-termtoshow": e.currentTarget.getAttribute('data-glossaryterm')
       };
@@ -33,15 +33,15 @@ define([
     });
   }
 
-  function initGlossary() {
-    var courseGlossary = Adapt.course.get('_glossary');
+  const initGlossary = () => {
+    const courseGlossary = Adapt.course.get('_glossary');
 
     // do not proceed until glossary enabled on course.json
     if (!courseGlossary || !courseGlossary._isEnabled) {
       return;
     }
 
-    var drawerObject = {
+    const drawerObject = {
       title: courseGlossary.title,
       description: courseGlossary.description,
       className: 'is-glossary',

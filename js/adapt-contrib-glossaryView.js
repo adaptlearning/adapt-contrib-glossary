@@ -31,12 +31,11 @@ define([
     }
 
     checkForTermToShow() {
-      if (this.$el.data('termtoshow') === undefined) return;
-
-      for (let i = 0, count = this.itemViews.length; i < count; i++) {
-        const itemView = this.itemViews[i];
-        if (itemView.model.get('term').toLowerCase() !== this.$el.data('termtoshow').toLowerCase()) return;
-        Adapt.trigger('glossary:descriptionOpen', itemView.model.cid);
+      const term = this.$el.data('termtoshow');
+      if (!term) return;
+      for (const { model } of this.itemViews) {
+        if (model.get('term').toLowerCase() !== term.toLowerCase()) continue;
+        Adapt.trigger('glossary:descriptionOpen', model.cid);
         break;
       }
     }
@@ -72,7 +71,7 @@ define([
        * If 'group headers' are needed, sort the entries into
        * sets, grouped by the first character of each term
        */
-      const groups = this.collection.groupBy(function(model) {
+      const groups = this.collection.groupBy((model) => {
         return model.get('term').charAt(0).toLocaleUpperCase();
       });
       this.collection._byChar0 = groups;
@@ -92,15 +91,13 @@ define([
         this.renderGlossaryItems();
       }
 
-      _.defer(() => {
-        this.postRender();
-      });
+      _.defer(this.postRender.bind(this));
       return this;
     }
 
     renderIndexHeader() {
       const $glossaryIndex = this.$('.js-glossary-index-container').empty();
-      _.each(this.collection._byChar0, (group, key) => {
+      Object.entries(this.collection._byChar0).forEach(([ key, group ]) => {
         const template = Handlebars.templates.glossaryIndexItem;
         $glossaryIndex.append(template({
           _key: key,
@@ -115,7 +112,7 @@ define([
     onScroll() {
       const currentScrollPos = $('.js-drawer-holder').scrollTop();
       const indexDisplay = this.$('.js-glossary-index-container').css('display');
-      const isIndexVisible = indexDisplay === 'none' ? false : true;
+      const isIndexVisible = indexDisplay !== 'none';
 
       if (!isIndexVisible) {
         this.prevScrollPos = currentScrollPos;
@@ -150,12 +147,14 @@ define([
       this.itemViews = [];
       const $glossaryItemContainer = this.$('.js-glossary-items-container').empty();
 
-      _.each(this.collection._byChar0, (group, key) => {
-        const $glossaryItemsGroupContainer = $("<div" +
-          " class='glossary__items-group' role=list'" +
-          " aria-labelledby='" + key + "'></div>");
-        const $glossaryItemsGroupHeader = $("<div id=" + key
-          + " class='glossary__items-group-header js-glossary-items-group-header'>" + key + "</div>");
+      Object.entries(this.collection._byChar0).forEach(([ key, group ]) => {
+        const $glossaryItemsGroupContainer = $('<div>', {
+          'class': 'glossary__items-group',
+          role: 'list',
+          'aria-labelledby': key
+        });
+        const $glossaryItemsGroupHeader = $(`<div id='${key}'
+          class='glossary__items-group-header js-glossary-items-group-header'>${key}</div>`);
         $glossaryItemsGroupContainer.append($glossaryItemsGroupHeader);
         this.createItemViews(group, $glossaryItemsGroupContainer);
         $glossaryItemContainer.append($glossaryItemsGroupContainer);
@@ -169,7 +168,7 @@ define([
     }
 
     createItemViews(models, $container) {
-      models.forEach((item) => {
+      models.forEach(item => {
         const itemView = new GlossaryItemView({model: item});
         itemView.$el.appendTo($container);
         // store a reference to each of the views so that checkForTermToShow can search through them
@@ -261,35 +260,28 @@ define([
       this.isSearchActive = false;
       const $input = this.$('.js-glossary-textbox-change');
       $input.val("").trigger('input');
-      _.defer(() => {
-        $input.focus();
-      });
+      _.defer(() => $input.focus());
     }
 
     // create array of filtered items on basis of supplied arguments.
     getFilteredGlossaryItems(searchItem, shouldSearchInDescription) {
       const terms = searchItem.split(' ');
 
-      return this.collection.filter((model) => {
-        return _.every(terms, (term) => {
-          const title = model.get('term').toLowerCase();
-          const description = model.get('description').toLowerCase();
+      return this.collection.filter(model => terms.every(term => {
+        const title = model.get('term').toLowerCase();
+        const description = model.get('description').toLowerCase();
 
-          return shouldSearchInDescription ?
-            title.indexOf(term) !== -1 || description.indexOf(term) !== -1 :
-            title.indexOf(term) !== -1;
-        });
-      });
+        return shouldSearchInDescription ?
+        title.indexOf(term) !== -1 || description.indexOf(term) !== -1 :
+        title.indexOf(term) !== -1;
+      }));
     }
 
     // show only the filtered glossary items or no item found message
     showFilterGlossaryItems(filteredItems) {
       this.showGlossaryItems(false);
       if (filteredItems.length > 0) {
-        filteredItems.forEach((item, index) => {
-          item.set('_isVisible', true);
-        });
-
+        filteredItems.forEach(item => item.set('_isVisible', true));
         return;
       }
       this.showItemNotFoundMessage(true);
@@ -297,20 +289,12 @@ define([
 
     // show/hide the item not found message.
     showItemNotFoundMessage(_isVisible) {
-      const $itemNotFound = this.$('.js-glossary-item-not-found');
-
-      if (!_isVisible && !$itemNotFound.hasClass('u-display-none')) {
-        $itemNotFound.addClass('u-display-none');
-        return;
-      }
-
-      if (!_isVisible && $itemNotFound.hasClass('u-display-none')) return;
-      $itemNotFound.removeClass('u-display-none');
+      this.$('.js-glossary-item-not-found').toggleClass('u-display-none', !_isVisible);
     }
 
     // change the visibility of all glossary items
     showGlossaryItems(_isVisible) {
-      _.invoke(this.collection.models, 'set', { '_isVisible': _isVisible });
+      this.collection.forEach(model => model.set('_isVisible', _isVisible));
     }
 
   };

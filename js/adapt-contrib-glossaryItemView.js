@@ -40,9 +40,7 @@ define([
     render() {
       const template = Handlebars.templates.glossaryItem;
       this.$el.html(template(this.model.toJSON()));
-      _.defer(() => {
-        this.postRender();
-      });
+      _.defer(this.postRender.bind(this));
       return this;
     }
 
@@ -72,8 +70,8 @@ define([
      */
     showGlossaryItemDescription() {
       const $glossaryItemTerm = this.$('.js-glossary-item-term-click');
-      const description = $glossaryItemTerm.addClass('is-selected').siblings('.js-glossary-item-description').slideDown(200, function() {
-        Adapt.a11y.focusFirst($(description), { defer: true });
+      const $description = $glossaryItemTerm.addClass('is-selected').siblings('.js-glossary-item-description').slideDown(200, () => {
+        Adapt.a11y.focusFirst($description, { defer: true });
       });
       $glossaryItemTerm.attr('aria-expanded', true);
       this.model.set('_isDescriptionOpen', true);
@@ -105,12 +103,8 @@ define([
       if (this.model.get('_isDescriptionOpen')) {
         this.hideGlossaryItemDescription();
       }
-      if (this.model.get('_isVisible')) {
-        this.$el.removeClass('u-display-none');
-        return;
-      }
 
-      this.$el.addClass('u-display-none');
+      this.$el.toggleClass('u-display-none', !this.model.get('_isVisible'));
     }
   };
 

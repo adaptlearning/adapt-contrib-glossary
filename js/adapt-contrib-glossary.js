@@ -3,7 +3,7 @@ define([
   './adapt-contrib-glossaryView'
 ], function(Adapt, GlossaryView) {
 
-  const setupGlossary = (glossaryModel, glossaryItems) => {
+  function setupGlossary(glossaryModel, glossaryItems) {
 
     glossaryModel = new Backbone.Model(glossaryModel);
 
@@ -21,10 +21,10 @@ define([
      * <a href='#' data-glossaryterm='term name'>glossary term link</a>
      * these links should trigger the glossary to open with that term automatically selected
      */
-    $('body').on('click.glossary', 'a[data-glossaryterm]', (e) => {
+    $('body').on('click.glossary', 'a[data-glossaryterm]', e => {
       if (e) e.preventDefault();
 
-      const newoptions = _.clone(options);
+      const newoptions = Object.assign({}, options);
       newoptions.attributes = {
         "data-termtoshow": e.currentTarget.getAttribute('data-glossaryterm')
       };
@@ -33,7 +33,7 @@ define([
     });
   }
 
-  const initGlossary = () => {
+  function initGlossary() {
     const courseGlossary = Adapt.course.get('_glossary');
 
     // do not proceed until glossary enabled on course.json

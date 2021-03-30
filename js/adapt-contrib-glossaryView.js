@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 define([
   'core/js/adapt',
   './adapt-contrib-glossaryItemView'

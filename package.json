@@ -1,0 +1,22 @@
+{
+  "name": "adapt-contrib-glossary",
+  "version": "1.0.0",
+  "description": "**Glossary** is an *extension* for the [Adapt framework](https://github.com/adaptlearning/adapt_framework).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adaptlearning/adapt-contrib-glossary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adaptlearning/adapt-contrib-glossary/issues"
+  },
+  "homepage": "https://github.com/adaptlearning/adapt-contrib-glossary#readme",
+  "devDependencies": {
+    "eslint": "^7.23.0"
+  }
+}

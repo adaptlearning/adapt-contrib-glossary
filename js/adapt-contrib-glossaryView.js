@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 define([
   'core/js/adapt',
   './adapt-contrib-glossaryItemView'
@@ -54,7 +55,7 @@ define([
     arrangeGlossaryItemsToAscendingOrder() {
       const caseInsensitiveComparator = (model1, model2) => {
         return model1.get('term').toLowerCase().localeCompare(model2.get('term').toLowerCase());
-      }
+      };
 
       this.collection.comparator = caseInsensitiveComparator;
       this.collection.sort();
@@ -272,8 +273,8 @@ define([
         const description = model.get('description').toLowerCase();
 
         return shouldSearchInDescription ?
-        title.indexOf(term) !== -1 || description.indexOf(term) !== -1 :
-        title.indexOf(term) !== -1;
+          title.indexOf(term) !== -1 || description.indexOf(term) !== -1 :
+          title.indexOf(term) !== -1;
       }));
     }
 
@@ -297,7 +298,7 @@ define([
       this.collection.forEach(model => model.set('_isVisible', _isVisible));
     }
 
-  };
+  }
 
   return GlossaryView;
 

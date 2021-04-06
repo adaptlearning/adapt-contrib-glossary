@@ -69,7 +69,7 @@ export default class GlossaryView extends Backbone.View {
      * If 'group headers' are needed, sort the entries into
      * sets, grouped by the first character of each term
      */
-    const groups = this.collection.groupBy((model) => {
+    const groups = this.collection.groupBy(model => {
       return model.get('term').charAt(0).toLocaleUpperCase();
     });
     this.collection._byChar0 = groups;
@@ -95,7 +95,7 @@ export default class GlossaryView extends Backbone.View {
 
   renderIndexHeader() {
     const $glossaryIndex = this.$('.js-glossary-index-container').empty();
-    Object.entries(this.collection._byChar0).forEach(([ key, group ]) => {
+    Object.entries(this.collection._byChar0).forEach(([key, group]) => {
       const template = Handlebars.templates.glossaryIndexItem;
       $glossaryIndex.append(template({
         _key: key,
@@ -145,7 +145,7 @@ export default class GlossaryView extends Backbone.View {
     this.itemViews = [];
     const $glossaryItemContainer = this.$('.js-glossary-items-container').empty();
 
-    Object.entries(this.collection._byChar0).forEach(([ key, group ]) => {
+    Object.entries(this.collection._byChar0).forEach(([key, group]) => {
       const $glossaryItemsGroupContainer = $('<div>', {
         'class': 'glossary__items-group',
         role: 'list',

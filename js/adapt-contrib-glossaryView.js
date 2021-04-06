@@ -151,8 +151,13 @@ export default class GlossaryView extends Backbone.View {
         role: 'list',
         'aria-labelledby': key
       });
-      const $glossaryItemsGroupHeader = $(`<div id='${key}'
-        class='glossary__items-group-header js-glossary-items-group-header'>${key}</div>`);
+
+      const $glossaryItemsGroupHeader = $('<div>', {
+        id: key,
+        'class': 'glossary__items-group-header js-glossary-items-group-header',
+        text: key
+      });
+
       $glossaryItemsGroupContainer.append($glossaryItemsGroupHeader);
       this.createItemViews(group, $glossaryItemsGroupContainer);
       $glossaryItemContainer.append($glossaryItemsGroupContainer);

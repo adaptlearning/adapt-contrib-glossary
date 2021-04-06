@@ -3,10 +3,8 @@ import GlossaryView from './adapt-contrib-glossaryView';
 
 function setupGlossary(glossaryModel, glossaryItems) {
 
-  glossaryModel = new Backbone.Model(glossaryModel);
-
   const options = {
-    model: glossaryModel,
+    model: new Backbone.Model(glossaryModel),
     collection: new Backbone.Collection(glossaryItems)
   };
 
@@ -34,7 +32,6 @@ function setupGlossary(glossaryModel, glossaryItems) {
 function initGlossary() {
   const courseGlossary = Adapt.course.get('_glossary');
 
-  // do not proceed until glossary enabled on course.json
   if (!courseGlossary || !courseGlossary._isEnabled) {
     return;
   }

@@ -87,7 +87,7 @@ export default class GlossaryItemView extends Backbone.View {
 
   // This function will decide whether this glossary item's description should be visible or not.
   descriptionOpen(viewId) {
-    if (viewId == this.model.cid) {
+    if (viewId === this.model.cid) {
       this.toggleGlossaryItemDescription();
       return;
     }

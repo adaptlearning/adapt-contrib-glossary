@@ -138,7 +138,7 @@ export default class GlossaryView extends Backbone.View {
     if (event && event.preventDefault) event.preventDefault();
     const selector = $(event.currentTarget).attr('href');
     const $target = $(selector);
-    $('.js-drawer-holder').animate({scrollTop: ($target.position().top)})
+    $('.js-drawer-holder').animate({ scrollTop: ($target.position().top) });
   }
 
   renderGlossaryItemsWithHeaders() {
@@ -167,7 +167,7 @@ export default class GlossaryView extends Backbone.View {
 
   createItemViews(models, $container) {
     models.forEach(item => {
-      const itemView = new GlossaryItemView({model: item});
+      const itemView = new GlossaryItemView({ model: item });
       itemView.$el.appendTo($container);
       // store a reference to each of the views so that checkForTermToShow can search through them
       this.itemViews.push(itemView);
@@ -226,7 +226,7 @@ export default class GlossaryView extends Backbone.View {
     this.isSearchActive = true;
     const searchItem = this.$('.js-glossary-textbox-change').val().toLowerCase();
     const shouldSearchInDescription = this.$('.js-glossary-checkbox-change').is(':checked');
-    const searchItemsAlert = this.model.get('searchItemsAlert') || "";
+    const searchItemsAlert = this.model.get('searchItemsAlert') || '';
     const searchResults = (searchItem.length > 0);
     this.$('.js-glossary-cancel-btn-click').toggleClass('u-display-none', !searchResults);
     this.$('.js-glossary-search-icon').addClass('u-display-none', searchResults);
@@ -234,7 +234,7 @@ export default class GlossaryView extends Backbone.View {
 
     if (searchResults) {
       const filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
-      this.$('.js-glossary-alert').html(Handlebars.compile(searchItemsAlert)({filteredItems: filteredItems}));
+      this.$('.js-glossary-alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems: filteredItems }));
       this.showFilterGlossaryItems(filteredItems);
     } else {
       this.isSearchActive = false;
@@ -242,7 +242,7 @@ export default class GlossaryView extends Backbone.View {
     }
 
     this.configureContainers();
-    $('.js-drawer-holder').animate({scrollTop: '0'});
+    $('.js-drawer-holder').animate({ scrollTop: '0' });
   };
 
   toggleHeaders(isHidden) {
@@ -257,7 +257,7 @@ export default class GlossaryView extends Backbone.View {
     if (event && event.preventDefault) event.preventDefault();
     this.isSearchActive = false;
     const $input = this.$('.js-glossary-textbox-change');
-    $input.val("").trigger('input');
+    $input.val('').trigger('input');
     _.defer(() => $input.focus());
   }
 

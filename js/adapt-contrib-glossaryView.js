@@ -25,7 +25,7 @@ export default class GlossaryView extends Backbone.View {
     this.setupModel();
     this.onScroll = _.debounce(this.onScroll.bind(this), 200);
     this.onInputTextBoxValueChange = _.debounce(this.onInputTextBoxValueChange.bind(this), 200);
-    this.render();
+    _.defer(this.render.bind(this));
   }
 
   checkForTermToShow() {

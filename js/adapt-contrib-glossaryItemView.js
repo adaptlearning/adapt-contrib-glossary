@@ -1,109 +1,107 @@
-define([
-  'core/js/adapt'
-], function(Adapt) {
+import Adapt from 'core/js/adapt';
 
-  var GlossaryItemView = Backbone.View.extend({
+export default class GlossaryItemView extends Backbone.View {
 
-    className: 'glossary__item',
+  className() {
+    return 'glossary__item';
+  }
 
-    attributes: {
+  attributes() {
+    return {
       role: 'listitem'
-    },
+    };
+  }
 
-    events: {
+  events() {
+    return {
       'click .js-glossary-item-term-click': 'onGlossaryItemClicked'
-    },
+    };
+  }
 
-    initialize: function() {
-      this.listenTo(Adapt, {
-        'remove drawer:closed': this.remove,
-        'glossary:descriptionOpen': this.descriptionOpen
-      });
-      this.setupModel();
-      this.listenTo(this.model, 'change:_isVisible', this.onGlossaryItemVisibilityChange);
-      this.render();
-    },
+  initialize() {
+    this.listenTo(Adapt, {
+      'remove drawer:closed': this.remove,
+      'glossary:descriptionOpen': this.descriptionOpen
+    });
+    this.setupModel();
+    this.listenTo(this.model, 'change:_isVisible', this.onGlossaryItemVisibilityChange);
+    this.render();
+  }
 
-    setupModel: function() {
-      this.model.set({
-        '_isVisible': true,
-        '_isDescriptionOpen': false
-      });
-    },
+  setupModel() {
+    this.model.set({
+      '_isVisible': true,
+      '_isDescriptionOpen': false
+    });
+  }
 
-    render: function() {
-      var template = Handlebars.templates.glossaryItem;
-      this.$el.html(template(this.model.toJSON()));
-      _.defer(_.bind(function() {
-        this.postRender();
-      }, this));
-      return this;
-    },
+  render() {
+    const template = Handlebars.templates.glossaryItem;
+    this.$el.html(template(this.model.toJSON()));
+    _.defer(this.postRender.bind(this));
+    return this;
+  }
 
-    postRender: function() {
-      this.listenTo(Adapt, {
-        'drawer:openedItemView': this.remove,
-        'drawer:triggerCustomView': this.remove
-      });
-    },
+  postRender() {
+    this.listenTo(Adapt, {
+      'drawer:openedItemView': this.remove,
+      'drawer:triggerCustomView': this.remove
+    });
+  }
 
-    onGlossaryItemClicked: function(event) {
-      event && event.preventDefault();
-      Adapt.trigger('glossary:descriptionOpen', this.model.cid);
-    },
+  onGlossaryItemClicked(event) {
+    event && event.preventDefault();
+    Adapt.trigger('glossary:descriptionOpen', this.model.cid);
+  }
 
-    toggleGlossaryItemDescription: function() {
-      if (this.model.get('_isDescriptionOpen')) {
-        this.hideGlossaryItemDescription();
-      } else {
-        this.showGlossaryItemDescription();
-      }
-    },
-
-    /**
-     * show the glossary item description and highlight the selected term.
-     */
-    showGlossaryItemDescription: function() {
-      var $glossaryItemTerm = this.$('.js-glossary-item-term-click');
-      var description = $glossaryItemTerm.addClass('is-selected').siblings('.js-glossary-item-description').slideDown(200, function() {
-        $(description).a11y_focus();
-      });
-      $glossaryItemTerm.attr('aria-expanded', true);
-      this.model.set('_isDescriptionOpen', true);
-    },
-
-    /**
-     * hide the glossary item description and un-highlight the selected term.
-     */
-    hideGlossaryItemDescription: function() {
-      this.$('.js-glossary-item-description').stop(true, true).slideUp(200);
-      this.model.set('_isDescriptionOpen', false);
-
-      this.$('.js-glossary-item-term-click').removeClass('is-selected').attr('aria-expanded', false);
-    },
-
-    // This function will decide whether this glossary item's description should be visible or not.
-    descriptionOpen: function(viewId) {
-      if (viewId == this.model.cid) {
-        this.toggleGlossaryItemDescription();
-      } else if (this.model.get('_isDescriptionOpen')) {
-        this.hideGlossaryItemDescription();
-      }
-    },
-
-    // This function should call upon glossary item model attribute '_isVisible' gets change.
-    onGlossaryItemVisibilityChange: function() {
-      if (this.model.get('_isDescriptionOpen')) {
-        this.hideGlossaryItemDescription();
-      }
-      if (this.model.get('_isVisible')) {
-        this.$el.removeClass('u-display-none');
-      } else {
-        this.$el.addClass('u-display-none');
-      }
+  toggleGlossaryItemDescription() {
+    if (this.model.get('_isDescriptionOpen')) {
+      this.hideGlossaryItemDescription();
+      return;
     }
-  });
 
-  return GlossaryItemView;
+    this.showGlossaryItemDescription();
+  }
 
-});
+  /**
+   * show the glossary item description and highlight the selected term.
+   */
+  showGlossaryItemDescription() {
+    const $glossaryItemTerm = this.$('.js-glossary-item-term-click');
+    const $description = $glossaryItemTerm.addClass('is-selected').siblings('.js-glossary-item-description').slideDown(200, () => {
+      Adapt.a11y.focusFirst($description, { defer: true });
+    });
+    $glossaryItemTerm.attr('aria-expanded', true);
+    this.model.set('_isDescriptionOpen', true);
+  }
+
+  /**
+   * hide the glossary item description and un-highlight the selected term.
+   */
+  hideGlossaryItemDescription() {
+    this.$('.js-glossary-item-description').stop(true, true).slideUp(200);
+    this.model.set('_isDescriptionOpen', false);
+
+    this.$('.js-glossary-item-term-click').removeClass('is-selected').attr('aria-expanded', false);
+  }
+
+  // This function will decide whether this glossary item's description should be visible or not.
+  descriptionOpen(viewId) {
+    if (viewId === this.model.cid) {
+      this.toggleGlossaryItemDescription();
+      return;
+    }
+
+    if (!this.model.get('_isDescriptionOpen')) return;
+    this.hideGlossaryItemDescription();
+  }
+
+  // This function should call upon glossary item model attribute '_isVisible' gets change.
+  onGlossaryItemVisibilityChange() {
+    if (this.model.get('_isDescriptionOpen')) {
+      this.hideGlossaryItemDescription();
+    }
+
+    this.$el.toggleClass('u-display-none', !this.model.get('_isVisible'));
+  }
+}

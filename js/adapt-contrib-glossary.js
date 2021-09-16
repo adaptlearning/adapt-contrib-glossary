@@ -8,8 +8,8 @@ function setupGlossary(glossaryModel, glossaryItems) {
     collection: new Backbone.Collection(glossaryItems)
   };
 
-  Adapt.on('glossary:showGlossary', (newOptions) => {
-    Adapt.drawer.triggerCustomView(new GlossaryView(newOptions ?? options).$el);
+  Adapt.on('glossary:showGlossary', () => {
+    Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
   });
 
   /**

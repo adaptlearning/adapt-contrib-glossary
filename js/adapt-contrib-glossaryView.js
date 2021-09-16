@@ -95,7 +95,7 @@ export default class GlossaryView extends Backbone.View {
 
   renderIndexHeader() {
     const $glossaryIndex = this.$('.js-glossary-index-container').empty();
-    Object.entries(this.collection._byChar0).forEach(([ key, group ]) => {
+    Object.entries(this.collection._byChar0).forEach(([key, group]) => {
       const template = Handlebars.templates.glossaryIndexItem;
       $glossaryIndex.append(template({
         _key: key,
@@ -145,16 +145,16 @@ export default class GlossaryView extends Backbone.View {
     this.itemViews = [];
     const $glossaryItemContainer = this.$('.js-glossary-items-container').empty();
 
-    Object.entries(this.collection._byChar0).forEach(([ key, group ]) => {
+    Object.entries(this.collection._byChar0).forEach(([key, group]) => {
       const $glossaryItemsGroupContainer = $('<div>', {
-        'class': 'glossary__items-group',
+        class: 'glossary__items-group',
         role: 'list',
         'aria-labelledby': key
       });
 
       const $glossaryItemsGroupHeader = $('<div>', {
         id: key,
-        'class': 'glossary__items-group-header js-glossary-items-group-header',
+        class: 'glossary__items-group-header js-glossary-items-group-header',
         text: key
       });
 
@@ -182,7 +182,7 @@ export default class GlossaryView extends Backbone.View {
   postRender() {
     const widthExclScrollbar = $('.drawer').prop('clientWidth');
     $('.drawer__toolbar').css({
-      'width': widthExclScrollbar + 'px',
+      width: widthExclScrollbar + 'px',
       'z-index': '2'
     });
 

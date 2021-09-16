@@ -30,8 +30,8 @@ export default class GlossaryItemView extends Backbone.View {
 
   setupModel() {
     this.model.set({
-      '_isVisible': true,
-      '_isDescriptionOpen': false
+      _isVisible: true,
+      _isDescriptionOpen: false
     });
   }
 
@@ -73,6 +73,11 @@ export default class GlossaryItemView extends Backbone.View {
     });
     $glossaryItemTerm.attr('aria-expanded', true);
     this.model.set('_isDescriptionOpen', true);
+    Adapt.on('drawer:animationComplete', this.onAnimationComplete($glossaryItemTerm));
+  }
+
+  onAnimationComplete($element) {
+    $('.js-drawer-holder').animate({ scrollTop: ($element.position().top) });
   }
 
   /**

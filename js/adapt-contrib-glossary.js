@@ -8,8 +8,8 @@ function setupGlossary(glossaryModel, glossaryItems) {
     collection: new Backbone.Collection(glossaryItems)
   };
 
-  Adapt.on('glossary:showGlossary', () => {
-    Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
+  Adapt.on('glossary:showGlossary', (newOptions) => {
+    Adapt.drawer.triggerCustomView(new GlossaryView(newOptions ?? options).$el);
   });
 
   /**
@@ -20,14 +20,14 @@ function setupGlossary(glossaryModel, glossaryItems) {
   $('body').on('click.glossary', 'a[data-glossaryterm]', e => {
     if (e) e.preventDefault();
 
-    const newoptions = {
+    const newOptions = {
       ...options,
       attributes: {
         'data-termtoshow': e.currentTarget.getAttribute('data-glossaryterm')
       }
     };
 
-    Adapt.drawer.triggerCustomView(new GlossaryView(newoptions).$el);
+    Adapt.drawer.triggerCustomView(new GlossaryView(newOptions).$el);
   });
 }
 

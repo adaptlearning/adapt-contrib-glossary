@@ -73,7 +73,7 @@ export default class GlossaryItemView extends Backbone.View {
     });
     $glossaryItemTerm.attr('aria-expanded', true);
     this.model.set('_isDescriptionOpen', true);
-    this.listenToOnce(Adapt, 'drawer:opened', () => this.onAnimationComplete($glossaryItemTerm));
+    this.listenToOnce(Adapt, 'drawer:opened', this.onAnimationComplete($glossaryItemTerm));
   }
 
   onAnimationComplete($element) {

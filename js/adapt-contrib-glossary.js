@@ -1,4 +1,5 @@
 import Adapt from 'core/js/adapt';
+import drawer from 'core/js/drawer';
 import GlossaryView from './adapt-contrib-glossaryView';
 
 function setupGlossary(glossaryModel, glossaryItems) {
@@ -9,7 +10,7 @@ function setupGlossary(glossaryModel, glossaryItems) {
   };
 
   Adapt.on('glossary:showGlossary', () => {
-    Adapt.drawer.triggerCustomView(new GlossaryView(options).$el);
+    drawer.triggerCustomView(new GlossaryView(options).$el);
   });
 
   /**
@@ -27,7 +28,7 @@ function setupGlossary(glossaryModel, glossaryItems) {
       }
     };
 
-    Adapt.drawer.triggerCustomView(new GlossaryView(newOptions).$el);
+    drawer.triggerCustomView(new GlossaryView(newOptions).$el);
   });
 }
 
@@ -45,7 +46,7 @@ function initGlossary() {
     drawerOrder: courseGlossary._drawerOrder || 0
   };
 
-  Adapt.drawer.addItem(drawerObject, 'glossary:showGlossary');
+  drawer.addItem(drawerObject, 'glossary:showGlossary');
 
   setupGlossary(courseGlossary, courseGlossary._glossaryItems);
 }

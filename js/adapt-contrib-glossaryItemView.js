@@ -1,3 +1,4 @@
+import a11y from 'core/js/a11y';
 import Adapt from 'core/js/adapt';
 
 export default class GlossaryItemView extends Backbone.View {
@@ -69,7 +70,7 @@ export default class GlossaryItemView extends Backbone.View {
   showGlossaryItemDescription() {
     const $glossaryItemTerm = this.$('.js-glossary-item-term-click');
     const $description = $glossaryItemTerm.addClass('is-selected').siblings('.js-glossary-item-description').slideDown(200, () => {
-      Adapt.a11y.focusFirst($description, { defer: true });
+      a11y.focusFirst($description, { defer: true });
     });
     $glossaryItemTerm.attr('aria-expanded', true);
     this.model.set('_isDescriptionOpen', true);

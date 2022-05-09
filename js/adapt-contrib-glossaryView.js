@@ -7,6 +7,12 @@ export default class GlossaryView extends Backbone.View {
     return 'glossary';
   }
 
+  attributes() {
+    return {
+      role: 'group'
+    };
+  }
+
   events() {
     return {
       'keyup .js-glossary-textbox-change': 'onInputTextBoxValueChange',

@@ -74,7 +74,6 @@ export default class GlossaryItemView extends Backbone.View {
     });
     $glossaryItemTerm.attr('aria-expanded', true);
     this.model.set('_isDescriptionOpen', true);
-    $('.js-drawer-holder').animate({ scrollTop: ($glossaryItemTerm.position().top) });
   }
 
   /**

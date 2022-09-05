@@ -10,7 +10,7 @@ This extension allows for a list of glossary terms to be displayed (in alphabeti
 - terms as they appear within course content may be linked to their associated entry in the glossary
 - headers may be enabled to group terms by their first letter/digit
 - an index may be enabled to make it easy to jump to group headers within a long list
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br> 
 ## Installation
 
 First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-

@@ -234,7 +234,7 @@ export default class GlossaryView extends Backbone.View {
     const searchItemsAlert = this.model.get('searchItemsAlert') || '';
     const searchResults = (searchItem.length > 0);
     this.$('.js-glossary-cancel-btn-click').toggleClass('u-display-none', !searchResults);
-    this.$('.js-glossary-search-icon').addClass('u-display-none', searchResults);
+    this.$('.js-glossary-search-icon').toggleClass('u-display-none', searchResults);
     this.toggleHeaders(searchResults);
 
     if (searchResults) {

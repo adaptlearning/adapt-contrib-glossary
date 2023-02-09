@@ -53,6 +53,7 @@ export default class GlossaryItemView extends Backbone.View {
   onGlossaryItemClicked(event) {
     event && event.preventDefault();
     Adapt.trigger('glossary:descriptionOpen', this.model.cid);
+    Adapt.trigger('glossary:statementSend', this.model);
   }
 
   toggleGlossaryItemDescription() {

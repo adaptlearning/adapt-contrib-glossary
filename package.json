@@ -1,6 +1,6 @@
 {
   "name": "adapt-contrib-glossary",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "framework": ">=5.19.1",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-glossary",
   "issues": "https://github.com/adaptlearning/adapt_framework/issues/new",

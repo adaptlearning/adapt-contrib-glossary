@@ -1,0 +1,214 @@
+{
+  "$anchor": "glossary-course",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$patch": {
+    "source": {
+      "$ref": "course"
+    },
+    "with": {
+      "required": [
+        "_glossary"
+      ],
+      "properties": {
+        "_globals": {
+          "type": "object",
+          "default": {},
+          "properties": {
+            "_glossary": {
+              "type": "object",
+              "title": "Glossary",
+              "default": {},
+              "properties": {
+                "glossary": {
+                  "type": "string",
+                  "title": "Glossary",
+                  "default": "Glossary",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                },
+                "labelLink": {
+                  "type": "string",
+                  "title": "Link aria label",
+                  "description": "Aria label for each link in the index header",
+                  "default": "Terms beginning with",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                },
+                "labelNavigation": {
+                  "type": "string",
+                  "title": "Glossary navigation aria label",
+                  "description": "Aria label for the glossary index navigation area",
+                  "default": "Glossary navigation",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "_glossary": {
+          "type": "object",
+          "title": "Glossary",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "title": "Enable Glossary",
+              "description": "If set to 'true', the glossary extension will be enabled",
+              "default": false,
+              "_backboneForms": {
+                "type": "Boolean",
+                "options": [
+                  false,
+                  true
+                ]
+              }
+            },
+            "_drawerOrder": {
+              "type": "number",
+              "title": "Drawer order",
+              "description": "The order in which this extension should appear as a drawer item",
+              "default": 0
+            },
+            "title": {
+              "type": "string",
+              "title": "Glossary title",
+              "description": "The title text which will appear in the glossary",
+              "default": "Glossary",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "description": {
+              "type": "string",
+              "title": "Glossary description",
+              "description": "Some text to describe the glossary",
+              "default": "Select here to view the glossary for this course",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "clearSearch": {
+              "type": "string",
+              "title": "Clear search text",
+              "description": "Aria label for the clear search button",
+              "default": "Clear search",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "searchItemsAlert": {
+              "type": "string",
+              "title": "Search result alert",
+              "description": "Aria label for search result alert",
+              "default": "{{filteredItems.length}} found",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "searchPlaceholder": {
+              "type": "string",
+              "title": "Search placeholder text",
+              "description": "Placeholder text for the search box",
+              "default": "Search",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "searchWithInDescriptionLabel": {
+              "type": "string",
+              "title": "Search within description text",
+              "description": "Label text for the option to search within the description",
+              "default": "Search within Description",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "itemNotFoundMessage": {
+              "type": "string",
+              "title": "No results message",
+              "description": "Text which will be displayed when the search produces no results",
+              "default": "No results found",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "_isSearchEnabled": {
+              "type": "boolean",
+              "title": "Enable Search",
+              "description": "If set to 'true', the glossary extension will be enabled",
+              "default": true,
+              "_backboneForms": {
+                "type": "Boolean",
+                "options": [
+                  false,
+                  true
+                ]
+              }
+            },
+            "_isIndexEnabled": {
+              "type": "boolean",
+              "title": "Enable Index",
+              "description": "If set to 'true', the Index linked to group headings will be enabled.",
+              "default": false,
+              "_backboneForms": {
+                "type": "Boolean",
+                "options": [
+                  false,
+                  true
+                ]
+              }
+            },
+            "_isGroupHeadersEnabled": {
+              "type": "boolean",
+              "title": "Enable Group Headers",
+              "description": "If set to 'true', the headers will group the terms. Whenever the Index is enabled, headers will be enabled regardless of this value.",
+              "default": false,
+              "_backboneForms": {
+                "type": "Boolean",
+                "options": [
+                  false,
+                  true
+                ]
+              }
+            },
+            "_glossaryItems": {
+              "type": "array",
+              "title": "Glossary items",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "title": "Description",
+                    "description": "Some text to explain or define the term",
+                    "default": "",
+                    "_adapt": {
+                      "translatable": true
+                    },
+                    "_backboneForms": "TextArea"
+                  },
+                  "term": {
+                    "type": "string",
+                    "title": "Term",
+                    "description": "The glossary item/term",
+                    "default": "",
+                    "_adapt": {
+                      "translatable": true
+                    }
+                  }
+                }
+              },
+              "_unrecognisedFields": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

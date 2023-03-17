@@ -15,35 +15,41 @@
           "type": "object",
           "default": {},
           "properties": {
-            "_glossary": {
+            "_extensions": {
               "type": "object",
-              "title": "Glossary",
               "default": {},
               "properties": {
-                "glossary": {
-                  "type": "string",
+                "_glossary": {
+                  "type": "object",
                   "title": "Glossary",
-                  "default": "Glossary",
-                  "_adapt": {
-                    "translatable": true
-                  }
-                },
-                "labelLink": {
-                  "type": "string",
-                  "title": "Link aria label",
-                  "description": "Aria label for each link in the index header",
-                  "default": "Terms beginning with",
-                  "_adapt": {
-                    "translatable": true
-                  }
-                },
-                "labelNavigation": {
-                  "type": "string",
-                  "title": "Glossary navigation aria label",
-                  "description": "Aria label for the glossary index navigation area",
-                  "default": "Glossary navigation",
-                  "_adapt": {
-                    "translatable": true
+                  "default": {},
+                  "properties": {
+                    "glossary": {
+                      "type": "string",
+                      "title": "Glossary",
+                      "default": "Glossary",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "labelLink": {
+                      "type": "string",
+                      "title": "Link aria label",
+                      "description": "Aria label for each link in the index header",
+                      "default": "Terms beginning with",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "labelNavigation": {
+                      "type": "string",
+                      "title": "Glossary navigation aria label",
+                      "description": "Aria label for the glossary index navigation area",
+                      "default": "Glossary navigation",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    }
                   }
                 }
               }

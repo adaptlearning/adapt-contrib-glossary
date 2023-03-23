@@ -33,14 +33,14 @@
   &__search-icon {
     position: absolute;
     top: 50%;
-    right: @item-padding / 2;
+    right: @item-padding * 2;
     padding: 0;
     .transform(translateY(-50%));
     background-color: transparent;
 
     .dir-rtl & {
       right: inherit;
-      left: @item-padding / 2;
+      left: @item-padding * 2;
     }
   }
 

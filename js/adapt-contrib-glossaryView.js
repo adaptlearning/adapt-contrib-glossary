@@ -129,7 +129,6 @@ export default class GlossaryView extends Backbone.View {
     this.$('.js-glossary-index-container')
       .addClass('scrolling-down')
       .removeClass('scrolling-up');
-    this.$('.js-glossary-items-container').css('top', '0');
 
     this.prevScrollPos = currentScrollPos;
   }
@@ -211,18 +210,6 @@ export default class GlossaryView extends Backbone.View {
       this.$('.js-glossary-index-container')
         .css('margin-top', searchOuterHeight)
         .css('width', glossaryWidth);
-    }
-
-    if (isSearchEnabled && !isIndexEnabled) {
-      this.$('.js-glossary-items-container').css('top', searchOuterHeight + 'px');
-    }
-
-    if (isSearchEnabled && isIndexEnabled) {
-      this.$('.js-glossary-items-container').css('top', 'unset');
-    }
-
-    if (this.isSearchActive && isIndexEnabled) {
-      this.$('.js-glossary-items-container').css('top', searchOuterHeight);
     }
   }
 

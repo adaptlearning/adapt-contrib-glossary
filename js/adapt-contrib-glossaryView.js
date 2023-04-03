@@ -19,11 +19,9 @@ export default class GlossaryView extends Backbone.View {
 
   initialize() {
     this.itemViews = null;
-    this.prevScrollPos = 0;
     this.isSearchActive = false;
     this.listenTo(Adapt, 'remove drawer:closed', this.remove);
     this.setupModel();
-    this.onScroll = _.debounce(this.onScroll.bind(this), 200);
     this.onInputTextBoxValueChange = _.debounce(this.onInputTextBoxValueChange.bind(this), 200);
     _.defer(this.render.bind(this));
   }
@@ -102,36 +100,7 @@ export default class GlossaryView extends Backbone.View {
         _group: group
       }));
     });
-    this.prevScrollPos = $('.js-drawer-holder').scrollTop();
-    $('.js-drawer-holder').on('scroll', this.onScroll);
     this.$('.js-glossary-index-link').on('click', this.scrollToPosition);
-  }
-
-  onScroll() {
-    const currentScrollPos = $('.js-drawer-holder').scrollTop();
-    const indexDisplay = this.$('.js-glossary-index-container').css('display');
-    const isIndexVisible = indexDisplay !== 'none';
-
-    if (!isIndexVisible) {
-      this.prevScrollPos = currentScrollPos;
-      return;
-    }
-
-    if (this.prevScrollPos > currentScrollPos) {
-      this.$('.js-glossary-index-container')
-        .addClass('scrolling-up')
-        .removeClass('scrolling-down');
-      const indexOuterHeight = this.$('.js-glossary-index-container').outerHeight(true);
-      this.$('.js-glossary-items-container').css('top', indexOuterHeight + 'px');
-      return;
-    }
-
-    this.$('.js-glossary-index-container')
-      .addClass('scrolling-down')
-      .removeClass('scrolling-up');
-    this.$('.js-glossary-items-container').css('top', '0');
-
-    this.prevScrollPos = currentScrollPos;
   }
 
   scrollToPosition(event) {
@@ -180,50 +149,12 @@ export default class GlossaryView extends Backbone.View {
   }
 
   postRender() {
-    const widthExclScrollbar = $('.drawer').prop('clientWidth');
-    $('.drawer__toolbar').css({
-      width: widthExclScrollbar + 'px',
-      'z-index': '2'
-    });
-
     this.listenTo(Adapt, {
       'drawer:openedItemView': this.remove,
       'drawer:triggerCustomView': this.remove
     });
 
-    this.configureContainers();
     this.checkForTermToShow();
-  }
-
-  configureContainers() {
-    const isSearchEnabled = this.model.get('_isSearchEnabled');
-    const isIndexEnabled = this.model.get('_isIndexEnabled');
-    const glossaryWidth = this.$('.js-glossary-inner').width();
-    const searchOuterHeight = this.$('.js-glossary-search-container').outerHeight(true);
-
-    if (isSearchEnabled) {
-      this.$('.js-glossary-search-container')
-        .css('width', glossaryWidth);
-      this.$('.js-glossary-item-not-found').css('top', searchOuterHeight + 'px');
-    }
-
-    if (isIndexEnabled) {
-      this.$('.js-glossary-index-container')
-        .css('margin-top', searchOuterHeight)
-        .css('width', glossaryWidth);
-    }
-
-    if (isSearchEnabled && !isIndexEnabled) {
-      this.$('.js-glossary-items-container').css('top', searchOuterHeight + 'px');
-    }
-
-    if (isSearchEnabled && isIndexEnabled) {
-      this.$('.js-glossary-items-container').css('top', 'unset');
-    }
-
-    if (this.isSearchActive && isIndexEnabled) {
-      this.$('.js-glossary-items-container').css('top', searchOuterHeight);
-    }
   }
 
   onInputTextBoxValueChange() {
@@ -239,14 +170,13 @@ export default class GlossaryView extends Backbone.View {
 
     if (searchResults) {
       const filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
-      this.$('.js-glossary-alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems: filteredItems }));
+      this.$('.js-glossary-alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems }));
       this.showFilterGlossaryItems(filteredItems);
     } else {
       this.isSearchActive = false;
       this.showGlossaryItems(true);
     }
 
-    this.configureContainers();
     $('.js-drawer-holder').animate({ scrollTop: '0' });
   };
 

@@ -15,12 +15,9 @@
 
   &__textbox {
     width: 100%;
-    padding: @item-padding (@item-padding + @icon-size) @item-padding @item-padding;
-
-    .dir-rtl & {
-      padding-right: @item-padding;
-      padding-left: @item-padding + @icon-size;
-    }
+    padding-top: @item-padding;
+    padding-bottom: @item-padding;
+    padding-inline: @item-padding (@item-padding + @icon-size);
   }
 
   // Hide 'X' icon for IE11 and Edge 12+

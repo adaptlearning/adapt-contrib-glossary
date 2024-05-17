@@ -10,7 +10,7 @@ function setupGlossary(glossaryModel, glossaryItems) {
   };
 
   Adapt.on('glossary:showGlossary', () => {
-    drawer.triggerCustomView(new GlossaryView(options).$el);
+    drawer.openCustomView(new GlossaryView(options).$el);
   });
 
   /**
@@ -28,7 +28,7 @@ function setupGlossary(glossaryModel, glossaryItems) {
       }
     };
 
-    drawer.triggerCustomView(new GlossaryView(newOptions).$el);
+    drawer.openCustomView(new GlossaryView(newOptions).$el);
   });
 }
 

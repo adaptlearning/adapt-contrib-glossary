@@ -57,9 +57,11 @@ The attributes listed below are used in *course.json* to configure **Glossary**,
 
 >**\_isGroupHeadersEnabled** (boolean): Turns the group headers on and off. Terms are alphabetized and grouped by their initial character (number or letter). Acceptable values are `true` and `false`. The default is `false`.  Headers are most effective when used with long lists of terms. If **\_isIndexEnabled** is set to `true`, **\_isGroupHeadersEnabled** will be set to `true` when the course is running, regardless of its original value.
 
->**\_glossaryItems** (object): This object stores properties for each glossary item. Multiple glossary items may be created. Each contains values for **term**  and **description**.
+>**\_glossaryItems** (object): This object stores properties for each glossary item. Multiple glossary items may be created. Each contains values for **term**, **termAriaLabel**  and **description**.
 
 >>**term** (string): The word or phrase that comprises the glossary term.
+
+>>**termAriaLabel** (string): Optional, reading of the word or phrase that comprises the glossary term. If unset, **term** provides the aria-label.
 
 >>**description** (string): This text is associated with each resource item. It renders as part of the aria label to tell screen readers that the content will open in an external link.
 

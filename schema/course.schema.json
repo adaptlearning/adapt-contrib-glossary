@@ -205,6 +205,15 @@
                     "_adapt": {
                       "translatable": true
                     }
+                  },
+                  "termAriaLabel": {
+                    "type": "string",
+                    "title": "Term ARIA label",
+                    "description": "Optional, alternative label override for glossary item/term text",
+                    "default": "",
+                    "_adapt": {
+                      "translatable": true
+                    }
                   }
                 }
               },

@@ -20,7 +20,7 @@
             {
                 "term": "AAT",
                 "termAriaLabel": "Adapt Authoring Tool",
-                "description": "The Adapt authoring tool allows you to quickly build content using the Adapt Framework. You can create an account, log in, create courses, add interactive elements then preview and publish your content."
+                "description": "The {{a11y_alt_text 'AAT' 'aye aye tea'}} allows you to quickly build content using the Adapt Framework. You can create an account, log in, create courses, add interactive elements then preview and publish your content."
             },
             {
                 "term": "Responsive e-learning design",

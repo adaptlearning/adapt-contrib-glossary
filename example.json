@@ -18,7 +18,8 @@
                 "description": "The Adapt Framework is an open-source, reusable codebase for creating responsive e-learning courses.<br/>The Adapt Framework is designed to work with the Adapt Authoring Tool but can also be used in isolation."
             },
             {
-                "term": "Adapt Authoring Tool",
+                "term": "AAT",
+                "termAriaLabel": "Adapt Authoring Tool",
                 "description": "The Adapt authoring tool allows you to quickly build content using the Adapt Framework. You can create an account, log in, create courses, add interactive elements then preview and publish your content."
             },
             {

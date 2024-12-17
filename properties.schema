@@ -224,6 +224,18 @@
                         ],
                         "help": "The glossary item/term",
                         "translatable": true
+                      },
+                      "termAriaLabel": {
+                        "type": "string",
+                        "required": false,
+                        "default": "",
+                        "title": "Term ARIA label",
+                        "inputType": "Text",
+                        "validators": [
+                          "required"
+                        ],
+                        "help": "Optional, alternative label override for glossary item/term text",
+                        "translatable": true
                       }
                     }
                   }

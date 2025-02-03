@@ -40,8 +40,12 @@ describe('Glossary - v2.1.0 to v2.1.1', async () => {
 
   whereFromPlugin('Glossary - from v2.1.0', { name: 'adapt-contrib-glossary', version: '<2.1.1' });
 
-  mutateContent('Glossary - add globals if missing', async (content) => {
+  whereContent('Glossary - where configured', async (content) => {
     course = getCourse(content);
+    if (course._glossary) return true;
+  });
+
+  mutateContent('Glossary - add globals if missing', async (content) => {
     courseGlossaryGlobals = getGlobals(content);
     if (courseGlossaryGlobals) return true;
     course._globals._extensions = course._globals._extensions || {};
@@ -55,13 +59,11 @@ describe('Glossary - v2.1.0 to v2.1.1', async () => {
   });
 
   mutateContent('Glossary - add attribute clearSearch', async (content) => {
-    if (!course._glossary) return true;
     course._glossary.clearSearch = '';
     return true;
   });
 
   mutateContent('Glossary - add attribute searchItemsAlert', async (content) => {
-    if (!course._glossary) return true;
     course._glossary.searchItemsAlert = '{{filteredItems.length}} found.';
     return true;
   });
@@ -71,12 +73,10 @@ describe('Glossary - v2.1.0 to v2.1.1', async () => {
   });
 
   checkContent('Glossary - check attribute clearSearch', async (content) => {
-    if (!course._glossary) return true;
     return course._glossary.clearSearch === '';
   });
 
   checkContent('Glossary - check attribute searchItemsAlert', async (content) => {
-    if (!course._glossary) return true;
     return course._glossary.searchItemsAlert === '';
   });
 

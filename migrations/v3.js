@@ -1,7 +1,8 @@
 import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import _ from 'lodash';
 
 const getCourse = content => {
-  const [course] = content.filter(({ _type }) => _type === 'course');
+  const course = content.find(({ _type }) => _type === 'course');
   return course;
 };
 
@@ -18,19 +19,21 @@ describe('Glossary - v2.1.3 to v3.0.0', async () => {
 
   whereContent('Glossary - where configured', async (content) => {
     course = getCourse(content);
-    if (course._glossary) return true;
+    return course._glossary;
   });
 
   mutateContent('Glossary - add globals if missing', async (content) => {
-    courseGlossaryGlobals = getGlobals(content);
-    if (courseGlossaryGlobals) return true;
-    course._globals._extensions = course._globals._extensions || {};
-    courseGlossaryGlobals = course._globals._extensions._glossary = {};
+    if (!_.has(course, '_globals._extensions._glossary')) _.set(course, '_globals._extensions._glossary', {});
+    courseGlossaryGlobals = course._globals._extensions._glossary;
     return true;
   });
 
-  mutateContent('Glossary - add new globals', async (content) => {
+  mutateContent('Glossary - add global attribute labelLink', async (content) => {
     courseGlossaryGlobals.labelLink = 'Terms beginning with';
+    return true;
+  });
+
+  mutateContent('Glossary - add global attribute labelNavigation', async (content) => {
     courseGlossaryGlobals.labelNavigation = 'Glossary navigation';
     return true;
   });
@@ -86,47 +89,70 @@ describe('Glossary - v2.1.3 to v3.0.0', async () => {
     return true;
   });
 
-  checkContent('Glossary - check new globals', async (content) => {
-    return (
-      getGlobals(content).labelLink === 'Terms beginning with' &&
-      getGlobals(content).labelNavigation === 'Glossary navigation'
-    );
+  checkContent('Glossary - check global attribute labelLink', async (content) => {
+    const isValid = getGlobals(content).labelLink === 'Terms beginning with';
+    if (!isValid) throw new Error('Glossary - global attribute labelLink');
+    return true;
   });
 
-  checkContent('Glossary - check default title', async (content) => {
-    return course._glossary.title !== '';
+  checkContent('Glossary - check global attribute labelNavigation', async (content) => {
+    const isValid = getGlobals(content).labelNavigation === 'Glossary navigation';
+    if (!isValid) throw new Error('Glossary - global attribute labelNavigation');
+    return true;
   });
 
-  checkContent('Glossary - check default description', async (content) => {
-    return course._glossary.description !== '';
+  checkContent('Glossary - check course attribute title', async (content) => {
+    const isValid = course._glossary.title !== '';
+    if (!isValid) throw new Error('Glossary - course attribute title');
+    return true;
+  });
+
+  checkContent('Glossary - check course attribute description', async (content) => {
+    const isValid = course._glossary.description !== '';
+    if (!isValid) throw new Error('Glossary - course attribute description');
+    return true;
   });
 
   checkContent('Glossary - check default clearSearch', async (content) => {
-    return course._glossary.clearSearch !== '';
+    const isValid = course._glossary.clearSearch !== '';
+    if (!isValid) throw new Error('Glossary - course attribute clearSearch');
+    return true;
   });
 
   checkContent('Glossary - check default searchItemsAlert', async (content) => {
-    return course._glossary.searchItemsAlert !== '{{filteredItems.length}} found.';
+    const isValid = course._glossary.searchItemsAlert !== '{{filteredItems.length}} found.';
+    if (!isValid) throw new Error('Glossary - course attribute searchItemsAlert');
+    return true;
   });
 
   checkContent('Glossary - check default searchPlaceholder', async (content) => {
-    return course._glossary.searchPlaceholder !== '';
+    const isValid = course._glossary.searchPlaceholder !== '';
+    if (!isValid) throw new Error('Glossary - course attribute searchPlaceholder');
+    return true;
   });
 
   checkContent('Glossary - check default searchWithInDescriptionLabel', async (content) => {
-    return course._glossary.searchWithInDescriptionLabel !== '';
+    const isValid = course._glossary.searchWithInDescriptionLabel !== '';
+    if (!isValid) throw new Error('Glossary - course attribute searchWithInDescriptionLabel');
+    return true;
   });
 
   checkContent('Glossary - check attribute _isSearchEnabled', async (content) => {
-    return course._glossary._isSearchEnabled === true;
+    const isValid = course._glossary._isSearchEnabled === true;
+    if (!isValid) throw new Error('Glossary - course attribute _isSearchEnabled');
+    return true;
   });
 
   checkContent('Glossary - check attribute _isIndexEnabled', async (content) => {
-    return course._glossary._isIndexEnabled === false;
+    const isValid = course._glossary._isIndexEnabled === false;
+    if (!isValid) throw new Error('Glossary - course attribute _isIndexEnabled');
+    return true;
   });
 
   checkContent('Glossary - check attribute _isGroupHeadersEnabled', async (content) => {
-    return course._glossary._isGroupHeadersEnabled === false;
+    const isValid = course._glossary._isGroupHeadersEnabled === false;
+    if (!isValid) throw new Error('Glossary - course attribute _isGroupHeadersEnabled');
+    return true;
   });
 
   updatePlugin('Glossary - update to v3.0.0', { name: 'adapt-contrib-glossary', version: '3.0.0', framework: '">=5' });

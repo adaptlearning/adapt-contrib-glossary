@@ -1,24 +1,15 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
 import _ from 'lodash';
-
-const getCourse = content => {
-  const course = content.find(({ _type }) => _type === 'course');
-  return course;
-};
-
-const getGlobals = content => {
-  return getCourse(content)?._globals?._extensions?._glossary;
-};
 
 describe('Glossary - v2.0.3 to v2.1.0', async () => {
   // https://github.com/adaptlearning/adapt-contrib-glossary/compare/v2.0.3..v2.1.0
 
   let course;
 
-  whereFromPlugin('Glossary - from v2.0.3', { name: 'adapt-contrib-glossary', version: '<2.1.0' });
+  whereFromPlugin('Glossary - from v2.0.3', { name: 'adapt-contrib-glossary', version: '>=2.0.0 <2.1.0' });
 
   whereContent('Glossary - where configured', async (content) => {
-    course = getCourse(content);
+    course = getCourse();
     return course._glossary;
   });
 
@@ -44,7 +35,7 @@ describe('Glossary - v2.1.0 to v2.1.1', async () => {
   whereFromPlugin('Glossary - from v2.1.0', { name: 'adapt-contrib-glossary', version: '<2.1.1' });
 
   whereContent('Glossary - where configured', async (content) => {
-    course = getCourse(content);
+    course = getCourse();
     return course._glossary;
   });
 
@@ -70,7 +61,7 @@ describe('Glossary - v2.1.0 to v2.1.1', async () => {
   });
 
   checkContent('Glossary - check global attribute glossary', async (content) => {
-    const isValid = getGlobals(content).glossary === 'Glossary';
+    const isValid = courseGlossaryGlobals.glossary === 'Glossary';
     if (!isValid) throw new Error('Glossary - global attribute glossary');
     return true;
   });

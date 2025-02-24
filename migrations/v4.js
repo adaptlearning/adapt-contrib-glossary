@@ -1,9 +1,4 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
-
-const getCourse = content => {
-  const course = content.find(({ _type }) => _type === 'course');
-  return course;
-};
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
 
 describe('Glossary - v4.3.1 to v4.4.0', async () => {
   // https://github.com/adaptlearning/adapt-contrib-glossary/compare/v4.3.1..v4.4.0
@@ -13,7 +8,7 @@ describe('Glossary - v4.3.1 to v4.4.0', async () => {
   whereFromPlugin('Glossary - from v4.3.1', { name: 'adapt-contrib-glossary', version: '<4.4.0' });
 
   whereContent('Glossary has items', async content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._glossary?._items?.length;
   });
 

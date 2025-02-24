@@ -1,14 +1,5 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
 import _ from 'lodash';
-
-const getCourse = content => {
-  const course = content.find(({ _type }) => _type === 'course');
-  return course;
-};
-
-const getGlobals = content => {
-  return getCourse(content)?._globals?._extensions?._glossary;
-};
 
 describe('Glossary - v2.1.3 to v3.0.0', async () => {
   // https://github.com/adaptlearning/adapt-contrib-glossary/compare/v2.1.3..v3.0.0
@@ -18,7 +9,7 @@ describe('Glossary - v2.1.3 to v3.0.0', async () => {
   whereFromPlugin('Glossary - from v2.1.3', { name: 'adapt-contrib-glossary', version: '<3.0.0' });
 
   whereContent('Glossary - where configured', async (content) => {
-    course = getCourse(content);
+    course = getCourse();
     return course._glossary;
   });
 
@@ -90,13 +81,13 @@ describe('Glossary - v2.1.3 to v3.0.0', async () => {
   });
 
   checkContent('Glossary - check global attribute labelLink', async (content) => {
-    const isValid = getGlobals(content).labelLink === 'Terms beginning with';
+    const isValid = courseGlossaryGlobals.labelLink === 'Terms beginning with';
     if (!isValid) throw new Error('Glossary - global attribute labelLink');
     return true;
   });
 
   checkContent('Glossary - check global attribute labelNavigation', async (content) => {
-    const isValid = getGlobals(content).labelNavigation === 'Glossary navigation';
+    const isValid = courseGlossaryGlobals.labelNavigation === 'Glossary navigation';
     if (!isValid) throw new Error('Glossary - global attribute labelNavigation');
     return true;
   });

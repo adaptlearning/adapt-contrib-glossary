@@ -1,4 +1,4 @@
-import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, testStopWhere, testSuccessWhere } from 'adapt-migrations';
 import _ from 'lodash';
 
 describe('Glossary - v2.0.3 to v2.1.0', async () => {
@@ -25,6 +25,24 @@ describe('Glossary - v2.0.3 to v2.1.0', async () => {
   });
 
   updatePlugin('Glossary - update to v2.1.0', { name: 'adapt-contrib-glossary', version: '2.1.0', framework: '">=2.2.0' });
+
+  testSuccessWhere('glossary with course._glossary', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.0.3' }],
+    content: [
+      { _type: 'course', _glossary: {} }
+    ]
+  });
+
+  testStopWhere('glossary with empty course', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.0.3' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.0' }]
+  });
 });
 
 describe('Glossary - v2.1.0 to v2.1.1', async () => {
@@ -79,4 +97,29 @@ describe('Glossary - v2.1.0 to v2.1.1', async () => {
   });
 
   updatePlugin('Glossary - update to v2.1.1', { name: 'adapt-contrib-glossary', version: '2.1.1', framework: '">=2.2.5' });
+
+  testSuccessWhere('glossary with course._glossary no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.0' }],
+    content: [
+      { _type: 'course', _glossary: {} }
+    ]
+  });
+
+  testSuccessWhere('glossary with course._glossary and globals', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.0' }],
+    content: [
+      { _type: 'course', _glossary: {}, _globals: { _extensions: { _glossary: {} } } }
+    ]
+  });
+
+  testStopWhere('glossary with empty course', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.0' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.1' }]
+  });
 });

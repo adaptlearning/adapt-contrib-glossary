@@ -1,4 +1,4 @@
-import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, testStopWhere, testSuccessWhere } from 'adapt-migrations';
 import _ from 'lodash';
 
 describe('Glossary - v2.1.3 to v3.0.0', async () => {
@@ -147,4 +147,63 @@ describe('Glossary - v2.1.3 to v3.0.0', async () => {
   });
 
   updatePlugin('Glossary - update to v3.0.0', { name: 'adapt-contrib-glossary', version: '3.0.0', framework: '">=5' });
+
+  testSuccessWhere('glossary with empty course._glossary no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.3' }],
+    content: [
+      { _type: 'course', _glossary: {} }
+    ]
+  });
+
+  testSuccessWhere('glossary with empty course._glossary with globals', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.3' }],
+    content: [
+      { _type: 'course', _glossary: {}, _globals: { _extensions: { _glossary: {} } } }
+    ]
+  });
+
+  testSuccessWhere('glossary with default course._glossary no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.3' }],
+    content: [
+      {
+        _type: 'course',
+        _glossary: {
+          title: '',
+          description: '',
+          clearSearch: '',
+          searchItemsAlert: '{{filteredItems.length}} found.',
+          searchPlaceholder: '',
+          searchWithInDescriptionLabel: ''
+        }
+      }
+    ]
+  });
+
+  testSuccessWhere('glossary with custom course._glossary no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.3' }],
+    content: [
+      {
+        _type: 'course',
+        _glossary: {
+          title: 'custom title',
+          description: 'custom description',
+          clearSearch: 'custom clearSearch',
+          searchItemsAlert: 'custom searchItemsAlert',
+          searchPlaceholder: 'custom searchPlaceholder',
+          searchWithInDescriptionLabel: 'custom searchWithInDescriptionLabel'
+        }
+      }
+    ]
+  });
+
+  testStopWhere('glossary with empty course', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.3' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '3.0.0' }]
+  });
 });

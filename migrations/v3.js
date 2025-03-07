@@ -145,7 +145,7 @@ describe('Glossary - v2.1.3 to v3.0.0', async () => {
     return true;
   });
 
-  updatePlugin('Glossary - update to v3.0.0', { name: 'adapt-contrib-glossary', version: '3.0.0', framework: '">=5' });
+  updatePlugin('Glossary - update to v3.0.0', { name: 'adapt-contrib-glossary', version: '3.0.0', framework: '">=5.0.0' });
 
   testSuccessWhere('glossary with empty course._glossary no globals', {
     fromPlugins: [{ name: 'adapt-contrib-glossary', version: '2.1.3' }],

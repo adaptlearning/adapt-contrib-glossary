@@ -36,8 +36,7 @@ describe('Glossary - v2.1.3 to v3.0.0', async () => {
   });
 
   mutateContent('Glossary - change default description', async (content) => {
-    if (course._glossary.description !== '') return true;
-    course._glossary.description = 'Select here to view the glossary for this course';
+    if (course._glossary.description === '') course._glossary.description = 'Select here to view the glossary for this course';
     return true;
   });
 

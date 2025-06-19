@@ -82,7 +82,7 @@
             "title": {
               "type": "string",
               "title": "Glossary title",
-              "description": "The title text which will appear in the drawer menu screen. Also used to label the glossary dialog element for screen reader should the display title not be used.",
+              "description": "The title text which will appear in the Drawer menu screen. Also used to label the Glossary dialog element for screen readers should the display title not be used.",
               "default": "Glossary",
               "_adapt": {
                 "translatable": true
@@ -91,8 +91,8 @@
             "description": {
               "type": "string",
               "title": "Glossary description",
-              "description": "Some text to describe the glossary",
-              "default": "Some text to describe the glossary that will appear in the drawer menu screen.",
+              "description": "Some text to describe the Glossary",
+              "default": "Some text to describe the Glossary that will appear in the Drawer menu screen.",
               "_adapt": {
                 "translatable": true
               }
@@ -100,7 +100,7 @@
             "displayTitle": {
               "type": "string",
               "title": "Glossary display title",
-              "description": "The display title text which will appear in the glossary header section within the drawer. Used to label the glossary dialog element for screen readers.",
+              "description": "The display title text which will appear in the Glossary header section within the Drawer. Used to label the Glossary dialog element for screen readers.",
               "default": "Glossary",
               "_adapt": {
                 "translatable": true
@@ -109,7 +109,7 @@
             "body": {
               "type": "string",
               "title": "Glossary body",
-              "description": "The body title text which will appear alongside the display title in the glossary header section within the drawer.",
+              "description": "The body title text which will appear alongside the display title in the Glossary header section within the Drawer.",
               "default": "",
               "_adapt": {
                 "translatable": true

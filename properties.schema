@@ -82,17 +82,17 @@
                   "title": "Glossary title",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "The title text which will appear in the drawer menu screen. Also used to label the glossary dialog element for screen reader should the display title not be used.",
+                  "help": "The title text which will appear in the Drawer menu screen. Also used to label the Glossary dialog element for screen readers should the display title not be used.",
                   "translatable": true
                 },
                 "description": {
                   "type": "string",
                   "required": true,
-                  "default": "Select here to view the glossary for this course",
+                  "default": "Select here to view the Glossary for this course",
                   "title": "Glossary description",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "Some text to describe the glossary that will appear in the drawer menu screen.",
+                  "help": "Some text to describe the Glossary that will appear in the Drawer menu screen.",
                   "translatable": true
                 },
                 "displayTitle": {
@@ -102,7 +102,7 @@
                   "title": "Glossary display title",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "The display title text which will appear in the glossary header section within the drawer. Used to label the glossary dialog element for screen readers.",
+                  "help": "The display title text which will appear in the Glossary header section within the Drawer. Used to label the Glossary dialog element for screen readers.",
                   "translatable": true
                 },
                 "body": {
@@ -112,7 +112,7 @@
                   "title": "Glossary body",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "The body title text which will appear alongside the display title in the glossary header section within the drawer.",
+                  "help": "The body title text which will appear alongside the display title in the Glossary header section within the Drawer.",
                   "translatable": true
                 },
                 "clearSearch": {

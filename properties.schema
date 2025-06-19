@@ -112,7 +112,7 @@
                   "title": "Glossary body",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "The body title text which will appear alongside the display title in the Glossary header section within the Drawer.",
+                  "help": "The body text which will appear alongside the display title in the Glossary header section within the Drawer.",
                   "translatable": true
                 },
                 "clearSearch": {

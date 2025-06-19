@@ -7,7 +7,7 @@
     "glossary": {
       "type": "string",
       "required": true,
-      "default": "Glossary",
+      "default": "Search for a list of glossary terms to be displayed in alphabetical order. The terms can be selected to reveal a definition.",
       "inputType": "Text",
       "validators": [],
       "translatable": true

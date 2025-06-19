@@ -27,7 +27,7 @@
                     "glossary": {
                       "type": "string",
                       "title": "Glossary",
-                      "default": "Glossary",
+                      "default": "Search for a list of glossary terms to be displayed in alphabetical order. The terms can be selected to reveal a definition.",
                       "_adapt": {
                         "translatable": true
                       }

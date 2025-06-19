@@ -82,7 +82,7 @@
                   "title": "Glossary title",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "The title text which will appear in the glossary",
+                  "help": "The title text which will appear in the drawer menu screen. Also used to label the glossary dialog element for screen reader should the display title not be used.",
                   "translatable": true
                 },
                 "description": {
@@ -92,7 +92,27 @@
                   "title": "Glossary description",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "Some text to describe the glossary",
+                  "help": "Some text to describe the glossary that will appear in the drawer menu screen.",
+                  "translatable": true
+                },
+                "displayTitle": {
+                  "type": "string",
+                  "required": false,
+                  "default": "Glossary",
+                  "title": "Glossary display title",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "The display title text which will appear in the glossary header section within the drawer. Used to label the glossary dialog element for screen readers.",
+                  "translatable": true
+                },
+                "body": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "title": "Glossary body",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "The body title text which will appear alongside the display title in the glossary header section within the drawer.",
                   "translatable": true
                 },
                 "clearSearch": {

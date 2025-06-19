@@ -2,10 +2,30 @@
 {{import_globals}}
 
 <div class="glossary__inner js-glossary-inner">
-  {{{a11y_aria_label _globals._extensions._glossary.glossary}}}
 
   <div class="glossary__header">
     <div class="glossary__header-inner">
+
+      <div
+        id='drawer-heading'
+        class='glossary__title{{#unless displayTitle}} aria-label{{/unless}}'
+        role='heading'
+        aria-level="{{a11y_aria_level _id 'drawer' _ariaLevel}}"
+      >
+        <div class='glossary__title-inner'>
+          {{#if displayTitle}}{{{displayTitle}}}{{else}}{{title}}{{/if}}
+        </div>
+      </div>
+
+      <div class="aria-label">{{{a11y_aria_label _globals._extensions._glossary.glossary}}}</div>
+
+      {{#if body}}
+      <div class='glossary__body'>
+        <div class='glossary__body-inner'>
+          {{{body}}}
+        </div>
+      </div>
+      {{/if}}
 
       {{#if _isSearchEnabled}}
       <div class="glossary__search-container js-glossary-search-container">

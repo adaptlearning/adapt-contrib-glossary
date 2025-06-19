@@ -4,6 +4,8 @@
         "_drawerOrder": 1,
         "title": "Glossary",
         "description": "Select here to view the glossary for this course",
+        "displayTitle": "Glossary",
+        "body": "",
         "clearSearch": "Clear search",
         "searchItemsAlert": "{{filteredItems.length}} found",
         "searchPlaceholder": "Search",

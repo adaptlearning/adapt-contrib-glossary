@@ -10,7 +10,7 @@ This extension allows for a list of glossary terms to be displayed (in alphabeti
 - terms as they appear within course content may be linked to their associated entry in the glossary
 - headers may be enabled to group terms by their first letter/digit
 - an index may be enabled to make it easy to jump to group headers within a long list
-<br><br><br><br><br><br><br> 
+<br><br><br><br><br><br><br>
 ## Installation
 
 First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
@@ -40,6 +40,10 @@ The attributes listed below are used in *course.json* to configure **Glossary**,
 >**title** (string): This text is displayed (along with the **description**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) as part of a button that gives access to the **Glossary**.
 
 >**description** (string): This text is displayed (along with the **title**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) as part of a button that gives access to the **Glossary**.
+
+>**displayTitle** (string): This text is displayed (along with the **body**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) at the beginning of the **Glossary** header section.
+
+>**body** (string): This text is displayed (along with the **displayTitle**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) at the beginning of the **Glossary** header section.
 
 >**searchItemsAlert** (string):  This text renders as an ARIA label. It is a message indicating the number of terms in the search result. It is not visible to the naked eye, but is read by accessibility devices. A dynamic value is suggested in [*example.json*](https://github.com/adaptlearning/adapt-contrib-glossary/blob/master/example.json).
 

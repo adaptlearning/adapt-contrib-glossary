@@ -82,7 +82,7 @@
             "title": {
               "type": "string",
               "title": "Glossary title",
-              "description": "The title text which will appear in the glossary",
+              "description": "The title text which will appear in the drawer menu screen. Also used to label the glossary dialog element for screen reader should the display title not be used.",
               "default": "Glossary",
               "_adapt": {
                 "translatable": true
@@ -92,7 +92,25 @@
               "type": "string",
               "title": "Glossary description",
               "description": "Some text to describe the glossary",
-              "default": "Select here to view the glossary for this course",
+              "default": "Some text to describe the glossary that will appear in the drawer menu screen.",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "displayTitle": {
+              "type": "string",
+              "title": "Glossary display title",
+              "description": "The display title text which will appear in the glossary header section within the drawer. Used to label the glossary dialog element for screen readers.",
+              "default": "Glossary",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "body": {
+              "type": "string",
+              "title": "Glossary body",
+              "description": "The body title text which will appear alongside the display title in the glossary header section within the drawer.",
+              "default": "",
               "_adapt": {
                 "translatable": true
               }

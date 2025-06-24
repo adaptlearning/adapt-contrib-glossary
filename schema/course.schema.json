@@ -97,22 +97,28 @@
                 "translatable": true
               }
             },
-            "displayTitle": {
-              "type": "string",
-              "title": "Glossary display title",
-              "description": "The display title text which will appear in the Glossary header section within the Drawer. Used to label the Glossary dialog element for screen readers.",
-              "default": "Glossary",
-              "_adapt": {
-                "translatable": true
-              }
-            },
-            "body": {
-              "type": "string",
-              "title": "Glossary body",
-              "description": "The body text which will appear alongside the display title in the Glossary header section within the Drawer.",
-              "default": "",
-              "_adapt": {
-                "translatable": true
+            "_drawer": {
+              "type": "object",
+              "title": "Glossary Drawer header",
+              "properties": {
+                "displayTitle": {
+                  "type": "string",
+                  "title": "Display title",
+                  "default": "",
+                  "description": "The display title text which will appear in the Glossary header section within the Drawer. Used to label the Glossary dialog element for screen readers.",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                },
+                "body": {
+                  "type": "string",
+                  "title": "Body text",
+                  "default": "",
+                  "description": "The body text which will appear alongside the display title in the Glossary header section within the Drawer.",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                }
               }
             },
             "clearSearch": {

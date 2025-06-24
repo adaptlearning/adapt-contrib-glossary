@@ -3,29 +3,35 @@
 
 <div class="glossary__inner js-glossary-inner">
 
-  <div class="glossary__header">
-    <div class="glossary__header-inner">
+  <div class="drawer__header glossary__header{{#unless _drawer.displayTitle}} aria-label{{/unless}}">
+    <div class="drawer__header-inner glossary__header-inner">
 
       <div
         id='drawer-heading'
-        class='glossary__title{{#unless displayTitle}} aria-label{{/unless}}'
+        class='drawer__title glossary__title'
         role='heading'
         aria-level="{{a11y_aria_level _id 'drawer' _ariaLevel}}"
       >
-        <div class='glossary__title-inner'>
-          {{#if displayTitle}}{{{displayTitle}}}{{else}}{{title}}{{/if}}
+        <div class='drawer__title-inner glossary__title-inner'>
+          {{#if _drawer.displayTitle}}{{{_drawer.displayTitle}}}{{else}}{{title}}{{/if}}
         </div>
       </div>
 
       {{{a11y_aria_label _globals._extensions._glossary.glossary}}}
 
-      {{#if body}}
-      <div class='glossary__body'>
-        <div class='glossary__body-inner'>
-          {{{body}}}
+      {{#all _drawer.displayTitle _drawer.body}}
+      <div class='drawer__body glossary__body'>
+        <div class='drawer__body-inner glossary__body-inner'>
+          {{{_drawer.body}}}
         </div>
       </div>
-      {{/if}}
+      {{/all}}
+
+    </div>
+  </div>
+
+  <div class="glossary__filters">
+    <div class="glossary__filters-inner">
 
       {{#if _isSearchEnabled}}
       <div class="glossary__search-container js-glossary-search-container">

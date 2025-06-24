@@ -41,9 +41,11 @@ The attributes listed below are used in *course.json* to configure **Glossary**,
 
 >**description** (string): This text is displayed (along with the **title**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) as part of a button that gives access to the **Glossary**.
 
->**displayTitle** (string): This text is displayed (along with the **body**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) at the beginning of the **Glossary** header section.
+>**\_drawer** (object): This object contains values for **displayTitle** and **body**.
 
->**body** (string): This text is displayed (along with the **displayTitle**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) at the beginning of the **Glossary** header section.
+>>**displayTitle** (string): This text is displayed (along with the **body**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) at the beginning of the **Glossary** header section.
+
+>>**body** (string): This text is displayed (along with the **displayTitle**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) at the beginning of the **Glossary** header section.
 
 >**searchItemsAlert** (string):  This text renders as an ARIA label. It is a message indicating the number of terms in the search result. It is not visible to the naked eye, but is read by accessibility devices. A dynamic value is suggested in [*example.json*](https://github.com/adaptlearning/adapt-contrib-glossary/blob/master/example.json).
 

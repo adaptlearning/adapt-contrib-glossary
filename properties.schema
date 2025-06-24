@@ -95,25 +95,32 @@
                   "help": "Some text to describe the Glossary that will appear in the Drawer menu screen.",
                   "translatable": true
                 },
-                "displayTitle": {
-                  "type": "string",
+                "_drawer": {
+                  "type": "object",
                   "required": false,
-                  "default": "Glossary",
-                  "title": "Glossary display title",
-                  "inputType": "Text",
-                  "validators": [],
-                  "help": "The display title text which will appear in the Glossary header section within the Drawer. Used to label the Glossary dialog element for screen readers.",
-                  "translatable": true
-                },
-                "body": {
-                  "type": "string",
-                  "required": false,
-                  "default": "",
-                  "title": "Glossary body",
-                  "inputType": "Text",
-                  "validators": [],
-                  "help": "The body text which will appear alongside the display title in the Glossary header section within the Drawer.",
-                  "translatable": true
+                  "legend": "Glossary Drawer header",
+                  "properties": {
+                    "displayTitle": {
+                      "type": "string",
+                      "required": false,
+                      "title": "Display title",
+                      "default": "",
+                      "inputType": "Text",
+                      "validators": [],
+                      "help": "The display title text which will appear in the Glossary header section within the Drawer. Used to label the Glossary dialog element for screen readers.",
+                      "translatable": true
+                    },
+                    "body": {
+                      "type": "string",
+                      "required": false,
+                      "title": "Body text",
+                      "default": "",
+                      "inputType": "Text",
+                      "validators": [],
+                      "help": "The body text which will appear alongside the display title in the Glossary header section within the Drawer.",
+                      "translatable": true
+                    }
+                  }
                 },
                 "clearSearch": {
                   "type": "string",

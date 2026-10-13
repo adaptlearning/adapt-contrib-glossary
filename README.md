@@ -31,13 +31,15 @@ The index links to the group headers. If the index is enabled, group headings wi
 
 The attributes listed below are used in *course.json* to configure **Glossary**, and are properly formatted as JSON in [*example.json*](https://github.com/adaptlearning/adapt-contrib-glossary/blob/master/example.json).
 
-**\_glossary** (object): The Glossary object that contains values for **\_isEnabled**, **\_drawerOrder*, **title**, **description**, **searchItemsAlert**, **clearSearch**, **searchPlaceholder**, **searchWithInDescriptionLabel**, **itemNotFoundMessage**, **\_isSearchEnabled**, **\_isIndexEnabled**, **\_isGroupHeadersEnabled**, and **\_glossaryItems**.
+**\_glossary** (object): The Glossary object that contains values for **\_isEnabled**, **\_drawerOrder*, **title**, **\_isTitleVisible**, **description**, **searchItemsAlert**, **clearSearch**, **searchPlaceholder**, **searchWithInDescriptionLabel**, **itemNotFoundMessage**, **\_isSearchEnabled**, **\_isIndexEnabled**, **\_isGroupHeadersEnabled**, and **\_glossaryItems**.
 
 >**\_isEnabled** (boolean): Turns **Glossary** on and off. Acceptable values are `true` and `false`.
 
 >**\_drawerOrder** (number): Determines the order in which this extension appears as a drawer item. Acceptable values are numbers.
 
 >**title** (string): This text is displayed (along with the **description**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) as part of a button that gives access to the **Glossary**.
+
+>**\_isTitleVisible** (boolean): If set to `true`, the **title** is displayed as a heading at the top of the drawer. Otherwise the heading is only read by screen readers. In both cases it is used as the accessible name of the drawer. The default is `false`.
 
 >**description** (string): This text is displayed (along with the **title**) in the [Drawer](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#drawer) as part of a button that gives access to the **Glossary**.
 

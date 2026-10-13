@@ -57,3 +57,47 @@ describe('Glossary - v4.3.1 to v4.4.0', async () => {
     fromPlugins: [{ name: 'adapt-contrib-glossary', version: '4.4.0' }]
   });
 });
+
+describe('Glossary - v@@CURRENT_VERSION to v@@RELEASE_VERSION', async () => {
+  // https://github.com/adaptlearning/adapt-contrib-glossary/compare/v@@CURRENT_VERSION..v@@RELEASE_VERSION
+
+  let course;
+
+  whereFromPlugin('Glossary - from v@@CURRENT_VERSION', { name: 'adapt-contrib-glossary', version: '<@@RELEASE_VERSION' });
+
+  whereContent('Glossary is configured', async content => {
+    course = getCourse();
+    return course?._glossary;
+  });
+
+  mutateContent('Glossary - add attribute _isTitleVisible', async (content) => {
+    course._glossary._isTitleVisible = false;
+    return true;
+  });
+
+  checkContent('Glossary - check attribute _isTitleVisible', async (content) => {
+    const isValid = course._glossary._isTitleVisible === false;
+    if (!isValid) throw new Error('Glossary - attribute _isTitleVisible');
+    return true;
+  });
+
+  updatePlugin('Glossary - update to v@@RELEASE_VERSION', { name: 'adapt-contrib-glossary', version: '@@RELEASE_VERSION', framework: '">=5.19.1' });
+
+  testSuccessWhere('glossary with course._glossary', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '@@CURRENT_VERSION' }],
+    content: [
+      { _type: 'course', _glossary: {} }
+    ]
+  });
+
+  testStopWhere('glossary with empty course', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '@@CURRENT_VERSION' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-glossary', version: '@@RELEASE_VERSION' }]
+  });
+});

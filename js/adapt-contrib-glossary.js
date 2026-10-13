@@ -9,8 +9,13 @@ function setupGlossary(glossaryModel, glossaryItems) {
     collection: new Backbone.Collection(glossaryItems)
   };
 
+  const drawerOptions = {
+    title: glossaryModel.title,
+    isTitleVisible: glossaryModel._isTitleVisible
+  };
+
   Adapt.on('glossary:showGlossary', () => {
-    drawer.openCustomView(new GlossaryView(options).$el);
+    drawer.openCustomView(new GlossaryView(options).$el, true, null, drawerOptions);
   });
 
   /**
@@ -28,7 +33,7 @@ function setupGlossary(glossaryModel, glossaryItems) {
       }
     };
 
-    drawer.openCustomView(new GlossaryView(newOptions).$el);
+    drawer.openCustomView(new GlossaryView(newOptions).$el, true, null, drawerOptions);
   });
 }
 

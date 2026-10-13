@@ -88,6 +88,12 @@
                 "translatable": true
               }
             },
+            "_isTitleVisible": {
+              "type": "boolean",
+              "title": "Display title",
+              "description": "If enabled, the title is displayed as a heading at the top of the drawer. Otherwise it is only read by screen readers",
+              "default": false
+            },
             "description": {
               "type": "string",
               "title": "Glossary description",

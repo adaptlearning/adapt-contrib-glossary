@@ -85,6 +85,15 @@
                   "help": "The title text which will appear in the glossary",
                   "translatable": true
                 },
+                "_isTitleVisible": {
+                  "type": "boolean",
+                  "required": false,
+                  "default": false,
+                  "title": "Display title",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "If enabled, the title is displayed as a heading at the top of the drawer. Otherwise it is only read by screen readers"
+                },
                 "description": {
                   "type": "string",
                   "required": true,

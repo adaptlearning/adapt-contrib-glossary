@@ -9,6 +9,7 @@
         "searchPlaceholder": "Search",
         "searchWithInDescriptionLabel": "Search within Description",
         "itemNotFoundMessage": "No results found",
+        "_isTitleVisible": false,
         "_isIndexEnabled": true,
         "_isGroupHeadersEnabled": true,
         "_isSearchEnabled": true,

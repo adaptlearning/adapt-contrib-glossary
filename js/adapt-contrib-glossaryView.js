@@ -1,27 +1,22 @@
 import Adapt from 'core/js/adapt';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { templates } from 'core/js/reactHelpers';
 import GlossaryItemView from './adapt-contrib-glossaryItemView';
 
-export default class GlossaryView extends Backbone.View {
+class GlossaryView extends Backbone.View {
 
   className() {
     return 'glossary';
   }
 
-  events() {
-    return {
-      'keyup .js-glossary-textbox-change': 'onInputTextBoxValueChange',
-      'input .js-glossary-textbox-change': 'onInputTextBoxValueChange',
-      'paste .js-glossary-textbox-change': 'onInputTextBoxValueChange',
-      'change .js-glossary-checkbox-change': 'onInputTextBoxValueChange',
-      'click .js-glossary-cancel-btn-click': 'onCancelButtonClick'
-    };
-  }
-
   initialize() {
+    _.bindAll(this, 'onCancelButtonClick');
     this.itemViews = null;
     this.isSearchActive = false;
     this.listenTo(Adapt, 'remove drawer:closed', this.remove);
     this.setupModel();
+    this.listenTo(this.model, 'change', this.renderTemplate);
     this.onInputTextBoxValueChange = _.debounce(this.onInputTextBoxValueChange.bind(this), 200);
     _.defer(this.render.bind(this));
   }
@@ -38,11 +33,18 @@ export default class GlossaryView extends Backbone.View {
 
   remove() {
     this.itemViews = null;
+    ReactDOM.unmountComponentAtNode(this.el);
 
     Backbone.View.prototype.remove.apply(this, arguments);
   }
 
   setupModel() {
+    // the model is shared by every glossary view, so reset the search state on each open
+    this.model.set({
+      _hasSearchText: false,
+      _isItemNotFoundVisible: false,
+      searchAlert: ''
+    });
     this.arrangeGlossaryItemsToAscendingOrder();
     this.groupGlossaryItems();
   }
@@ -74,12 +76,7 @@ export default class GlossaryView extends Backbone.View {
   }
 
   render() {
-    const template = Handlebars.templates.glossary;
-    this.$el.html(template(this.model.toJSON()));
-
-    if (this.model.get('_isIndexEnabled')) {
-      this.renderIndexHeader();
-    }
+    this.renderTemplate();
 
     if (this.model.get('_isGroupHeadersEnabled')) {
       this.renderGlossaryItemsWithHeaders();
@@ -91,16 +88,15 @@ export default class GlossaryView extends Backbone.View {
     return this;
   }
 
-  renderIndexHeader() {
-    const $glossaryIndex = this.$('.js-glossary-index-container').empty();
-    Object.entries(this.collection._byChar0).forEach(([key, group]) => {
-      const template = Handlebars.templates.glossaryIndexItem;
-      $glossaryIndex.append(template({
-        _key: key,
-        _group: group
-      }));
-    });
-    this.$('.js-glossary-index-link').on('click', this.scrollToPosition);
+  renderTemplate() {
+    const Template = templates[this.constructor.template.replace('.jsx', '')];
+    ReactDOM.render(<Template
+      {...this.model.toJSON()}
+      _indexKeys={this.model.get('_isIndexEnabled') ? Object.keys(this.collection._byChar0) : []}
+      onSearchChange={this.onInputTextBoxValueChange}
+      onCancelClick={this.onCancelButtonClick}
+      onIndexLinkClick={this.scrollToPosition}
+    />, this.el);
   }
 
   scrollToPosition(event) {
@@ -164,13 +160,12 @@ export default class GlossaryView extends Backbone.View {
     const shouldSearchInDescription = this.$('.js-glossary-checkbox-change').is(':checked');
     const searchItemsAlert = this.model.get('searchItemsAlert') || '';
     const searchResults = (searchItem.length > 0);
-    this.$('.js-glossary-cancel-btn-click').toggleClass('u-display-none', !searchResults);
-    this.$('.js-glossary-search-icon').toggleClass('u-display-none', searchResults);
+    this.model.set('_hasSearchText', searchResults);
     this.toggleHeaders(searchResults);
 
     if (searchResults) {
       const filteredItems = this.getFilteredGlossaryItems(searchItem, shouldSearchInDescription);
-      this.$('.js-glossary-alert').html(Handlebars.compile(searchItemsAlert)({ filteredItems }));
+      this.model.set('searchAlert', Handlebars.compile(searchItemsAlert)({ filteredItems }));
       this.showFilterGlossaryItems(filteredItems);
     } else {
       this.isSearchActive = false;
@@ -181,9 +176,6 @@ export default class GlossaryView extends Backbone.View {
   };
 
   toggleHeaders(isHidden) {
-    if (this.model.get('_isIndexEnabled')) {
-      this.$('.js-glossary-index-container').toggleClass('u-display-none', isHidden);
-    }
     if (!this.model.get('_isGroupHeadersEnabled')) return;
     this.$('.js-glossary-items-group-header').toggleClass('u-display-none', isHidden);
   }
@@ -192,7 +184,8 @@ export default class GlossaryView extends Backbone.View {
     if (event && event.preventDefault) event.preventDefault();
     this.isSearchActive = false;
     const $input = this.$('.js-glossary-textbox-change');
-    $input.val('').trigger('input');
+    $input.val('');
+    this.onInputTextBoxValueChange();
     _.defer(() => $input.focus());
   }
 
@@ -222,7 +215,7 @@ export default class GlossaryView extends Backbone.View {
 
   // show/hide the item not found message.
   showItemNotFoundMessage(_isVisible) {
-    this.$('.js-glossary-item-not-found').toggleClass('u-display-none', !_isVisible);
+    this.model.set('_isItemNotFoundVisible', _isVisible);
   }
 
   // change the visibility of all glossary items
@@ -231,3 +224,7 @@ export default class GlossaryView extends Backbone.View {
   }
 
 }
+
+GlossaryView.template = 'glossary.jsx';
+
+export default GlossaryView;

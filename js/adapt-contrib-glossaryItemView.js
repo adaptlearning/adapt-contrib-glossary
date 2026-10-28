@@ -1,7 +1,10 @@
 import a11y from 'core/js/a11y';
 import Adapt from 'core/js/adapt';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { templates } from 'core/js/reactHelpers';
 
-export default class GlossaryItemView extends Backbone.View {
+class GlossaryItemView extends Backbone.View {
 
   className() {
     return 'glossary__item';
@@ -13,19 +16,17 @@ export default class GlossaryItemView extends Backbone.View {
     };
   }
 
-  events() {
-    return {
-      'click .js-glossary-item-term-click': 'onGlossaryItemClicked'
-    };
-  }
-
   initialize() {
+    _.bindAll(this, 'onGlossaryItemClicked');
     this.listenTo(Adapt, {
       'remove drawer:closed': this.remove,
       'glossary:descriptionOpen': this.descriptionOpen
     });
     this.setupModel();
-    this.listenTo(this.model, 'change:_isVisible', this.onGlossaryItemVisibilityChange);
+    this.listenTo(this.model, {
+      'change:_isVisible': this.onGlossaryItemVisibilityChange,
+      'change:_isDescriptionOpen': this.renderTemplate
+    });
     this.render();
   }
 
@@ -37,10 +38,22 @@ export default class GlossaryItemView extends Backbone.View {
   }
 
   render() {
-    const template = Handlebars.templates.glossaryItem;
-    this.$el.html(template(this.model.toJSON()));
+    this.renderTemplate();
     _.defer(this.postRender.bind(this));
     return this;
+  }
+
+  renderTemplate() {
+    const Template = templates[this.constructor.template.replace('.jsx', '')];
+    ReactDOM.render(<Template
+      {...this.model.toJSON()}
+      onClick={this.onGlossaryItemClicked}
+    />, this.el);
+  }
+
+  remove() {
+    ReactDOM.unmountComponentAtNode(this.el);
+    super.remove();
   }
 
   postRender() {
@@ -69,12 +82,10 @@ export default class GlossaryItemView extends Backbone.View {
    * show the glossary item description and highlight the selected term.
    */
   showGlossaryItemDescription() {
-    const $glossaryItemTerm = this.$('.js-glossary-item-term-click');
-    const $description = $glossaryItemTerm.addClass('is-selected').siblings('.js-glossary-item-description').slideDown(200, () => {
+    this.model.set('_isDescriptionOpen', true);
+    const $description = this.$('.js-glossary-item-description').slideDown(200, () => {
       a11y.focusFirst($description, { defer: true });
     });
-    $glossaryItemTerm.attr('aria-expanded', true);
-    this.model.set('_isDescriptionOpen', true);
   }
 
   /**
@@ -83,8 +94,6 @@ export default class GlossaryItemView extends Backbone.View {
   hideGlossaryItemDescription() {
     this.$('.js-glossary-item-description').stop(true, true).slideUp(200);
     this.model.set('_isDescriptionOpen', false);
-
-    this.$('.js-glossary-item-term-click').removeClass('is-selected').attr('aria-expanded', false);
   }
 
   // This function will decide whether this glossary item's description should be visible or not.
@@ -107,3 +116,7 @@ export default class GlossaryItemView extends Backbone.View {
     this.$el.toggleClass('u-display-none', !this.model.get('_isVisible'));
   }
 }
+
+GlossaryItemView.template = 'glossaryItem.jsx';
+
+export default GlossaryItemView;

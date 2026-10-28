@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { templates } from 'core/js/reactHelpers';
 
-export default class GlossaryItemView extends Backbone.View {
+class GlossaryItemView extends Backbone.View {
 
   className() {
     return 'glossary__item';
@@ -44,7 +44,7 @@ export default class GlossaryItemView extends Backbone.View {
   }
 
   renderTemplate() {
-    const Template = templates.glossaryItem;
+    const Template = templates[this.constructor.template.replace('.jsx', '')];
     ReactDOM.render(<Template
       {...this.model.toJSON()}
       onClick={this.onGlossaryItemClicked}
@@ -116,3 +116,7 @@ export default class GlossaryItemView extends Backbone.View {
     this.$el.toggleClass('u-display-none', !this.model.get('_isVisible'));
   }
 }
+
+GlossaryItemView.template = 'glossaryItem.jsx';
+
+export default GlossaryItemView;

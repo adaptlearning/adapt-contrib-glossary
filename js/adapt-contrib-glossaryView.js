@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { templates } from 'core/js/reactHelpers';
 import GlossaryItemView from './adapt-contrib-glossaryItemView';
 
-export default class GlossaryView extends Backbone.View {
+class GlossaryView extends Backbone.View {
 
   className() {
     return 'glossary';
@@ -89,7 +89,7 @@ export default class GlossaryView extends Backbone.View {
   }
 
   renderTemplate() {
-    const Template = templates.glossary;
+    const Template = templates[this.constructor.template.replace('.jsx', '')];
     ReactDOM.render(<Template
       {...this.model.toJSON()}
       _indexKeys={this.model.get('_isIndexEnabled') ? Object.keys(this.collection._byChar0) : []}
@@ -224,3 +224,7 @@ export default class GlossaryView extends Backbone.View {
   }
 
 }
+
+GlossaryView.template = 'glossary.jsx';
+
+export default GlossaryView;
